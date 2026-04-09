@@ -1,10 +1,10 @@
 "use client";
-
+// v2
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
-  Football,
+  Goal,
   Target,
   Shield,
   Zap,
@@ -27,7 +27,7 @@ const GAME_EVENTS = [
     quarter: "Q1",
     time: "8:34",
     type: "touchdown",
-    icon: Football,
+    icon: Goal,
     title: "Mahomes to Kelce — 34-Yard Strike",
     description:
       "On 3rd & 8, Mahomes scrambles left, evades the rush, and delivers a dime to Kelce in the corner of the end zone. Vintage Chiefs football.",
@@ -49,7 +49,7 @@ const GAME_EVENTS = [
     quarter: "Q2",
     time: "2:45",
     type: "touchdown",
-    icon: Football,
+    icon: Goal,
     title: "Jackson to Andrews — 12-Yard TD",
     description:
       "Lamar Jackson responds with a surgical 9-play, 88-yard drive, capping it with a laser to Mark Andrews in the red zone.",
@@ -71,7 +71,7 @@ const GAME_EVENTS = [
     quarter: "Q4",
     time: "5:02",
     type: "touchdown",
-    icon: Football,
+    icon: Goal,
     title: "Jackson 67-Yard Rush TD",
     description:
       "The play of the game. Jackson keeps it on a read-option, breaks two tackles, and outruns the entire Chiefs secondary. M&T Bank Stadium erupts.",
@@ -82,7 +82,7 @@ const GAME_EVENTS = [
     quarter: "Q4",
     time: "1:47",
     type: "touchdown",
-    icon: Football,
+    icon: Goal,
     title: "Mahomes 2-Yard Sneak — GO-AHEAD TD",
     description:
       "The two-minute drill. Mahomes orchestrates a 12-play, 75-yard masterpiece. On 4th & goal from the 2, he punches it in himself. The Chief is back on top.",
