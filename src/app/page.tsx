@@ -27,6 +27,9 @@ import { BackToTop } from "@/components/sports/BackToTop";
 import { BreakingNewsTicker } from "@/components/sports/BreakingNewsTicker";
 import { DraftBigBoard } from "@/components/sports/DraftBigBoard";
 import { HallOfFameShowcase } from "@/components/sports/HallOfFameShowcase";
+import { WeatherStadium } from "@/components/sports/WeatherStadium";
+import { MVPLeaders } from "@/components/sports/MVPLeaders";
+import { QuickBetOdds } from "@/components/sports/QuickBetOdds";
 
 export default function Home() {
   return (
@@ -42,6 +45,7 @@ export default function Home() {
         <TopHighlights />
         <DeepStats />
         <PlayerComparison />
+        <WeatherStadium />
         <UpcomingGames />
         <StandingsTable />
         <MatchTimeline />
@@ -51,7 +55,9 @@ export default function Home() {
         <PowerRankings />
         <TradeTracker />
         <InjuryReport />
+        <QuickBetOdds />
         <FanPoll />
+        <MVPLeaders />
         <SocialFeed />
         <SportsHistory />
         <FantasyQuickStart />
