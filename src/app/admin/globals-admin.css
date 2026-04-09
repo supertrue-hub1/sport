@@ -1,0 +1,108 @@
+/* ===== Admin Panel Light Theme ===== */
+
+/* Light theme overrides for admin */
+.admin-panel {
+  --admin-bg: #ffffff;
+  --admin-sidebar-bg: #ffffff;
+  --admin-header-bg: #ffffff;
+  --admin-content-bg: #f9fafb;
+  --admin-border: #e5e7eb;
+  --admin-text: #111827;
+  --admin-text-muted: #6b7280;
+  --admin-primary: #2563eb;
+  --admin-primary-light: #eff6ff;
+  --admin-hover: #f3f4f6;
+  background-color: var(--admin-content-bg);
+  color: var(--admin-text);
+}
+
+/* Admin scrollbar - light and minimal */
+.admin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Sidebar transition */
+.admin-sidebar {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-sidebar-collapsed {
+  transform: translateX(-100%);
+}
+
+/* Card hover effects */
+.admin-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.admin-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Stat card hover */
+.admin-stat-card {
+  transition: all 0.2s ease;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Table row hover */
+.admin-table-row {
+  transition: background-color 0.15s ease;
+}
+
+/* Mobile overlay */
+.admin-overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+/* Bar chart animation */
+.admin-bar {
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sparkline animation */
+.admin-sparkline {
+  animation: sparkline-draw 1s ease-out forwards;
+}
+
+@keyframes sparkline-draw {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Mobile card layout */
+@media (max-width: 768px) {
+  .admin-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .admin-mobile-cards .admin-card {
+    padding: 1rem;
+  }
+}

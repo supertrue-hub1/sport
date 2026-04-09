@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Trophy, Sun, Moon, Search } from "lucide-react";
+import { Menu, X, Trophy, Sun, Moon, Search, Shield } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -87,6 +87,14 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
+            <a
+              href="/admin"
+              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-gold hover:bg-white/5 transition-colors"
+              aria-label="Панель администратора"
+              title="Админ-панель"
+            >
+              <Shield className="w-4 h-4" />
+            </a>
             <Button
               variant="ghost"
               size="icon"
