@@ -24,12 +24,16 @@ import { Gamification } from "@/components/sports/Gamification";
 import { LatestNews } from "@/components/sports/LatestNews";
 import { Footer } from "@/components/sports/Footer";
 import { BackToTop } from "@/components/sports/BackToTop";
+import { BreakingNewsTicker } from "@/components/sports/BreakingNewsTicker";
+import { DraftBigBoard } from "@/components/sports/DraftBigBoard";
+import { HallOfFameShowcase } from "@/components/sports/HallOfFameShowcase";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
+        <BreakingNewsTicker />
         <HeroSection />
         <LiveTicker />
         <StatsBanner />
@@ -43,6 +47,7 @@ export default function Home() {
         <MatchTimeline />
         <WinProbabilityChart />
         <CinematicQuote variant={1} />
+        <DraftBigBoard />
         <PowerRankings />
         <TradeTracker />
         <InjuryReport />
@@ -50,6 +55,7 @@ export default function Home() {
         <SocialFeed />
         <SportsHistory />
         <FantasyQuickStart />
+        <HallOfFameShowcase />
         <Gamification />
         <LatestNews />
       </main>
