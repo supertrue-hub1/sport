@@ -113,7 +113,7 @@ export function LatestNews() {
             <motion.article
               key={item.id}
               variants={itemVariants}
-              className="group glass-card rounded-xl overflow-hidden hover:border-gold/20 transition-all duration-300 cursor-pointer"
+              className="group glass-card-interactive hover-sweep rounded-xl overflow-hidden cursor-pointer"
             >
               {/* Thumbnail */}
               <div className="relative h-44 overflow-hidden">

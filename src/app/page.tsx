@@ -5,17 +5,19 @@ import { HeroSection } from "@/components/sports/HeroSection";
 import { LiveTicker } from "@/components/sports/LiveTicker";
 import { FeaturedStories } from "@/components/sports/FeaturedStories";
 import { CinematicQuote } from "@/components/sports/CinematicQuote";
+import { TopHighlights } from "@/components/sports/TopHighlights";
 import { DeepStats } from "@/components/sports/DeepStats";
 import { PlayerComparison } from "@/components/sports/PlayerComparison";
 import { StandingsTable } from "@/components/sports/StandingsTable";
 import { MatchTimeline } from "@/components/sports/MatchTimeline";
 import { WinProbabilityChart } from "@/components/sports/WinProbabilityChart";
+import { UpcomingGames } from "@/components/sports/UpcomingGames";
 import { PowerRankings } from "@/components/sports/PowerRankings";
-import { TopHighlights } from "@/components/sports/TopHighlights";
 import { TradeTracker } from "@/components/sports/TradeTracker";
 import { InjuryReport } from "@/components/sports/InjuryReport";
-import { SportsHistory } from "@/components/sports/SportsHistory";
 import { FanPoll } from "@/components/sports/FanPoll";
+import { SocialFeed } from "@/components/sports/SocialFeed";
+import { SportsHistory } from "@/components/sports/SportsHistory";
 import { FantasyQuickStart } from "@/components/sports/FantasyQuickStart";
 import { StatsBanner } from "@/components/sports/StatsBanner";
 import { Gamification } from "@/components/sports/Gamification";
@@ -36,6 +38,7 @@ export default function Home() {
         <TopHighlights />
         <DeepStats />
         <PlayerComparison />
+        <UpcomingGames />
         <StandingsTable />
         <MatchTimeline />
         <WinProbabilityChart />
@@ -44,6 +47,7 @@ export default function Home() {
         <TradeTracker />
         <InjuryReport />
         <FanPoll />
+        <SocialFeed />
         <SportsHistory />
         <FantasyQuickStart />
         <Gamification />
