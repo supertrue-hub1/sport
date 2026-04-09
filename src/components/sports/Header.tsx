@@ -6,6 +6,7 @@ import { Menu, X, Trophy, Sun, Moon, Search } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SearchModal } from "./SearchModal";
 
 const NAV_ITEMS = [
   { label: "Home", href: "#" },
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const mounted = useSyncExternalStore(
     () => () => {},
@@ -30,6 +32,20 @@ export function Header() {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
@@ -75,6 +91,8 @@ export function Header() {
               variant="ghost"
               size="icon"
               className="text-muted-foreground hover:text-gold hidden sm:flex"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Open search (⌘K)"
             >
               <Search className="w-4 h-4" />
             </Button>
@@ -132,6 +150,9 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Search Modal */}
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </motion.header>
   );
 }
