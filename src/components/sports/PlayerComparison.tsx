@@ -22,12 +22,12 @@ const PLAYERS = {
 };
 
 const COMPARISON_STATS = [
-  { label: "Passing Yards", mahomes: 4183, allen: 4306, max: 5000 },
-  { label: "Touchdowns", mahomes: 33, allen: 29, max: 45 },
-  { label: "Completion %", mahomes: 67.2, allen: 65.8, max: 80 },
+  { label: "Ярдов передач", mahomes: 4183, allen: 4306, max: 5000 },
+  { label: "Тачдаунов", mahomes: 33, allen: 29, max: 45 },
+  { label: "% Точности передач", mahomes: 67.2, allen: 65.8, max: 80 },
   { label: "QBR", mahomes: 98.5, allen: 92.2, max: 120 },
-  { label: "Rush Yards", mahomes: 368, allen: 524, max: 700 },
-  { label: "Rush TDs", mahomes: 4, allen: 7, max: 12 },
+  { label: "Ярдов на выносе", mahomes: 368, allen: 524, max: 700 },
+  { label: "Тачдаунов на выносе", mahomes: 4, allen: 7, max: 12 },
 ];
 
 const containerVariants = {
@@ -53,10 +53,10 @@ export function PlayerComparison() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Showdown
+            Противостояние
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            HEAD <span className="text-gradient-gold">TO</span> HEAD
+            ЛИЦОМ <span className="text-gradient-gold">К</span> ЛИЦУ
           </h2>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -142,7 +142,7 @@ export function PlayerComparison() {
                         mahoWins ? "text-gold" : "text-muted-foreground"
                       }`}
                     >
-                      {stat.label === "Completion %"
+                      {stat.label === "% Точности передач"
                         ? `${stat.mahomes}%`
                         : stat.label === "QBR"
                           ? stat.mahomes.toFixed(1)
@@ -156,7 +156,7 @@ export function PlayerComparison() {
                         !mahoWins ? "text-red-400" : "text-muted-foreground"
                       }`}
                     >
-                      {stat.label === "Completion %"
+                      {stat.label === "% Точности передач"
                         ? `${stat.allen}%`
                         : stat.label === "QBR"
                           ? stat.allen.toFixed(1)
@@ -205,7 +205,7 @@ export function PlayerComparison() {
               </p>
             </div>
             <div className="text-xs text-muted-foreground">
-              Categories Won
+              Категорий выиграно
             </div>
             <div className="text-center">
               <span className="text-2xl font-black text-red-400">

@@ -25,79 +25,79 @@ const PROSPECTS: Prospect[] = [
     rank: 1, name: "Travis Hunter", position: "CB/WR", school: "Colorado",
     conference: "Big 12", height: "6'1\"", weight: 195, compositeScore: 98.7,
     grade: "A+", trend: "up",
-    highlight: "Two-way phenom redefining positional value in the modern NFL",
-    comparison: "Prime Deion Sanders meets Chase Young",
+    highlight: "Двусторонний феномен, переопределяющий ценность позиций в современном NFL",
+    comparison: "Prime Deion Sanders встречает Chase Young",
     badge: "generational"
   },
   {
     rank: 2, name: "Abdul Carter", position: "EDGE", school: "Penn State",
     conference: "Big Ten", height: "6'3\"", weight: 252, compositeScore: 97.2,
     grade: "A+", trend: "stable",
-    highlight: "Dominant pass rusher with elite bend and power moves",
-    comparison: "Micah Parsons-level disruptor",
+    highlight: "Доминирующий пас-рашер с элитным сгибом и силовыми приёмами",
+    comparison: "Дизраптор уровня Micah Parsons",
     badge: "elite"
   },
   {
     rank: 3, name: "Cam Ward", position: "QB", school: "Miami",
     conference: "ACC", height: "6'2\"", weight: 218, compositeScore: 96.1,
     grade: "A", trend: "up",
-    highlight: "Record-breaking season with jaw-dropping improvisational skills",
-    comparison: "Patrick Mahomes college tape vibes",
+    highlight: "Рекордный сезон с потрясающими навыками импровизации",
+    comparison: "Вайбы по плёнке Patrick Mahomes в колледже",
     badge: "riser"
   },
   {
     rank: 4, name: "Shedeur Sanders", position: "QB", school: "Colorado",
     conference: "Big 12", height: "6'2\"", weight: 215, compositeScore: 95.4,
     grade: "A", trend: "down",
-    highlight: "Elite pocket presence and processing speed under pressure",
-    comparison: "Drew Brees accuracy with Josh Allen arm talent",
+    highlight: "Элитное нахождение в кармане и скорость обработки под давлением",
+    comparison: "Точность Drew Brees с талантом руки Josh Allen",
     badge: "elite"
   },
   {
     rank: 5, name: "Mason Graham", position: "DT", school: "Michigan",
     conference: "Big Ten", height: "6'3\"", weight: 318, compositeScore: 94.8,
     grade: "A", trend: "stable",
-    highlight: "Interior wrecking ball with rare quickness for his size",
-    comparison: "Aaron Donald-lite with better pass-rush upside",
+    highlight: "Внутренний разрушитель с редкой резкостью для своих габаритов",
+    comparison: "Aaron Donald-lite с лучшим потенциалом в пас-раше",
     badge: "elite"
   },
   {
     rank: 6, name: "Jahdae Barron", position: "CB", school: "Texas",
     conference: "SEC", height: "5'11\"", weight: 195, compositeScore: 93.5,
     grade: "A-", trend: "up",
-    highlight: " lockdown coverage specialist with ball-hawking instincts",
-    comparison: "Jaire Alexander with better tackling",
+    highlight: "Специалист по закрывающему прикрытию с инстинктами перехватчика",
+    comparison: "Jaire Alexander с лучшими тэклами",
     badge: "riser"
   },
   {
     rank: 7, name: "Tyler Warren", position: "TE", school: "Penn State",
     conference: "Big Ten", height: "6'6\"", weight: 257, compositeScore: 92.9,
     grade: "A-", trend: "up",
-    highlight: "Swiss army knife — lined up everywhere and dominated every matchup",
-    comparison: "Kyle Pitts ceiling with George Kittle mentality",
+    highlight: "Швейцарский нож — ставился повсюду и доминировал в каждом матчапе",
+    comparison: "Потолок Kyle Pitts с менталитетом George Kittle",
     badge: "riser"
   },
   {
     rank: 8, name: "James Pearce Jr.", position: "EDGE", school: "Tennessee",
     conference: "SEC", height: "6'5\"", weight: 245, compositeScore: 92.1,
     grade: "A-", trend: "stable",
-    highlight: "Length and athleticism off the edge that cannot be blocked 1-on-1",
-    comparison: "Nick Bosa with more athletic upside",
+    highlight: "Длина и атлетизм с края, которые нельзя блокировать один на один",
+    comparison: "Nick Bosa с большим атлетическим потенциалом",
   },
   {
     rank: 9, name: "Luther Burden III", position: "WR", school: "Missouri",
     conference: "SEC", height: "6'0\"", weight: 208, compositeScore: 91.4,
     grade: "B+", trend: "down",
-    highlight: "Elite after-the-catch ability and route-running polish",
-    comparison: "Deebo Samuel in a receiving corps that needs a #1",
+    highlight: "Элитная игра после ловли и отточенная техника маршрутов",
+    comparison: "Deebo Samuel в принимающем корпусе, которому нужен #1",
     badge: "sleeper"
   },
   {
     rank: 10, name: "Kenneth Grant", position: "DT", school: "Michigan",
     conference: "Big Ten", height: "6'4\"", weight: 339, compositeScore: 90.8,
     grade: "B+", trend: "up",
-    highlight: "Massive run-stuffer who's added a devastating pass-rush spin move",
-    comparison: "Dannell Ellerbe's motor in Vince Wilfork's frame",
+    highlight: "Массивный стоппер бега, добавивший разрушительный спин-движение в пас-раш",
+    comparison: "Двигатель Dannell Ellerbe в рамке Vince Wilfork",
     badge: "riser"
   },
 ];
@@ -105,10 +105,10 @@ const PROSPECTS: Prospect[] = [
 const POSITION_FILTERS = ["ALL", "QB", "WR", "TE", "EDGE", "DT", "CB", "RB", "OT", "S"];
 
 const BADGE_CONFIG = {
-  generational: { label: "GENERATIONAL", color: "bg-amber-500/20 text-amber-400 border border-amber-500/30" },
-  elite: { label: "ELITE", color: "bg-gold/20 text-gold border border-gold/30" },
-  riser: { label: "STOCK RISER", color: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
-  sleeper: { label: "VALUE PICK", color: "bg-sky-500/20 text-sky-400 border border-sky-500/30" },
+  generational: { label: "ГЕНЕРАЦИОННЫЙ", color: "bg-amber-500/20 text-amber-400 border border-amber-500/30" },
+  elite: { label: "ЭЛИТНЫЙ", color: "bg-gold/20 text-gold border border-gold/30" },
+  riser: { label: "РАСТУЩИЙ", color: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
+  sleeper: { label: "ЦЕННЫЙ ВЫБОР", color: "bg-sky-500/20 text-sky-400 border border-sky-500/30" },
 };
 
 const GRADE_COLORS: Record<string, string> = {
@@ -147,15 +147,15 @@ export function DraftBigBoard() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-              DRAFT <span className="text-gradient-gold">BIG BOARD</span>
+              DRAFT <span className="text-gradient-gold">БОРД</span>
             </h2>
             <p className="text-muted-foreground text-sm mt-2 max-w-lg">
-              The definitive scouting report. Composite scores powered by film study, analytics, and insider intel.
+              Итоговый скаутинг-отчёт. Композитные оценки на основе изучения плёнки, аналитики и инсайдерской информации.
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Filter className="w-3.5 h-3.5" />
-            <span>{filteredProspects.length} prospect{filteredProspects.length !== 1 ? "s" : ""}</span>
+            <span>{filteredProspects.length} проспект{filteredProspects.length !== 1 ? "ов" : ""}</span>
           </div>
         </div>
 
@@ -280,7 +280,7 @@ export function DraftBigBoard() {
                           <div className="flex items-start gap-2 p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
                             <Zap className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                             <div>
-                              <span className="text-[10px] font-bold tracking-wider uppercase text-gold/60">PRO COMP</span>
+                              <span className="text-[10px] font-bold tracking-wider uppercase text-gold/60">ПРО-СРАВНЕНИЕ</span>
                               <p className="text-sm text-foreground/70 mt-0.5">{prospect.comparison}</p>
                             </div>
                           </div>
@@ -311,10 +311,10 @@ export function DraftBigBoard() {
         {/* Bottom CTA */}
         <div className="mt-8 text-center">
           <p className="text-xs text-muted-foreground/60 mb-3">
-            Composite scores updated weekly · Film analysis by 42 NFL scouts
+            Композитные оценки обновляются еженедельно · Анализ плёнки от 42 скаутов NFL
           </p>
           <button className="text-xs font-bold tracking-wider uppercase text-gold/60 hover:text-gold transition-colors gold-underline focus-gold">
-            View Full 300-Player Board
+            Полный список из 300 игроков
           </button>
         </div>
       </div>

@@ -17,9 +17,9 @@ const GAME_EVENTS = [
     time: "12:00",
     type: "kickoff",
     icon: Zap,
-    title: "Opening Kickoff",
+    title: "Начальный кикофф",
     description:
-      "Chiefs receive the opening kickoff. Arrowhead Stadium is electric — 76,000 fans on their feet.",
+      "Chiefs получают начальный кикофф. Arrowhead Stadium гудит — 76 000 фанатов на ногах.",
     score: "Chiefs 0 — Ravens 0",
     highlight: false,
   },
@@ -28,9 +28,9 @@ const GAME_EVENTS = [
     time: "8:34",
     type: "touchdown",
     icon: Goal,
-    title: "Mahomes to Kelce — 34-Yard Strike",
+    title: "Передача Mahomes на Kelce — 34 ярда",
     description:
-      "On 3rd & 8, Mahomes scrambles left, evades the rush, and delivers a dime to Kelce in the corner of the end zone. Vintage Chiefs football.",
+      "На 3-м дауне и 8 ярдах Mahomes уходит влево, уворачивается от давления и бросает идеальный мяч Kelce в угол энд-зоны. Классический футбол Chiefs.",
     score: "Chiefs 7 — Ravens 0",
     highlight: true,
   },
@@ -39,9 +39,9 @@ const GAME_EVENTS = [
     time: "6:12",
     type: "defense",
     icon: Shield,
-    title: "Chris Jones Forces Fumble",
+    title: "Chris Jones вынуждает фамбл",
     description:
-      "Jones blows past the guard and strips Lamar Jackson from behind. The ball bounces loose — Chiefs recover at the Ravens' 22.",
+      "Jones проходит мимо гарда и выбивает мяч из рук Lamar Jackson со спины. Мяч отскакивает — Chiefs подбирают на 22-ярде Ravens.",
     score: "Chiefs 7 — Ravens 0",
     highlight: true,
   },
@@ -50,9 +50,9 @@ const GAME_EVENTS = [
     time: "2:45",
     type: "touchdown",
     icon: Goal,
-    title: "Jackson to Andrews — 12-Yard TD",
+    title: "Передача Jackson на Andrews — 12-ярдовый тачдаун",
     description:
-      "Lamar Jackson responds with a surgical 9-play, 88-yard drive, capping it with a laser to Mark Andrews in the red zone.",
+      "Lamar Jackson отвечает хирургически точным драйвом на 9 розыгрышей и 88 ярдов, завершая его точным пасом на Mark Andrews в ред-зоне.",
     score: "Chiefs 7 — Ravens 7",
     highlight: false,
   },
@@ -61,9 +61,9 @@ const GAME_EVENTS = [
     time: "9:18",
     type: "field_goal",
     icon: Target,
-    title: "Butker 47-Yard Field Goal",
+    title: "Филд-гол Butker с 47 ярдов",
     description:
-      "A 14-play grind of a drive stalls at the 29. Butker drills it through the uprights to restore the lead.",
+      "Изматывающий драйв на 14 розыгрышей замирает на 29-ярде. Butker пробивает мяч сквозь штанги, возвращая лидерство.",
     score: "Chiefs 10 — Ravens 7",
     highlight: false,
   },
@@ -72,9 +72,9 @@ const GAME_EVENTS = [
     time: "5:02",
     type: "touchdown",
     icon: Goal,
-    title: "Jackson 67-Yard Rush TD",
+    title: "Раш-тачдаун Jackson на 67 ярдов",
     description:
-      "The play of the game. Jackson keeps it on a read-option, breaks two tackles, and outruns the entire Chiefs secondary. M&T Bank Stadium erupts.",
+      "Лучший розыгрыш матча. Jackson забирает мяч на ри-опшене, ломает два захвата и обегает всю секундари Chiefs. M&T Bank Stadium взрывается.",
     score: "Chiefs 10 — Ravens 14",
     highlight: true,
   },
@@ -83,9 +83,9 @@ const GAME_EVENTS = [
     time: "1:47",
     type: "touchdown",
     icon: Goal,
-    title: "Mahomes 2-Yard Sneak — GO-AHEAD TD",
+    title: "Сник Mahomes на 2 ярда — ТАЧДАУН ВПЕРЁД",
     description:
-      "The two-minute drill. Mahomes orchestrates a 12-play, 75-yard masterpiece. On 4th & goal from the 2, he punches it in himself. The Chief is back on top.",
+      "Двухминутная спешка. Mahomes дирижирует шедевром на 12 розыгрышей и 75 ярдов. На 4-м дауне с 2 ярдов до тачдаун-зоны он пробивает путь сам. The Chief снова на вершине.",
     score: "Chiefs 17 — Ravens 14",
     highlight: true,
   },
@@ -94,10 +94,10 @@ const GAME_EVENTS = [
     time: "0:00",
     type: "end",
     icon: Clock,
-    title: "Game Over — Chiefs Win 17-14",
+    title: "Конец матча — Chiefs побеждают 17-14",
     description:
-      "Hail Mary attempt falls incomplete. Mahomes and the Chiefs survive another thriller at Arrowhead. The dynasty marches on.",
-    score: "FINAL: Chiefs 17 — Ravens 14",
+      "Попытка Hail Mary оказывается неточной. Mahomes и Chiefs переживают ещё один триллер на Arrowhead. Династия продолжает шествие.",
+    score: "ФИНАЛ: Chiefs 17 — Ravens 14",
     highlight: true,
   },
 ];
@@ -228,14 +228,14 @@ export function MatchTimeline() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Chronicle
+            Летопись
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            GAME <span className="text-gradient-gold">TIMELINE</span>
+            ХРОНОЛОГИЯ <span className="text-gradient-gold">МАТЧА</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-md">
-            Relive every pivotal moment from the Chiefs vs Ravens thriller.
-            Click any play to expand the story.
+            Переживите каждый ключевой момент триллера Chiefs против Ravens.
+            Нажмите на любой розыгрыш, чтобы развернуть историю.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>

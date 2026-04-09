@@ -15,11 +15,11 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 const QUICK_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Contact", href: "#" },
-  { label: "Advertise", href: "#" },
-  { label: "Careers", href: "#" },
+  { label: "Главная", href: "#" },
+  { label: "О нас", href: "#" },
+  { label: "Контакты", href: "#" },
+  { label: "Реклама", href: "#" },
+  { label: "Вакансии", href: "#" },
 ];
 
 const SPORTS = [
@@ -27,7 +27,7 @@ const SPORTS = [
   { label: "NBA", href: "#" },
   { label: "MLB", href: "#" },
   { label: "NHL", href: "#" },
-  { label: "Fantasy", href: "#" },
+  { label: "Фэнтези", href: "#" },
 ];
 
 const SOCIALS = [
@@ -45,8 +45,8 @@ export function Footer() {
     if (!email) return;
     setSubscribed(true);
     toast({
-      title: "Welcome to the Hub!",
-      description: "You'll receive our premium newsletter every game day.",
+      title: "Добро пожаловать в Hub!",
+      description: "Вы будете получать нашу премиальную рассылку в каждый игровой день.",
       className: "border-gold/30",
     });
     setEmail("");
@@ -70,8 +70,8 @@ export function Footer() {
                 </span>
               </a>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">
-                The elite sports experience. Where data meets drama and every
-                story is told with cinematic precision.
+                Элитный спортивный опыт. Там, где данные встречаются с драмой, а каждая
+                история рассказывается с кинематографической точностью.
               </p>
               {/* Socials */}
               <div className="flex items-center gap-3 mt-5">
@@ -90,7 +90,7 @@ export function Footer() {
             {/* Quick Links */}
             <div>
               <h4 className="text-xs font-bold tracking-[0.2em] text-foreground uppercase mb-4">
-                Quick Links
+                Быстрые ссылки
               </h4>
               <ul className="space-y-2.5">
                 {QUICK_LINKS.map((link) => (
@@ -109,7 +109,7 @@ export function Footer() {
             {/* Sports */}
             <div>
               <h4 className="text-xs font-bold tracking-[0.2em] text-foreground uppercase mb-4">
-                Sports
+                Виды спорта
               </h4>
               <ul className="space-y-2.5">
                 {SPORTS.map((sport) => (
@@ -128,10 +128,10 @@ export function Footer() {
             {/* Newsletter */}
             <div>
               <h4 className="text-xs font-bold tracking-[0.2em] text-foreground uppercase mb-4">
-                Newsletter
+                Рассылка
               </h4>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                Premium insights delivered to your inbox every game day.
+                Премиальные аналитические материалы в ваш почтовый ящик в каждый игровой день.
               </p>
               {!subscribed ? (
                 <div className="flex gap-2">
@@ -154,7 +154,7 @@ export function Footer() {
               ) : (
                 <div className="flex items-center gap-2 text-gold text-sm font-medium">
                   <Mail className="w-4 h-4" />
-                  <span>Subscribed!</span>
+                  <span>Подписано!</span>
                 </div>
               )}
             </div>
@@ -165,17 +165,17 @@ export function Footer() {
         <div className="border-t border-white/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} US Sports Hub. All rights reserved.
+              © {new Date().getFullYear()} US Sports Hub. Все права защищены.
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <a href="#" className="hover:text-gold transition-colors">
-                Privacy Policy
+                Политика конфиденциальности
               </a>
               <a href="#" className="hover:text-gold transition-colors">
-                Terms of Service
+                Условия использования
               </a>
               <a href="#" className="hover:text-gold transition-colors">
-                Accessibility
+                Доступность
               </a>
             </div>
           </div>

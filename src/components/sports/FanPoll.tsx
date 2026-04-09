@@ -25,8 +25,8 @@ interface Poll {
 const POLLS: Poll[] = [
   {
     id: 1,
-    question: "Who will win the Super Bowl this season?",
-    context: "NFL · 2025 Season Preview",
+    question: "Кто выиграет Супербоул в этом сезоне?",
+    context: "NFL · Предпросмотр сезона 2025",
     category: "NFL",
     totalVotes: 14832,
     options: [
@@ -38,8 +38,8 @@ const POLLS: Poll[] = [
   },
   {
     id: 2,
-    question: "Who is the NBA MVP right now?",
-    context: "NBA · Mid-Season Ballot",
+    question: "Кто сейчас MVP NBA?",
+    context: "NBA · Бюллетень середины сезона",
     category: "NBA",
     totalVotes: 23419,
     options: [
@@ -51,8 +51,8 @@ const POLLS: Poll[] = [
   },
   {
     id: 3,
-    question: "Greatest clutch performer of all time?",
-    context: "All-Time Debate",
+    question: "Лучший клатч-перформер всех времён?",
+    context: "Дискуссия всех времён",
     category: "ALL",
     totalVotes: 45102,
     options: [
@@ -104,15 +104,15 @@ export function FanPoll() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Your Call
+            Ваш голос
             <Vote className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            FAN <span className="text-gradient-gold">POLL</span>
+            ОПРОС <span className="text-gradient-gold">БОЛЬШИХ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            Your voice matters. Cast your vote and see where the community stands
-            on the biggest debates in sports.
+            Ваш голос важен. Проголосуйте и узнайте, на чьей стороне
+            общественность в главных спортивных дискуссиях.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -150,7 +150,7 @@ export function FanPoll() {
               </span>
               <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                 <Users className="w-3 h-3" />
-                {poll.totalVotes.toLocaleString()} votes
+                {poll.totalVotes.toLocaleString()} голосов
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
@@ -244,7 +244,7 @@ export function FanPoll() {
               <div className="flex items-center justify-between pt-4 border-t border-white/5">
                 <p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
                   <Zap className="w-3 h-3 text-gold/50" />
-                  {poll.totalVotes.toLocaleString()} total votes
+                  {poll.totalVotes.toLocaleString()} всего голосов
                 </p>
                 <Button
                   variant="ghost"
@@ -255,7 +255,7 @@ export function FanPoll() {
                     return next ? next.id : prev;
                   })}
                 >
-                  Next Poll →
+                  Следующий опрос →
                 </Button>
               </div>
             </motion.div>

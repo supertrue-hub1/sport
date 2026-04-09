@@ -21,10 +21,10 @@ const LEGENDS: Legend[] = [
   {
     name: "Michael Jordan",
     sport: "NBA",
-    position: "Shooting Guard",
+    position: "Защитник",
     years: "1984–2003",
     team: "Chicago Bulls",
-    careerHighlight: "6× NBA Champion, 6× Finals MVP, 5× NBA MVP, 10× Scoring Champion",
+    careerHighlight: "6× чемпион NBA, 6× MVP финала, 5× MVP NBA, 10× лучший снайпер",
     stats: [
       { label: "PPG", value: "30.1" },
       { label: "RPG", value: "6.2" },
@@ -32,16 +32,16 @@ const LEGENDS: Legend[] = [
       { label: "Rings", value: "6" },
     ],
     quote: "I can accept failure, everyone fails at something. But I can't accept not trying.",
-    accolades: ["Hall of Fame 2009", "All-Time Scoring", "Defensive POY '88"],
+    accolades: ["Зал славы 2009", "Лучший снайпер всех времён", "Оборонительный POY '88"],
     avatar: "🏀"
   },
   {
     name: "Tom Brady",
     sport: "NFL",
-    position: "Quarterback",
+    position: "Квотербэк",
     years: "2000–2022",
     team: "New England Patriots / Tampa Bay Buccaneers",
-    careerHighlight: "7× Super Bowl Champion, 5× Super Bowl MVP, 3× NFL MVP",
+    careerHighlight: "7× чемпион Super Bowl, 5× MVP Super Bowl, 3× MVP NFL",
     stats: [
       { label: "TDs", value: "649" },
       { label: "Yards", value: "89,214" },
@@ -49,16 +49,16 @@ const LEGENDS: Legend[] = [
       { label: "Rings", value: "7" },
     ],
     quote: "You know what the difference is between winning and losing? It's who shows up.",
-    accolades: ["All-Time Passing Yards", "All-Time TDs", "Most Super Bowl Wins"],
+    accolades: ["Лидер по ярдам за карьеру", "Лидер по тачдаунам", "Больше всего побед в Super Bowl"],
     avatar: "🏈"
   },
   {
     name: "Derek Jeter",
     sport: "MLB",
-    position: "Shortstop",
+    position: "Шортстоп",
     years: "1995–2014",
     team: "New York Yankees",
-    careerHighlight: "5× World Series Champion, 14× All-Star, Yankees Captain",
+    careerHighlight: "5× чемпион Мировой серии, 14× All-Star, капитан Yankees",
     stats: [
       { label: "Hits", value: "3,465" },
       { label: "AVG", value: ".310" },
@@ -66,16 +66,16 @@ const LEGENDS: Legend[] = [
       { label: "Rings", value: "5" },
     ],
     quote: "There may be people that have more talent than you, but there's no excuse for anyone to work harder than you do.",
-    accolades: ["Hall of Fame 2020", "Mr. November", "3,000 Hit Club"],
+    accolades: ["Зал славы 2020", "Мистер Ноябрь", "Клуб 3000 хитов"],
     avatar: "⚾"
   },
   {
     name: "Wayne Gretzky",
     sport: "NHL",
-    position: "Center",
+    position: "Центральный",
     years: "1979–1999",
     team: "Edmonton Oilers / Los Angeles Kings",
-    careerHighlight: "4× Stanley Cup Champion, 9× Hart Trophy, 61 NHL Records",
+    careerHighlight: "4× чемпион Stanley Cup, 9× Hart Trophy, 61 рекорд NHL",
     stats: [
       { label: "Goals", value: "894" },
       { label: "Assists", value: "1,963" },
@@ -83,16 +83,16 @@ const LEGENDS: Legend[] = [
       { label: "Cups", value: "4" },
     ],
     quote: "You miss 100% of the shots you don't take.",
-    accolades: ["The Great One", "Most Points Ever", "Most Assists Ever"],
+    accolades: ["Величайший", "Больше всего очков", "Больше всего передач"],
     avatar: "🏒"
   },
   {
     name: "Kobe Bryant",
     sport: "NBA",
-    position: "Shooting Guard",
+    position: "Защитник",
     years: "1996–2016",
     team: "Los Angeles Lakers",
-    careerHighlight: "5× NBA Champion, 2× Finals MVP, 18× All-Star",
+    careerHighlight: "5× чемпион NBA, 2× MVP финала, 18× All-Star",
     stats: [
       { label: "PPG", value: "25.0" },
       { label: "RPG", value: "5.2" },
@@ -100,16 +100,16 @@ const LEGENDS: Legend[] = [
       { label: "Rings", value: "5" },
     ],
     quote: "The most important thing is to try and inspire people so that they can be great in whatever they want to do.",
-    accolades: ["Hall of Fame 2020", "81-Point Game", "2× Finals MVP"],
+    accolades: ["Зал славы 2020", "Игра на 81 очко", "2× MVP финала"],
     avatar: "🐍"
   },
   {
     name: "Lawrence Taylor",
     sport: "NFL",
-    position: "Linebacker",
+    position: "Лайнбекер",
     years: "1981–1993",
     team: "New York Giants",
-    careerHighlight: "2× Super Bowl Champion, 1986 NFL MVP (only defender ever), 10× Pro Bowl",
+    careerHighlight: "2× чемпион Super Bowl, MVP NFL 1986 (единственный защитник), 10× Pro Bowl",
     stats: [
       { label: "Sacks", value: "132.5" },
       { label: "Pro Bowl", value: "10×" },
@@ -117,7 +117,7 @@ const LEGENDS: Legend[] = [
       { label: "Rings", value: "2" },
     ],
     quote: "I want to create chaos on the field.",
-    accolades: ["Hall of Fame 1999", '86 NFL MVP', "Changed the NFL"],
+    accolades: ["Зал славы 1999", "'86 MVP NFL", "Изменил NFL"],
     avatar: "🦅"
   },
 ];
@@ -166,13 +166,13 @@ export function HallOfFameShowcase() {
         {/* Section Header */}
         <div className="text-center mb-10">
           <span className="text-[10px] font-black tracking-[0.2em] uppercase text-gold/60 bg-gold/10 px-3 py-1 rounded-full inline-flex items-center gap-1.5 mb-4">
-            <Crown className="w-3.5 h-3.5" /> HALL OF LEGENDS
+            <Crown className="w-3.5 h-3.5" /> ЗАЛ СЛАВЫ
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            THE <span className="text-gradient-gold">PANTHEON</span>
+            <span className="text-gradient-gold">ПАНТЕОН</span>
           </h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-md mx-auto">
-            The titans who transcended their sports and became cultural icons.
+            Титаны, перешагнувшие за рамки спорта и ставшие культурными иконами.
           </p>
         </div>
 
@@ -189,7 +189,7 @@ export function HallOfFameShowcase() {
               }`}
             >
               {sport !== "ALL" && <span className="mr-1.5">{SPORT_CONFIG[sport].icon}</span>}
-              {sport === "ALL" ? "All Sports" : sport}
+              {sport === "ALL" ? "Все виды спорта" : sport}
             </button>
           ))}
         </div>
@@ -285,7 +285,7 @@ export function HallOfFameShowcase() {
               setActiveIndex(prev => (prev - 1 + filteredLegends.length) % filteredLegends.length);
             }}
             className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.03] flex items-center justify-center hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
-            aria-label="Previous legend"
+            aria-label="Предыдущая легенда"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -303,7 +303,7 @@ export function HallOfFameShowcase() {
                     ? "w-8 bg-gold"
                     : "w-1.5 bg-white/10 hover:bg-white/20"
                 }`}
-                aria-label={`Go to legend ${i + 1}`}
+                aria-label={`Перейти к легенде ${i + 1}`}
               />
             ))}
           </div>
@@ -314,7 +314,7 @@ export function HallOfFameShowcase() {
               setActiveIndex(prev => (prev + 1) % filteredLegends.length);
             }}
             className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.03] flex items-center justify-center hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
-            aria-label="Next legend"
+            aria-label="Следующая легенда"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -327,7 +327,7 @@ export function HallOfFameShowcase() {
                 : "text-muted-foreground border-white/[0.06] hover:text-foreground/60"
             }`}
           >
-            {isAutoPlaying ? "AUTO" : "PAUSED"}
+            {isAutoPlaying ? "АВТО" : "ПАУЗА"}
           </button>
         </div>
       </div>

@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 import { SearchModal } from "./SearchModal";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#" },
+  { label: "Главная", href: "#" },
   { label: "NFL", href: "#featured" },
   { label: "NBA", href: "#stats" },
   { label: "MLB", href: "#comparison" },
   { label: "NHL", href: "#timeline" },
-  { label: "Stats", href: "#latest" },
+  { label: "Статистика", href: "#latest" },
 ];
 
 export function Header() {
@@ -92,7 +92,7 @@ export function Header() {
               size="icon"
               className="text-muted-foreground hover:text-gold hidden sm:flex"
               onClick={() => setSearchOpen(true)}
-              aria-label="Open search (⌘K)"
+              aria-label="Открыть поиск (⌘K)"
             >
               <Search className="w-4 h-4" />
             </Button>

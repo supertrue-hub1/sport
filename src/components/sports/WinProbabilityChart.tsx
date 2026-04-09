@@ -15,18 +15,18 @@ import { Activity, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const WIN_PROB_DATA = [
-  { label: "Kickoff", time: "0:00", chiefs: 55, ravens: 45, play: "Game starts" },
-  { label: "Q1", time: "8:34", chiefs: 72, ravens: 28, play: "Kelce TD catch" },
-  { label: "Q1", time: "2:10", chiefs: 65, ravens: 35, play: "Ravens FG attempt" },
-  { label: "Q2", time: "6:12", chiefs: 78, ravens: 22, play: "Jones forces fumble" },
-  { label: "Q2", time: "2:45", chiefs: 58, ravens: 42, play: "Jackson to Andrews TD" },
-  { label: "Q2", time: "0:00", chiefs: 52, ravens: 48, play: "Halftime" },
-  { label: "Q3", time: "9:18", chiefs: 62, ravens: 38, play: "Butker FG" },
-  { label: "Q3", time: "4:00", chiefs: 55, ravens: 45, play: "Jackson scramble" },
-  { label: "Q4", time: "5:02", chiefs: 28, ravens: 72, play: "Jackson 67-yard rush TD" },
-  { label: "Q4", time: "3:15", chiefs: 35, ravens: 65, play: "Mahomes interception" },
-  { label: "Q4", time: "1:47", chiefs: 68, ravens: 32, play: "Mahomes sneak TD" },
-  { label: "Q4", time: "0:00", chiefs: 100, ravens: 0, play: "FINAL: Chiefs 17-14" },
+  { label: "Kickoff", time: "0:00", chiefs: 55, ravens: 45, play: "Начало матча" },
+  { label: "Q1", time: "8:34", chiefs: 72, ravens: 28, play: "Тачдаун-приём Kelce" },
+  { label: "Q1", time: "2:10", chiefs: 65, ravens: 35, play: "Попытка филд-гола Ravens" },
+  { label: "Q2", time: "6:12", chiefs: 78, ravens: 22, play: "Jones вынуждает фамбл" },
+  { label: "Q2", time: "2:45", chiefs: 58, ravens: 42, play: "Тачдаун Andrews от Jackson" },
+  { label: "Q2", time: "0:00", chiefs: 52, ravens: 48, play: "Перерыв" },
+  { label: "Q3", time: "9:18", chiefs: 62, ravens: 38, play: "Филд-гол Butker" },
+  { label: "Q3", time: "4:00", chiefs: 55, ravens: 45, play: "Раш Jackson" },
+  { label: "Q4", time: "5:02", chiefs: 28, ravens: 72, play: "67-ярдовый раш-TD Jackson" },
+  { label: "Q4", time: "3:15", chiefs: 35, ravens: 65, play: "Перехват Mahomes" },
+  { label: "Q4", time: "1:47", chiefs: 68, ravens: 32, play: "Сник-тачдаун Mahomes" },
+  { label: "Q4", time: "0:00", chiefs: 100, ravens: 0, play: "ФИНАЛ: Chiefs 17-14" },
 ];
 
 const GOLD = "#d4af37";
@@ -70,15 +70,15 @@ export function WinProbabilityChart() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Data Art
+            Искусство данных
             <Activity className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            WIN <span className="text-gradient-gold">PROBABILITY</span>
+            ВЕРОЯТНОСТЬ <span className="text-gradient-gold">ПОБЕДЫ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            How the momentum swung in the Chiefs vs Ravens thriller.
-            Every play reshaped the math of victory.
+            Как менялся расклад сил в триллере Chiefs против Ravens.
+            Каждый розыгрыш перестраивал математику победы.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -99,7 +99,7 @@ export function WinProbabilityChart() {
             <span className="text-lg font-black text-gradient-gold">17</span>
           </div>
           <div className="flex-1 h-px bg-white/5" />
-          <span className="text-xs font-bold tracking-wider text-muted-foreground">FINAL</span>
+          <span className="text-xs font-bold tracking-wider text-muted-foreground">ФИНАЛ</span>
           <div className="flex-1 h-px bg-white/5" />
           <div className="flex items-center gap-2">
             <span className="text-lg font-black text-red-400">14</span>

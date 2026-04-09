@@ -21,10 +21,10 @@ const INJURIES = [
     teamName: "Bengals",
     position: "QB",
     sport: "NFL",
-    status: "Questionable",
-    detail: "Right wrist — limited practice",
-    impact: "HIGH",
-    lastUpdate: "Updated 3h ago",
+    status: "Под вопросом",
+    detail: "Правое запястье — ограниченная тренировка",
+    impact: "ВЫСОКАЯ",
+    lastUpdate: "Обновлено 3 ч. назад",
   },
   {
     id: 2,
@@ -33,10 +33,10 @@ const INJURIES = [
     teamName: "Lakers",
     position: "PF",
     sport: "NBA",
-    status: "Out",
-    detail: "Left foot — plantar fasciitis",
-    impact: "MEDIUM",
-    lastUpdate: "Updated 6h ago",
+    status: "Неиграет",
+    detail: "Левая стопа — плантарный фасциит",
+    impact: "СРЕДНЯЯ",
+    lastUpdate: "Обновлено 6 ч. назад",
   },
   {
     id: 3,
@@ -45,10 +45,10 @@ const INJURIES = [
     teamName: "Dodgers",
     position: "DH",
     sport: "MLB",
-    status: "Day-to-Day",
-    detail: "Right shoulder fatigue",
-    impact: "HIGH",
-    lastUpdate: "Updated 1h ago",
+    status: "День за днём",
+    detail: "Утомление правого плеча",
+    impact: "ВЫСОКАЯ",
+    lastUpdate: "Обновлено 1 ч. назад",
   },
   {
     id: 4,
@@ -57,10 +57,10 @@ const INJURIES = [
     teamName: "Oilers",
     position: "C",
     sport: "NHL",
-    status: "Probable",
-    detail: "Lower body — expected to play",
-    impact: "LOW",
-    lastUpdate: "Updated 2h ago",
+    status: "Вероятно",
+    detail: "Нижняя часть тела — ожидается на игре",
+    impact: "НИЗКАЯ",
+    lastUpdate: "Обновлено 2 ч. назад",
   },
   {
     id: 5,
@@ -69,10 +69,10 @@ const INJURIES = [
     teamName: "Dolphins",
     position: "WR",
     sport: "NFL",
-    status: "Out",
-    detail: "Ankle — will miss 2-3 weeks",
-    impact: "HIGH",
-    lastUpdate: "Updated 8h ago",
+    status: "Неиграет",
+    detail: "Голеностоп — пропустит 2-3 недели",
+    impact: "ВЫСОКАЯ",
+    lastUpdate: "Обновлено 8 ч. назад",
   },
   {
     id: 6,
@@ -81,24 +81,24 @@ const INJURIES = [
     teamName: "Celtics",
     position: "SF",
     sport: "NBA",
-    status: "Probable",
-    detail: "Knee soreness — full practice",
-    impact: "LOW",
-    lastUpdate: "Updated 4h ago",
+    status: "Вероятно",
+    detail: "Боль в колене — полная тренировка",
+    impact: "НИЗКАЯ",
+    lastUpdate: "Обновлено 4 ч. назад",
   },
 ];
 
 const STATUS_STYLES: Record<string, { bg: string; text: string; dot: string }> = {
-  Out: { bg: "bg-red-500/10 border-red-500/20", text: "text-red-400", dot: "bg-red-500" },
-  Questionable: { bg: "bg-amber-500/10 border-amber-500/20", text: "text-amber-400", dot: "bg-amber-500" },
-  "Day-to-Day": { bg: "bg-orange-500/10 border-orange-500/20", text: "text-orange-400", dot: "bg-orange-500" },
-  Probable: { bg: "bg-emerald-500/10 border-emerald-500/20", text: "text-emerald-400", dot: "bg-emerald-500" },
+  "Неиграет": { bg: "bg-red-500/10 border-red-500/20", text: "text-red-400", dot: "bg-red-500" },
+  "Под вопросом": { bg: "bg-amber-500/10 border-amber-500/20", text: "text-amber-400", dot: "bg-amber-500" },
+  "День за днём": { bg: "bg-orange-500/10 border-orange-500/20", text: "text-orange-400", dot: "bg-orange-500" },
+  "Вероятно": { bg: "bg-emerald-500/10 border-emerald-500/20", text: "text-emerald-400", dot: "bg-emerald-500" },
 };
 
 const IMPACT_STYLES: Record<string, { bg: string; text: string }> = {
-  HIGH: { bg: "bg-red-500/15", text: "text-red-400" },
-  MEDIUM: { bg: "bg-amber-500/15", text: "text-amber-400" },
-  LOW: { bg: "bg-emerald-500/15", text: "text-emerald-400" },
+  "ВЫСОКАЯ": { bg: "bg-red-500/15", text: "text-red-400" },
+  "СРЕДНЯЯ": { bg: "bg-amber-500/15", text: "text-amber-400" },
+  "НИЗКАЯ": { bg: "bg-emerald-500/15", text: "text-emerald-400" },
 };
 
 const cVar = {
@@ -126,15 +126,15 @@ export function InjuryReport() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Medical Room
+            МЕДИЦИНСКИЙ КАБИНЕТ
             <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            INJURY <span className="text-gradient-gold">REPORT</span>
+            ОТЧЁТ О <span className="text-gradient-gold">ТРАВМАХ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            The bodies that define the game. Track every setback, recovery, and
-            return across all four major leagues.
+            Те, кто определяет игру. Следите за каждой травмой, восстановлением
+            и возвращением во всех четырёх главных лигах.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -148,10 +148,10 @@ export function InjuryReport() {
           className="flex flex-wrap gap-2 mb-6"
         >
           {[
-            { label: "Out", count: INJURIES.filter((i) => i.status === "Out").length, color: "text-red-400 border-red-500/20 bg-red-500/5" },
-            { label: "Questionable", count: INJURIES.filter((i) => i.status === "Questionable").length, color: "text-amber-400 border-amber-500/20 bg-amber-500/5" },
-            { label: "Day-to-Day", count: INJURIES.filter((i) => i.status === "Day-to-Day").length, color: "text-orange-400 border-orange-500/20 bg-orange-500/5" },
-            { label: "Probable", count: INJURIES.filter((i) => i.status === "Probable").length, color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5" },
+            { label: "Неиграет", count: INJURIES.filter((i) => i.status === "Неиграет").length, color: "text-red-400 border-red-500/20 bg-red-500/5" },
+            { label: "Под вопросом", count: INJURIES.filter((i) => i.status === "Под вопросом").length, color: "text-amber-400 border-amber-500/20 bg-amber-500/5" },
+            { label: "День за днём", count: INJURIES.filter((i) => i.status === "День за днём").length, color: "text-orange-400 border-orange-500/20 bg-orange-500/5" },
+            { label: "Вероятно", count: INJURIES.filter((i) => i.status === "Вероятно").length, color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5" },
           ].map((chip) => (
             <Badge key={chip.label} variant="outline" className={cn("text-[10px] font-bold tracking-wider uppercase border px-2.5 py-1", chip.color)}>
               {chip.label}: {chip.count}
@@ -168,8 +168,8 @@ export function InjuryReport() {
           className="space-y-3"
         >
           {INJURIES.map((injury) => {
-            const status = STATUS_STYLES[injury.status] || STATUS_STYLES["Questionable"];
-            const impact = IMPACT_STYLES[injury.impact] || IMPACT_STYLES["LOW"];
+            const status = STATUS_STYLES[injury.status] || STATUS_STYLES["Под вопросом"];
+            const impact = IMPACT_STYLES[injury.impact] || IMPACT_STYLES["НИЗКАЯ"];
             const isExpanded = expandedId === injury.id;
 
             return (
@@ -241,7 +241,7 @@ export function InjuryReport() {
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs">
                         <div className="flex items-center gap-1.5">
                           <Shield className="w-3.5 h-3.5 text-muted-foreground" />
-                          <span className="text-muted-foreground">Injury:</span>
+                          <span className="text-muted-foreground">Травма:</span>
                           <span className="text-foreground font-medium">{injury.detail}</span>
                         </div>
                         <div className="flex items-center gap-1.5 sm:ml-auto">

@@ -27,7 +27,7 @@ export function BackToTop() {
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-gold/90 hover:bg-gold text-background flex items-center justify-center shadow-lg shadow-gold/20 transition-colors"
-          aria-label="Back to top"
+          aria-label="Наверх"
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>

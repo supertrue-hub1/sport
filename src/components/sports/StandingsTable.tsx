@@ -57,12 +57,12 @@ export function StandingsTable() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">Rankings</span>
+          <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">Рейтинг</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            AFC <span className="text-gradient-gold">STANDINGS</span>
+            ТУРНИРНАЯ ТАБЛИЦА <span className="text-gradient-gold">AFC</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            The battlefield that defines the American Football Conference. Every win matters. Every loss echoes.
+            Поле битвы, определяющее Американскую футбольную конференцию. Каждая победа на вес золота. Каждое поражение отдаётся эхом.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -71,11 +71,11 @@ export function StandingsTable() {
         <div className="flex flex-wrap gap-5 mb-5 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm bg-gold/15 border border-gold/40" />
-            <span>Division Leaders / Wild Card</span>
+            <span>Лидеры дивизионов / Уайлд-кард</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm bg-emerald-500/10 border border-emerald-500/30" />
-            <span>In the Hunt</span>
+            <span>В борьбе</span>
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export function StandingsTable() {
         >
           {/* Column headers */}
           <div className="grid grid-cols-[2rem_minmax(0,1fr)_2.5rem_2.5rem_3.5rem_3rem_3.5rem_2rem] sm:grid-cols-[2.5rem_minmax(0,2fr)_3rem_3rem_4rem_3.5rem_4rem_2.5rem] gap-0 px-3 sm:px-5 py-2.5 border-b border-white/5 bg-white/[0.02]">
-            {["#", "Team", "W", "L", "PCT", "STRK", "PF/PA", ""].map((h) => (
+            {["#", "КОМАНДА", "В", "П", "% ПОБЕД", "СЕРИЯ", "ЗП/ПП", ""].map((h) => (
               <span key={h} className="text-[9px] sm:text-[10px] font-bold tracking-wider text-muted-foreground/60 uppercase text-center">
                 {h}
               </span>
@@ -149,11 +149,11 @@ export function StandingsTable() {
         <div className="flex flex-wrap gap-6 mt-5 text-[11px] text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <Trophy className="w-3.5 h-3.5 text-gold" />
-            <span>Highest scoring: <strong className="text-foreground">KC</strong> — 468 PF</span>
+            <span>Наибольшее количество очков: <strong className="text-foreground">KC</strong> — 468 ЗП</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Flame className="w-3.5 h-3.5 text-red-400" />
-            <span>Hottest streak: <strong className="text-foreground">KC</strong> — W6</span>
+            <span>Лучшая серия: <strong className="text-foreground">KC</strong> — W6</span>
           </div>
         </div>
       </div>

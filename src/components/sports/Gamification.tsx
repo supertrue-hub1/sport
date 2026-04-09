@@ -78,8 +78,8 @@ export function Gamification() {
     setVotes((prev) => ({ ...prev, [id]: prev[id] + 1 }));
     setVoted(id);
     toast({
-      title: "Vote Cast!",
-      description: `You voted for ${MVP_CANDIDATES.find((c) => c.id === id)?.name}.`,
+      title: "Голос принят!",
+      description: `Вы проголосовали за ${MVP_CANDIDATES.find((c) => c.id === id)?.name}.`,
       className: "border-gold/30",
     });
   };
@@ -88,7 +88,7 @@ export function Gamification() {
     if (!awayScore || !homeScore) return;
     setPredicted(true);
     toast({
-      title: "Prediction Locked In!",
+      title: "Прогноз зафиксирован!",
       description: `${PREDICTION.away.name} ${awayScore} - ${homeScore} ${PREDICTION.home.name}`,
       className: "border-gold/30",
     });
@@ -106,10 +106,10 @@ export function Gamification() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Engage
+            УЧАСТВУЙ
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            YOUR <span className="text-gradient-gold">CALL</span>
+            ВАШ <span className="text-gradient-gold">ВЫБОР</span>
           </h2>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -126,7 +126,7 @@ export function Gamification() {
             <div className="flex items-center gap-2 mb-5">
               <Trophy className="w-4 h-4 text-gold" />
               <h3 className="text-sm font-bold tracking-wider uppercase text-foreground">
-                MVP of the Week
+                MVP НЕДЕЛИ
               </h3>
             </div>
 
@@ -184,7 +184,7 @@ export function Gamification() {
 
             {voted && (
               <p className="text-[10px] text-muted-foreground mt-4 text-center">
-                {totalVotes.toLocaleString()} total votes · Your vote is locked
+                {totalVotes.toLocaleString()} всего голосов · Ваш голос зафиксирован
               </p>
             )}
           </motion.div>
@@ -194,13 +194,13 @@ export function Gamification() {
             <div className="flex items-center gap-2 mb-5">
               <TrendingUp className="w-4 h-4 text-gold" />
               <h3 className="text-sm font-bold tracking-wider uppercase text-foreground">
-                Next Game Prediction
+                ПРОГНОЗ НА СЛЕДУЮЩУЮ ИГРУ
               </h3>
             </div>
 
             <div className="text-center mb-6">
               <p className="text-xs text-muted-foreground mb-4">
-                AFC Championship Preview
+                Предпросмотр чемпионата AFC
               </p>
 
               {/* Teams */}
@@ -278,7 +278,7 @@ export function Gamification() {
                 variant="outline"
                 className="border-white/10 text-muted-foreground text-[10px]"
               >
-                Sun, Jan 26 · 6:40 PM ET
+                Вс, 26 янв · 18:40 ET
               </Badge>
               <Badge
                 variant="outline"
@@ -294,14 +294,14 @@ export function Gamification() {
                 disabled={!awayScore || !homeScore}
                 className="w-full bg-gold text-gold-foreground hover:bg-gold/90 font-semibold tracking-wider text-xs"
               >
-                LOCK IN PREDICTION
+                ЗАФИКСИРОВАТЬ ПРОГНОЗ
                 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             ) : (
               <div className="text-center p-4 rounded-lg border border-gold/20 bg-gold/5">
-                <p className="text-sm font-bold text-gold">Prediction Locked!</p>
+                <p className="text-sm font-bold text-gold">Прогноз зафиксирован!</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Results will be revealed after the game
+                  Результаты будут раскрыты после игры
                 </p>
               </div>
             )}

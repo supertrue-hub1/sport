@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "US Sports Hub — The Elite Sports Experience",
+  title: "US Sports Hub — Элитный спортивный опыт",
   description:
-    "Premium US sports media — NFL, NBA, MLB, NHL coverage with deep analytics, interactive stats, and cinematic storytelling.",
+    "Премиальная спортивная медиаплатформа США — освещение NFL, NBA, MLB, NHL с глубокой аналитикой, интерактивной статистикой и кинематографическим повествованием.",
   keywords: [
     "US Sports Hub",
     "NFL",
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >

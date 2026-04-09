@@ -17,56 +17,56 @@ interface BreakingNews {
 const BREAKING_NEWS: BreakingNews[] = [
   {
     id: 1,
-    headline: "BREAKING: Chiefs and 49ers agree to terms on blockbuster trade sending Pro Bowl defensive end to Kansas City",
+    headline: "Срочно: Chiefs и 49ers договорились о масштабном обмене, отправляющем защитника Pro Bowl в Канзас-Сити",
     source: "Adam Schefter",
     sport: "NFL",
     urgency: "breaking",
-    time: "2m ago",
+    time: "2 мин назад",
     isLive: true,
   },
   {
     id: 2,
-    headline: "Lakers star Anthony Davis undergoes MRI on left ankle — initial diagnosis shows no structural damage",
+    headline: "Звезда Lakers Энтони Дэвис прошёл МРТ голеностопа — первичный диагноз не выявил структурных повреждений",
     source: "Shams Charania",
     sport: "NBA",
     urgency: "developing",
-    time: "15m ago",
+    time: "15 мин назад",
     isLive: true,
   },
   {
     id: 3,
-    headline: "Shohei Ohtani cleared to begin throwing program — Dodgers expect two-way star back by mid-April",
+    headline: "Сёхей Отани получил допуск к программе бросков — Dodgers ожидают его возвращения к середине апреля",
     source: "Jeff Passan",
     sport: "MLB",
     urgency: "confirmed",
-    time: "42m ago",
+    time: "42 мин назад",
     isLive: false,
   },
   {
     id: 4,
-    headline: "Oilers acquire elite two-way defenseman from Hurricanes in move that reshapes Western Conference",
+    headline: "Oilers приобрели элитного защитника у Hurricanes, изменив расклад сил в Западной конференции",
     source: "Elliotte Friedman",
     sport: "NHL",
     urgency: "confirmed",
-    time: "1h ago",
+    time: "1 ч назад",
     isLive: false,
   },
   {
     id: 5,
-    headline: "NFL competition committee proposes major rule changes including automatic ejection for targeting",
+    headline: "Комитет NFL предлагает крупные изменения правил, включая автоматическое удаление за targeting",
     source: "Ian Rapoport",
     sport: "NFL",
     urgency: "developing",
-    time: "2h ago",
+    time: "2 ч назад",
     isLive: false,
   },
   {
     id: 6,
-    headline: "Celtics extend head coach through 2028 season in richest coaching contract in NBA history",
+    headline: "Celtics продлили контракт главного тренера до 2028 года — самый дорогой контракт в истории NBA",
     source: "Adrian Wojnarowski",
     sport: "NBA",
     urgency: "confirmed",
-    time: "3h ago",
+    time: "3 ч назад",
     isLive: false,
   },
 ];
@@ -79,9 +79,9 @@ const SPORT_COLORS = {
 };
 
 const URGENCY_CONFIG = {
-  breaking: { label: "BREAKING", pulse: true, color: "bg-red-500 text-white" },
-  developing: { label: "DEVELOPING", pulse: false, color: "bg-amber-500/80 text-black" },
-  confirmed: { label: "CONFIRMED", pulse: false, color: "bg-emerald-500/80 text-black" },
+  breaking: { label: "СРОЧНО", pulse: true, color: "bg-red-500 text-white" },
+  developing: { label: "РАЗВИВАЕТСЯ", pulse: false, color: "bg-amber-500/80 text-black" },
+  confirmed: { label: "ПОДТВЕРЖДЕНО", pulse: false, color: "bg-emerald-500/80 text-black" },
 };
 
 export function BreakingNewsTicker() {
@@ -175,13 +175,13 @@ export function BreakingNewsTicker() {
               {/* Actions */}
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span className="text-[10px] text-muted-foreground hidden md:block">{currentIndex + 1}/{BREAKING_NEWS.length}</span>
-                <button className="w-7 h-7 rounded-full bg-white/[0.05] flex items-center justify-center hover:bg-white/[0.1] transition-colors" aria-label="Read more">
+                <button className="w-7 h-7 rounded-full bg-white/[0.05] flex items-center justify-center hover:bg-white/[0.1] transition-colors" aria-label="Подробнее">
                   <ExternalLink className="w-3 h-3 text-muted-foreground" />
                 </button>
                 <button
                   onClick={() => setIsVisible(false)}
                   className="w-7 h-7 rounded-full bg-white/[0.05] flex items-center justify-center hover:bg-white/[0.1] transition-colors"
-                  aria-label="Dismiss"
+                  aria-label="Закрыть"
                 >
                   <X className="w-3 h-3 text-muted-foreground" />
                 </button>

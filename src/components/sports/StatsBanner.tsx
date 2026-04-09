@@ -48,10 +48,10 @@ export function StatsBanner() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const STATS = [
-    { value: 2847, label: "Games Covered", suffix: "+", icon: "🏈" },
-    { value: 156, label: "Expert Analysts", suffix: "", icon: "📊" },
-    { value: 42, label: "Million Readers", suffix: "M+", icon: "👁" },
-    { value: 99, label: "Accuracy Rate", suffix: "%", icon: "🎯" },
+    { value: 2847, label: "Матчей освещено", suffix: "+", icon: "🏈" },
+    { value: 156, label: "Эксперт-аналитиков", suffix: "", icon: "📊" },
+    { value: 42, label: "Млн читателей", suffix: "M+", icon: "👁" },
+    { value: 99, label: "Точность прогнозов", suffix: "%", icon: "🎯" },
   ];
 
   return (

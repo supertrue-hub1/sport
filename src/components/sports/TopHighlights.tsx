@@ -17,82 +17,82 @@ import { Badge } from "@/components/ui/badge";
 const HIGHLIGHTS = [
   {
     id: 1,
-    title: "Mahomes' No-Look Pass for the Ages",
-    description: "The Chiefs QB breaks ankles with a no-look touchdown pass that had the internet in meltdown.",
+    title: "Пас без взгляда от Mahomes на все времена",
+    description: "Квотербек Chiefs ломает щиколотки пасом тачдауна без взгляда, заставив интернет сойти с ума.",
     category: "NFL",
     duration: "0:47",
     views: "12.4M",
-    trend: "trending",
+    trend: "в тренде",
     thumbnail: "linear-gradient(135deg, #1a0a0a 0%, #3d1515 50%, #1a0a0a 100%)",
     accent: "text-red-400",
   },
   {
     id: 2,
-    title: "LeBron's Buzzer-Beater in Boston",
-    description: "LeBron James silences TD Garden with a game-winning three at the horn. King things.",
+    title: "Баззер-битер LeBron в Бостоне",
+    description: "LeBron James заставляет замолчать TD Garden победным трёхочковым на сирене. Королевские дела.",
     category: "NBA",
     duration: "1:23",
     views: "8.7M",
-    trend: "trending",
+    trend: "в тренде",
     thumbnail: "linear-gradient(135deg, #1a100a 0%, #3d2a15 50%, #1a100a 100%)",
     accent: "text-orange-400",
   },
   {
     id: 3,
-    title: "Ohtani's 500th Home Run",
-    description: "Shohei Ohtani launches a moonshot into the Dodger Stadium bleachers. History made.",
+    title: "500-й хоум-ран Ohtani",
+    description: "Shohei Ohtani запускает лунный выстрел в трибуны Dodger Stadium. История свершена.",
     category: "MLB",
     duration: "2:15",
     views: "6.2M",
-    trend: "hot",
+    trend: "горячее",
     thumbnail: "linear-gradient(135deg, #0a1a0e 0%, #153d20 50%, #0a1a0e 100%)",
     accent: "text-emerald-400",
   },
   {
     id: 4,
-    title: "McDavid's End-to-End Overtime Winner",
-    description: "Connor McDavid skates through five defenders to score the most spectacular OT goal of the season.",
+    title: "Победный гол McDavid через всю площадку в овертайме",
+    description: "Connor McDavid проносится мимо пятерых защитников, забив самый зрелищный гол в овертайме сезона.",
     category: "NHL",
     duration: "1:08",
     views: "4.9M",
-    trend: "hot",
+    trend: "горячее",
     thumbnail: "linear-gradient(135deg, #0a101a 0%, #15203d 50%, #0a101a 100%)",
     accent: "text-cyan-400",
   },
   {
     id: 5,
-    title: "The Block: LeBron's Iconic Chase-Down",
-    description: "From behind. The greatest defensive play in NBA Finals history. Iggy never saw it coming.",
+    title: "Блок: культовый преследующий блок LeBron",
+    description: "Со спины. Величайший защитный розыгрыш в истории финалов NBA. Iggy даже не увидел этого.",
     category: "NBA",
     duration: "0:32",
     views: "22.1M",
-    trend: "legendary",
+    trend: "легендарное",
     thumbnail: "linear-gradient(135deg, #1a120a 0%, #3d2a15 50%, #1a120a 100%)",
     accent: "text-gold",
   },
   {
     id: 6,
-    title: "Hurts' Tush Push Obsession",
-    description: "Jalen Hurts and the Eagles weaponize the most controversial play in football — and it's unstoppable.",
+    title: "Одержимость Hurts тачпушем",
+    description: "Jalen Hurts и Eagles превращают самую спорную игру в футболе в оружие — и её невозможно остановить.",
     category: "NFL",
     duration: "3:44",
     views: "5.1M",
-    trend: "trending",
+    trend: "в тренде",
     thumbnail: "linear-gradient(135deg, #1a0a0a 0%, #2d1010 50%, #1a0a0a 100%)",
     accent: "text-red-400",
   },
 ];
 
 const TREND_ICONS: Record<string, typeof Flame> = {
-  trending: TrendingUp,
-  hot: Flame,
-  legendary: Star,
+  "в тренде": TrendingUp,
+  "горячее": Flame,
+  "легендарное": Star,
 };
 
 const TREND_COLORS: Record<string, string> = {
-  trending: "text-emerald-400",
-  hot: "text-orange-400",
-  legendary: "text-gold",
+  "в тренде": "text-emerald-400",
+  "горячее": "text-orange-400",
+  "легендарное": "text-gold",
 };
 
 function Star({ className }: { className?: string }) {
@@ -145,15 +145,15 @@ export function TopHighlights() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Replays
+            Повторы
             <Film className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            TOP <span className="text-gradient-gold">HIGHLIGHTS</span>
+            ЛУЧШИЕ <span className="text-gradient-gold">МОМЕНТЫ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            The plays that broke the internet. Every jaw-dropping moment from this
-            week in sports, curated for your viewing pleasure.
+            Игры, взорвавшие интернет. Каждый захватывающий дух момент этой
+            недели в спорте, отобранный для вашего удовольствия.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -215,7 +215,7 @@ export function TopHighlights() {
             <div className="mt-3 flex items-center gap-3 text-[11px] text-muted-foreground">
               <span className="flex items-center gap-1">
                 <Eye className="w-3 h-3" />
-                {HIGHLIGHTS[currentIndex].views} views
+                {HIGHLIGHTS[currentIndex].views} просмотров
               </span>
               <span className="w-1 h-1 rounded-full bg-white/10" />
               <span>{HIGHLIGHTS[currentIndex].duration}</span>
@@ -241,7 +241,7 @@ export function TopHighlights() {
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
             className="ml-3 text-[10px] font-bold tracking-wider text-muted-foreground hover:text-gold transition-colors uppercase"
           >
-            {isAutoPlaying ? "Pause" : "Play"}
+            {isAutoPlaying ? "Пауза" : "Воспроизвести"}
           </button>
         </div>
 

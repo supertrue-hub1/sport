@@ -182,15 +182,15 @@ export function SocialFeed() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Wire
+            Лента
             <MessageCircle className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            SOCIAL <span className="text-gradient-gold">FEED</span>
+            <span className="text-gradient-gold">СОЦСЕТИ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            The pulse of the sports world. Curated takes from the most trusted
-            insiders and analysts in the game.
+            Пульс спортивного мира. Подборки мнений от самых
+            надёжных инсайдеров и аналитиков.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -255,7 +255,7 @@ export function SocialFeed() {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08),transparent_70%)]" />
                     <div className="relative flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/50 backdrop-blur-sm text-[10px] text-foreground/80">
                       <ExternalLink className="w-3 h-3" />
-                      Data Visualization
+                      Визуализация данных
                     </div>
                   </div>
                 )}

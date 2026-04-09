@@ -11,19 +11,19 @@ const SEARCH_ITEMS = [
   { type: "NFL", label: "Josh Allen", sub: "QB · 4,306 YDS · 29 TD", href: "#comparison" },
   { type: "NFL", label: "Buffalo Bills", sub: "AFC East · 13-4", href: "#standings" },
   { type: "NFL", label: "Baltimore Ravens", sub: "AFC North · 12-5", href: "#standings" },
-  { type: "NBA", label: "Oklahoma City Thunder", sub: "57-10 · Power Rank #2", href: "#rankings" },
-  { type: "NBA", label: "Boston Celtics", sub: "55-14 · Power Rank #7", href: "#rankings" },
+  { type: "NBA", label: "Oklahoma City Thunder", sub: "57-10 · Рейтинг силы #2", href: "#rankings" },
+  { type: "NBA", label: "Boston Celtics", sub: "55-14 · Рейтинг силы #7", href: "#rankings" },
   { type: "NBA", label: "LeBron James", sub: "LAL · 25.7 PPG", href: "#featured" },
-  { type: "MLB", label: "Los Angeles Dodgers", sub: "98-64 · Power Rank #4", href: "#rankings" },
-  { type: "MLB", label: "Shohei Ohtani", sub: "LAD · DH · Day-to-Day", href: "#injuries" },
-  { type: "NHL", label: "Florida Panthers", sub: "52-22-8 · Power Rank #6", href: "#rankings" },
-  { type: "NHL", label: "Edmonton Oilers", sub: "49-25-8 · Power Rank #9", href: "#rankings" },
-  { type: "Article", label: "Mahomes' Masterclass in Arrowhead", sub: "Featured Story", href: "#featured" },
-  { type: "Article", label: "LeBron's Final Act", sub: "Exclusive", href: "#featured" },
-  { type: "Article", label: "Baseball Analytics Revolution", sub: "Deep Dive", href: "#featured" },
-  { type: "Stats", label: "AFC Standings", sub: "Full conference rankings", href: "#standings" },
-  { type: "Stats", label: "NBA Scoring Leaders", sub: "PPG rankings", href: "#stats" },
-  { type: "Stats", label: "Power Rankings", sub: "Cross-sport top 10", href: "#rankings" },
+  { type: "MLB", label: "Los Angeles Dodgers", sub: "98-64 · Рейтинг силы #4", href: "#rankings" },
+  { type: "MLB", label: "Shohei Ohtani", sub: "LAD · DH · Вопросный", href: "#injuries" },
+  { type: "NHL", label: "Florida Panthers", sub: "52-22-8 · Рейтинг силы #6", href: "#rankings" },
+  { type: "NHL", label: "Edmonton Oilers", sub: "49-25-8 · Рейтинг силы #9", href: "#rankings" },
+  { type: "Article", label: "Mahomes' Masterclass in Arrowhead", sub: "Избранная статья", href: "#featured" },
+  { type: "Article", label: "LeBron's Final Act", sub: "Эксклюзив", href: "#featured" },
+  { type: "Article", label: "Baseball Analytics Revolution", sub: "Глубокий анализ", href: "#featured" },
+  { type: "Stats", label: "AFC Standings", sub: "Полный рейтинг конференции", href: "#standings" },
+  { type: "Stats", label: "NBA Scoring Leaders", sub: "Рейтинг по очкам за игру", href: "#stats" },
+  { type: "Stats", label: "Power Rankings", sub: "Топ-10 всех видов спорта", href: "#rankings" },
 ];
 
 const TYPE_COLORS: Record<string, string> = {
@@ -90,7 +90,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 <Search className="w-5 h-5 text-gold flex-shrink-0" />
                 <input
                   type="text"
-                  placeholder="Search teams, players, stories..."
+                  placeholder="Поиск команд, игроков, статей..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   autoFocus
@@ -131,15 +131,15 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   </div>
                 ) : (
                   <div className="text-center py-8">
-                    <p className="text-sm text-muted-foreground">No results found</p>
+                    <p className="text-sm text-muted-foreground">Ничего не найдено</p>
                   </div>
                 )}
               </div>
 
               {/* Footer hint */}
               <div className="px-4 py-2.5 border-t border-white/5 text-[10px] text-muted-foreground/50 flex items-center justify-between">
-                <span>{filtered.length} result{filtered.length !== 1 ? "s" : ""}</span>
-                <span>↑↓ Navigate · ↵ Select · Esc Close</span>
+                <span>{filtered.length} результат{filtered.length !== 1 && filtered.length % 10 !== 1 ? (filtered.length % 10 >= 2 && filtered.length % 10 <= 4 && filtered.length % 100 < 11 ? "а" : "ов") : ""}</span>
+                <span>↑↓ Навигация · ↵ Выбор · Esc Закрыть</span>
               </div>
             </div>
           </motion.div>

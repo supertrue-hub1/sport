@@ -7,17 +7,17 @@ const QUOTES = [
   {
     text: "Champions aren't made in gyms. Champions are made from something they have deep inside them — a desire, a dream, a vision.",
     author: "Muhammad Ali",
-    context: "The Greatest",
+    context: "Величайший",
   },
   {
     text: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game-winning shot and missed. I've failed over and over again in my life. And that is why I succeed.",
     author: "Michael Jordan",
-    context: "Hall of Fame Induction, 2009",
+    context: "Включение в Зал славы, 2009"
   },
   {
     text: "It's not whether you get knocked down; it's whether you get up.",
     author: "Vince Lombardi",
-    context: "Legendary Packers Coach",
+    context: "Легендарный тренер Packers"
   },
 ];
 

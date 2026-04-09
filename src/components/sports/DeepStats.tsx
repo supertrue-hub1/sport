@@ -42,12 +42,12 @@ const AFC_DATA = [
 
 // Player Comparison Radar
 const RADAR_DATA = [
-  { stat: "Speed", mahomes: 85, allen: 88 },
-  { stat: "Arm", mahomes: 95, allen: 92 },
-  { stat: "Acc.", mahomes: 93, allen: 87 },
-  { stat: "Clutch", mahomes: 97, allen: 84 },
-  { stat: "Rush", mahomes: 72, allen: 91 },
-  { stat: "Vision", mahomes: 96, allen: 88 },
+  { stat: "Скорость", mahomes: 85, allen: 88 },
+  { stat: "Бросок", mahomes: 95, allen: 92 },
+  { stat: "Точность", mahomes: 93, allen: 87 },
+  { stat: "Ключевые", mahomes: 97, allen: 84 },
+  { stat: "Выносливость", mahomes: 72, allen: 91 },
+  { stat: "Видение", mahomes: 96, allen: 88 },
 ];
 
 const GOLD = "#d4af37";
@@ -70,7 +70,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return (
       <div className="bg-black/90 border border-gold/20 rounded-lg px-3 py-2 text-xs">
         <p className="text-foreground font-semibold">{label}</p>
-        <p className="text-gold">{payload[0].value} {payload[0].value > 100 ? "yards" : "PPG"}</p>
+        <p className="text-gold">{payload[0].value} {payload[0].value > 100 ? "ярдов" : "PPG"}</p>
       </div>
     );
   }
@@ -90,10 +90,10 @@ export function DeepStats() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Analytics
+            Аналитика
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            DEEP DIVE <span className="text-gradient-gold">STATISTICS</span>
+            ГЛУБИННАЯ <span className="text-gradient-gold">СТАТИСТИКА</span>
           </h2>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -111,7 +111,7 @@ export function DeepStats() {
             <div className="flex items-center gap-2 mb-5">
               <TrendingUp className="w-4 h-4 text-gold" />
               <h3 className="text-sm font-bold tracking-wider uppercase text-foreground">
-                NBA Scoring Leaders
+                ЛУЧШИЕ БОМБАРДИРЫ NBA
               </h3>
             </div>
             <div className="h-64">
@@ -142,7 +142,7 @@ export function DeepStats() {
             <div className="flex items-center gap-2 mb-5">
               <PieChartIcon className="w-4 h-4 text-gold" />
               <h3 className="text-sm font-bold tracking-wider uppercase text-foreground">
-                AFC Win Distribution
+                РАСПРЕДЕЛЕНИЕ ПОБЕД AFC
               </h3>
             </div>
             <div className="h-64">
@@ -169,7 +169,7 @@ export function DeepStats() {
                             <p className="text-foreground font-semibold">
                               {payload[0].name}
                             </p>
-                            <p className="text-gold">{payload[0].value} wins</p>
+                            <p className="text-gold">{payload[0].value} побед</p>
                           </div>
                         );
                       }
@@ -186,7 +186,7 @@ export function DeepStats() {
             <div className="flex items-center gap-2 mb-5">
               <Target className="w-4 h-4 text-gold" />
               <h3 className="text-sm font-bold tracking-wider uppercase text-foreground">
-                QB Comparison
+                СРАВНЕНИЕ КВ
               </h3>
             </div>
             <div className="h-64">

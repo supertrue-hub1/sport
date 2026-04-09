@@ -17,40 +17,40 @@ import { Button } from "@/components/ui/button";
 const STEPS = [
   {
     step: 1,
-    title: "Draft Your Squad",
-    description: "Select your dream team from across all 32 NFL rosters. Snake draft, auction, or best ball — pick your poison.",
+    title: "Соберите свою команду",
+    description: "Выберите команду мечты из всех 32 составов NFL. Змейкой, аукционом или best ball — выбирайте свой формат.",
     icon: Users,
-    tip: "Value over name. Sleepers win championships.",
+    tip: "Ценность важнее имени. Тёмные лошадки выигрывают чемпионаты.",
   },
   {
     step: 2,
-    title: "Set Your Lineup",
-    description: "Each week, choose your starters from QB, RB, WR, TE, K, and DEF. Monitor matchups and injuries like a pro.",
+    title: "Выставьте состав",
+    description: "Каждую неделю выбирайте стартовый состав из QB, RB, WR, TE, K и DEF. Следите за матчапами и травмами как профи.",
     icon: Trophy,
-    tip: "Check the Wednesday practice reports. Always.",
+    tip: "Проверяйте отчёты о тренировках в среду. Всегда.",
   },
   {
     step: 3,
-    title: "Watch & Dominate",
-    description: "Track live scores, make waiver wire moves, and trade your way to the top of the standings. Every snap counts.",
+    title: "Наблюдайте и доминируйте",
+    description: "Отслеживайте счёт в реальном времени, совершайте обмены на драфте отказов и торгуйте на пути к вершине таблицы. Каждый розыгрыш на счету.",
     icon: TrendingUp,
-    tip: "Don't drop your waiver priority too early.",
+    tip: "Не выбрасывайте приоритет на драфте отказов слишком рано.",
   },
   {
     step: 4,
-    title: "Win the Championship",
-    description: "Navigate the playoffs, survive the bye-week gauntlet, and hoist the virtual Lombardi. Immortality awaits.",
+    title: "Выиграйте чемпионат",
+    description: "Пройдите плей-офф, переживите цепочку недель отдыха и поднимите виртуальный трофей Ломбарди. Бессмертие ждёт.",
     icon: Zap,
-    tip: "Peak in December, not September.",
+    tip: "Пик формы в декабре, а не в сентябре.",
   },
 ];
 
 const PRO_TIPS = [
-  "Zero-RB strategy is dead. Balanced drafts win.",
-  "Streaming defenses is the new meta — play the matchups.",
-  "Don't overpay for preseason hype. Let the market settle.",
-  "Handcuff your star RBs. Injury insurance is priceless.",
-  "Target players in contract years. Motivation matters.",
+  "Стратегия Zero-RB мертва. Балансированные драфты выигрывают.",
+  "Стриминг защит — новая мета — играйте на матчапах.",
+  "Не переплачивайте за preseason хайп. Дайте рынку остыть.",
+  "Берите дубликаторов для ваших звездных RB. Страховка от травм бесценна.",
+  "Целитесь в игроков в контрактные годы. Мотивация имеет значение.",
 ];
 
 export function FantasyQuickStart() {
@@ -81,15 +81,15 @@ export function FantasyQuickStart() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Playbook
+            Плейбук
             <Star className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            FANTASY <span className="text-gradient-gold">FOOTBALL 101</span>
+            ФЭНТЕЗИ <span className="text-gradient-gold">ФУТБОЛ 101</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            From draft day to championship night. Your essential guide to dominating
-            your fantasy league this season.
+            От драфта до финала чемпионата. Ваш путеводитель
+            по завоеванию лиги фэнтези в этом сезоне.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -123,7 +123,7 @@ export function FantasyQuickStart() {
                       </div>
                       <div>
                         <span className="text-[10px] font-bold tracking-[0.3em] text-gold uppercase">
-                          Step {step.step} of {STEPS.length}
+                          Шаг {step.step} из {STEPS.length}
                         </span>
                         <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
                           {step.title}
@@ -139,7 +139,7 @@ export function FantasyQuickStart() {
                     <div className="mt-5 flex items-start gap-2.5 p-3 rounded-lg bg-gold/[0.04] border border-gold/10">
                       <Lightbulb className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-gold/80 leading-relaxed">
-                        <span className="font-bold">Pro Tip:</span> {step.tip}
+                        <span className="font-bold">Совет профи:</span> {step.tip}
                       </p>
                     </div>
                   </motion.div>
@@ -154,7 +154,7 @@ export function FantasyQuickStart() {
                     disabled={activeStep === 0}
                     className="text-muted-foreground hover:text-foreground disabled:opacity-30"
                   >
-                    Previous
+                    Назад
                   </Button>
                   <div className="flex items-center gap-1.5">
                     {STEPS.map((_, i) => (
@@ -173,7 +173,7 @@ export function FantasyQuickStart() {
                       onClick={() => setActiveStep((prev) => prev + 1)}
                       className="text-gold hover:text-gold/80"
                     >
-                      Next <ArrowRight className="w-3 h-3 ml-1" />
+                      Далее <ArrowRight className="w-3 h-3 ml-1" />
                     </Button>
                   ) : (
                     <Button
@@ -181,7 +181,7 @@ export function FantasyQuickStart() {
                       className="bg-gold text-black font-bold hover:bg-gold/90 text-xs"
                     >
                       <Trophy className="w-3 h-3 mr-1.5" />
-                      Start Playing
+                      Начать игру
                     </Button>
                   )}
                 </div>
@@ -194,14 +194,14 @@ export function FantasyQuickStart() {
             {/* Quick stats */}
             <div className="glass-card rounded-xl p-5">
               <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">
-                Fantasy by the Numbers
+                Фэнтези в цифрах
               </h4>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { label: "Active Players", value: "62M+", color: "text-gold" },
-                  { label: "Avg. Prize Pool", value: "$150", color: "text-emerald-400" },
-                  { label: "Seasons Played", value: "60+", color: "text-orange-400" },
-                  { label: "Avg. League Size", value: "12", color: "text-cyan-400" },
+                  { label: "Активных игроков", value: "62M+", color: "text-gold" },
+                  { label: "Средний призовой фонд", value: "$150", color: "text-emerald-400" },
+                  { label: "Сезонов сыграно", value: "60+", color: "text-orange-400" },
+                  { label: "Средний размер лиги", value: "12", color: "text-cyan-400" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
                     <p className={`text-lg sm:text-xl font-black ${stat.color} stat-glow`}>
@@ -222,7 +222,7 @@ export function FantasyQuickStart() {
                 className="w-full flex items-center justify-between"
               >
                 <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">
-                  Insider Tips
+                  Советы изнутри
                 </h4>
                 <motion.div
                   animate={{ rotate: showTips ? 180 : 0 }}

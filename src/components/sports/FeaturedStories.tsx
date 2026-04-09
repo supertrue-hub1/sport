@@ -9,30 +9,30 @@ const STORIES = [
     id: 1,
     category: "NFL",
     image: "/images/hero-nfl.png",
-    title: "The Dynasty Continues: Mahomes' Masterclass in Arrowhead",
+    title: "Династия продолжается: шедевр Mahomes в Arrowhead",
     excerpt:
-      "Patrick Mahomes delivered a performance for the ages, engineering a fourth-quarter comeback that cemented the Chiefs' legacy as the NFL's modern dynasty.",
-    tag: "FEATURED",
+      "Patrick Mahomes выдал выступление на века, организовав камбэк в четвёртой четверти, который закрепил наследие Chiefs как современной династии NFL.",
+    tag: "ИЗБРАННОЕ",
     size: "large",
   },
   {
     id: 2,
     category: "NBA",
     image: "/images/hero-nba.png",
-    title: "LeBron's Final Act: A Season for the Ages",
+    title: "Последний акт LeBron: сезон на все времена",
     excerpt:
-      "In what might be his swan song, LeBron James is putting up numbers that defy time itself. The King isn't just playing — he's reigning.",
-    tag: "EXCLUSIVE",
+      "Возможно, это его лебединая песня, но LeBron James выдаёт цифры, бросающие вызов самому времени. Король не просто играет — он правит.",
+    tag: "ЭКСКЛЮЗИВ",
     size: "medium",
   },
   {
     id: 3,
     category: "MLB",
     image: "/images/hero-mlb.png",
-    title: "Inside the Diamond: The New Era of Baseball Analytics",
+    title: "Внутри бейсбольного ромба: новая эра аналитики",
     excerpt:
-      "How data science is revolutionizing the way teams build rosters and call pitches. The numbers don't lie — but they tell one hell of a story.",
-    tag: "DEEP DIVE",
+      "Как наука о данных революционизирует формирование составов и вызов питчей. Числа не лгут — но они рассказывают чертовски интересную историю.",
+    tag: "ГЛУБЖЕ",
     size: "medium",
   },
 ];
@@ -73,10 +73,10 @@ export function FeaturedStories() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Editor&apos;s Pick
+            Выбор редакции
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            FEATURED <span className="text-gradient-gold">STORIES</span>
+            ИЗБРАННЫЕ <span className="text-gradient-gold">ИСТОРИИ</span>
           </h2>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -138,7 +138,7 @@ export function FeaturedStories() {
                     {story.excerpt}
                   </p>
                   <div className="mt-4 flex items-center gap-1 text-gold text-xs font-semibold tracking-wider uppercase group-hover:gap-2 transition-all">
-                    <span>Read Story</span>
+                    <span>Читать далее</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>

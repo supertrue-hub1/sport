@@ -1,0 +1,59 @@
+# Group C — Russian Translation Worklog
+
+## Files Changed (5/5)
+
+### 1. DeepStats.tsx
+- Tag: "Analytics" → "Аналитика"
+- Heading: "DEEP DIVE STATISTICS" → "ГЛУБИННАЯ СТАТИСТИКА"
+- Chart title: "NBA Scoring Leaders" → "ЛУЧШИЕ БОМБАРДИРЫ NBA"
+- Tooltip: "yards" → "ярдов" (PPG kept as abbreviation)
+- Chart title: "AFC Win Distribution" → "РАСПРЕДЕЛЕНИЕ ПОБЕД AFC"
+- Tooltip: "wins" → "побед"
+- Chart title: "QB Comparison" → "СРАВНЕНИЕ КВ"
+- Radar axis labels: Speed→Скорость, Arm→Бросок, Acc.→Точность, Clutch→Ключевые, Rush→Выносливость, Vision→Видение
+- Player names (Mahomes, Allen) kept in English
+
+### 2. PlayerComparison.tsx
+- Tag: "Showdown" → "Противостояние"
+- Heading: "HEAD TO HEAD" → "ЛИЦОМ К ЛИЦУ"
+- Stat labels: Passing Yards→Ярдов передач, Touchdowns→Тачдаунов, Completion %→% Точности передач, Rush Yards→Ярдов на выносе, Rush TDs→Тачдаунов на выносе
+- QBR kept as-is (abbreviation)
+- "Categories Won" → "Категорий выиграно"
+- Updated label conditionals in JSX to match new Russian labels (completion % formatting fix)
+- Player names (Patrick Mahomes, Josh Allen), team names (Kansas City Chiefs, Buffalo Bills) kept in English
+
+### 3. StandingsTable.tsx
+- Tag: "Rankings" → "Рейтинг"
+- Heading: "AFC STANDINGS" → "ТУРНИРНАЯ ТАБЛИЦА AFC"
+- Description translated preserving dramatic tone
+- Legend: "Division Leaders / Wild Card" → "Лидеры дивизионов / Уайлд-кард", "In the Hunt" → "В борьбе"
+- Column headers: Team→КОМАНДА, W→В, L→П, PCT→% ПОБЕД, STRK→СЕРИЯ, PF/PA→ЗП/ПП
+- Summary: "Highest scoring" → "Наибольшее количество очков" (PF→ЗП), "Hottest streak" → "Лучшая серия"
+- All team names kept in English
+
+### 4. MatchTimeline.tsx
+- Tag: "Chronicle" → "Летопись"
+- Heading: "GAME TIMELINE" → "ХРОНОЛОГИЯ МАТЧА"
+- Description translated
+- All 8 event titles translated (Opening Kickoff→Начальный кикофф, etc.)
+- All 8 event descriptions translated preserving dramatic storytelling tone
+- "FINAL:" → "ФИНАЛ:" in final score display
+- All player names (Mahomes, Kelce, Jackson, Andrews, Jones, Butker) and team names (Chiefs, Ravens) kept in English
+- Stadium names (Arrowhead Stadium, M&T Bank Stadium) kept in English
+
+### 5. WinProbabilityChart.tsx
+- Tag: "Data Art" → "Искусство данных" (Activity icon preserved)
+- Heading: "WIN PROBABILITY" → "ВЕРОЯТНОСТЬ ПОБЕДЫ"
+- Description translated
+- "FINAL" label → "ФИНАЛ"
+- All 12 data point play labels translated (Game starts→Начало матча, Kelce TD catch→Тачдаун-приём Kelce, etc.)
+- FINAL data point: "ФИНАЛ: Chiefs 17-14"
+- Key moments bar annotations kept in English (Kelce TD, Fumble, Jackson Rush TD, Mahomes Sneak TD) — proper-noun-heavy short labels
+- Team labels (Chiefs, Ravens, KC, BAL) kept in English
+
+## Rules Compliance
+- All proper nouns (player names, team names, stadium names) kept in English
+- Sport acronyms/abbreviations preserved: PPG, QBR, NBA, AFC, TD, FG, VS, W/L streak notation
+- Premium/dramatic tone maintained throughout
+- All code structure, imports, component logic, CSS classes intact
+- No variable names, function names, or code logic changed

@@ -9,55 +9,55 @@ const NEWS_ITEMS = [
     id: 1,
     category: "NFL",
     image: "/images/hero-nfl.png",
-    title: "Trades That Could Shake Up the 2025 NFL Draft",
+    title: "Обмены, которые могут перевернуть драфт NFL 2025",
     excerpt:
-      "Three blockbuster trade scenarios that would redefine the first round and reshape franchises for years to come.",
-    time: "2h ago",
+      "Три сценария громких обменов, которые переопределят первый раунд и изменят франшизы на годы вперёд.",
+    time: "2ч назад",
   },
   {
     id: 2,
     category: "NBA",
     image: "/images/hero-nba.png",
-    title: "The MVP Race Is Tighter Than Ever — Here's Why",
+    title: "Борьба за MVP теснее, чем когда-либо — вот почему",
     excerpt:
-      "With a month left in the regular season, four players are separated by less than 1.5 Win Shares. The debate is raging.",
-    time: "4h ago",
+      "За месяц до конца регулярного сезона четыре игрока разделены менее чем 1.5 Win Shares. Споры бушуют.",
+    time: "4ч назад",
   },
   {
     id: 3,
-    category: "Trade Rumors",
+    category: "Слухи обменов",
     image: "/images/studio-bg.png",
-    title: "Sources: Multiple Teams Inquiring About Star Reliever",
+    title: "Источники: несколько команд интересуются звёздным реливером",
     excerpt:
-      "The trade deadline is approaching and front offices are working the phones. We break down the latest intel from inside the war rooms.",
-    time: "5h ago",
+      "Дедлайн обменов приближается, и управляющие штабы работают телефонами. Анализируем последние данные из штабов.",
+    time: "5ч назад",
   },
   {
     id: 4,
     category: "NHL",
     image: "/images/hero-nhl.png",
-    title: "Oilers' McDavid Hits 100-Point Milestone for 9th Straight Season",
+    title: "McDavid из Oilers достигает отметки в 100 очков 9-й сезон подряд",
     excerpt:
-      "Connor McDavid continues to rewrite the record books. His consistency is something the NHL has never seen before.",
-    time: "7h ago",
+      "Connor McDavid продолжает переписывать рекорды. Его стабильность — нечто невиданное ранее в NHL.",
+    time: "7ч назад",
   },
   {
     id: 5,
-    category: "Fantasy",
+    category: "Фэнтези",
     image: "/images/studio-bg.png",
-    title: "Waiver Wire Gems: Week 17 Pickups That Could Win Your League",
+    title: "Жемчужины драфта отказов: подписание 17-й недели, которые могут принести вам победу",
     excerpt:
-      "These three widely available players could be the difference between a championship and an early exit.",
-    time: "9h ago",
+      "Эти три широко доступных игрока могут стать разницей между чемпионством и ранним вылетом.",
+    time: "9ч назад",
   },
   {
     id: 6,
     category: "MLB",
     image: "/images/hero-mlb.png",
-    title: "Spring Training Standouts: Five Rookies to Watch in 2025",
+    title: "Звёзды весенних тренировок: пять новичков, за которыми стоит следить в 2025",
     excerpt:
-      "From flamethrowers to switch-hitting phenoms — the next generation of baseball stars is ready to arrive.",
-    time: "12h ago",
+      "От питчеров с огненными подачами до феноменов-свитч-хиттеров — следующее поколение бейсбольных звёзд готово к дебюту.",
+    time: "12ч назад",
   },
 ];
 
@@ -66,8 +66,8 @@ const CATEGORY_COLORS: Record<string, string> = {
   NBA: "bg-orange-500/20 text-orange-400 border-orange-500/30",
   MLB: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
   NHL: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-  Fantasy: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  "Trade Rumors": "bg-amber-500/20 text-amber-400 border-amber-500/30",
+  "Фэнтези": "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  "Слухи обменов": "bg-amber-500/20 text-amber-400 border-amber-500/30",
 };
 
 const containerVariants = {
@@ -93,10 +93,10 @@ export function LatestNews() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            Newsroom
+            Редакция
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            THE <span className="text-gradient-gold">LATEST</span>
+            ПОСЛЕДНИЕ <span className="text-gradient-gold">НОВОСТИ</span>
           </h2>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -148,7 +148,7 @@ export function LatestNews() {
                     <span className="text-[10px] font-medium">{item.time}</span>
                   </div>
                   <div className="flex items-center gap-1 text-gold text-[10px] font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Read</span>
+                    <span>Читать</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </div>
                 </div>

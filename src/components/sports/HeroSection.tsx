@@ -9,34 +9,34 @@ const HERO_SLIDES = [
   {
     image: "/images/hero-nfl.png",
     sport: "NFL",
-    title: "WHERE LEGENDS",
-    subtitle: "ARE FORGED",
+    title: "ГДЕ РОЖДАЮТСЯ",
+    subtitle: "ЛЕГЕНДЫ",
     description:
-      "From the gridiron to glory — witness the moments that define generations of champions.",
+      "От игры на поле до бессмертия — станьте свидетелем моментов, определяющих поколения чемпионов.",
   },
   {
     image: "/images/hero-nba.png",
     sport: "NBA",
-    title: "THE COURT",
-    subtitle: "IS KINGDOM",
+    title: "ПАРКЕТ —",
+    subtitle: "ЭТО КОРОЛЕВСТВО",
     description:
-      "Every possession tells a story. Every dunk echoes through history.",
+      "Каждое владение — это история. Каждый данк звучит эхом в веках.",
   },
   {
     image: "/images/hero-mlb.png",
     sport: "MLB",
-    title: "AMERICA'S",
-    subtitle: "PASTIME REBORN",
+    title: "АМЕРИКАНСКАЯ",
+    subtitle: "НАЦИОНАЛЬНАЯ ИГРА ВОЗРОЖДЕНА",
     description:
-      "Where tradition meets analytics — the diamond never looked so good.",
+      "Там, где традиции встречаются с аналитикой — бейсбольное поле никогда не выглядело столь великолепно.",
   },
   {
     image: "/images/hero-nhl.png",
     sport: "NHL",
-    title: "ICE COLD",
-    subtitle: "FIRE HOT",
+    title: "ЛЕДЯНОЙ",
+    subtitle: "ОГНЕННЫЙ",
     description:
-      "Speed, power, precision — the fastest game on earth demands your attention.",
+      "Скорость, мощь, точность — самая быстрая игра на планете требует вашего внимания.",
   },
 ];
 
@@ -129,7 +129,7 @@ export function HeroSection() {
             size="lg"
             className="bg-gold text-gold-foreground hover:bg-gold/90 font-semibold tracking-wide px-8 py-6 text-sm rounded-none gold-glow"
           >
-            EXPLORE NOW
+            ИССЛЕДОВАТЬ
           </Button>
         </motion.div>
 

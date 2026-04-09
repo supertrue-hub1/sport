@@ -18,7 +18,7 @@ const UPCOMING_GAMES = [
     sport: "NFL",
     away: { abbr: "KC", name: "Chiefs", record: "15-2" },
     home: { abbr: "BUF", name: "Bills", record: "13-4" },
-    date: "Sunday",
+    date: "Воскресенье",
     time: "6:30 PM ET",
     venue: "Highmark Stadium",
     network: "CBS",
@@ -30,7 +30,7 @@ const UPCOMING_GAMES = [
     sport: "NBA",
     away: { abbr: "OKC", name: "Thunder", record: "57-10" },
     home: { abbr: "BOS", name: "Celtics", record: "55-14" },
-    date: "Wednesday",
+    date: "Среда",
     time: "7:30 PM ET",
     venue: "TD Garden",
     network: "TNT",
@@ -42,7 +42,7 @@ const UPCOMING_GAMES = [
     sport: "MLB",
     away: { abbr: "LAD", name: "Dodgers", record: "98-64" },
     home: { abbr: "NYY", name: "Yankees", record: "94-68" },
-    date: "Saturday",
+    date: "Суббота",
     time: "1:05 PM ET",
     venue: "Yankee Stadium",
     network: "FOX",
@@ -54,7 +54,7 @@ const UPCOMING_GAMES = [
     sport: "NHL",
     away: { abbr: "EDM", name: "Oilers", record: "49-25-8" },
     home: { abbr: "FLA", name: "Panthers", record: "52-22-8" },
-    date: "Thursday",
+    date: "Четверг",
     time: "8:00 PM ET",
     venue: "Amerant Bank Arena",
     network: "ESPN+",
@@ -66,7 +66,7 @@ const UPCOMING_GAMES = [
     sport: "NFL",
     away: { abbr: "SF", name: "49ers", record: "12-5" },
     home: { abbr: "DET", name: "Lions", record: "15-2" },
-    date: "Sunday",
+    date: "Воскресенье",
     time: "1:00 PM ET",
     venue: "Ford Field",
     network: "FOX",
@@ -163,15 +163,15 @@ export function UpcomingGames() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Schedule
+            РАСПИСАНИЕ
             <Calendar className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            UPCOMING <span className="text-gradient-gold">GAMES</span>
+            БЛИЖАЙШИЕ <span className="text-gradient-gold">ИГРЫ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            Don&apos;t miss a moment. Your essential guide to the biggest matchups
-            across all four major leagues this week.
+            Не пропустите ни мгновения. Ваш путеводитель по самым крупным
+            матчам всех четырёх главных лиг на этой неделе.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -221,7 +221,7 @@ export function UpcomingGames() {
                       <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-gold/10 border border-gold/15">
                         <Zap className="w-2.5 h-2.5 text-gold" />
                         <span className="text-[8px] font-bold tracking-wider uppercase text-gold">
-                          PRIMETIME
+                          ПРАЙМТАЙМ
                         </span>
                       </div>
                     )}
@@ -295,7 +295,7 @@ export function UpcomingGames() {
         >
           <button className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-gold hover:text-gold/80 transition-colors group">
             <Calendar className="w-3.5 h-3.5" />
-            View Full Schedule
+            ПОЛНОЕ РАСПИСАНИЕ
             <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </motion.div>

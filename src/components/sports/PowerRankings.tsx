@@ -10,61 +10,61 @@ const TEAMS = [
   {
     rank: 1, prev: 1, team: "Kansas City Chiefs", abbr: "KC", record: "15-2",
     trend: "+0", hot: true, icon: "👑",
-    blurb: "The dynasty shows no signs of slowing. Mahomes & Co. are peaking at the perfect time.",
+    blurb: "Династия не собирается сбавлять обороты. Mahomes и компания выходят на пик в идеальный момент.",
     sport: "NFL", color: "#d4af37",
   },
   {
     rank: 2, prev: 3, team: "Oklahoma City Thunder", abbr: "OKC", record: "57-10",
     trend: "+2", hot: true, icon: "⚡",
-    blurb: "SGA is making his MVP case with relentless efficiency. The Thunder are terrifying.",
+    blurb: "SGA доказывает своё право на MVP с неумолимой эффективностью. Thunder пугающе сильны.",
     sport: "NBA", color: "#007ac1",
   },
   {
     rank: 3, prev: 2, team: "Buffalo Bills", abbr: "BUF", record: "13-4",
     trend: "-1", hot: false, icon: "🦬",
-    blurb: "Josh Allen keeps Buffalo in the championship conversation. The defense needs to step up.",
+    blurb: "Josh Allen удерживает Buffalo в борьбе за чемпионство. Защите нужно прибавить.",
     sport: "NFL", color: "#00338d",
   },
   {
     rank: 4, prev: 5, team: "Los Angeles Dodgers", abbr: "LAD", record: "98-64",
     trend: "+3", hot: true, icon: "🌊",
-    blurb: "Ohtani's two-way brilliance fuels a deep playoff run. The NL West is theirs to lose.",
+    blurb: "Двустороннее великолепие Ohtani питает глубокую игру в плей-офф. NL West — их, если они сами не упустят.",
     sport: "MLB", color: "#005a9c",
   },
   {
     rank: 5, prev: 4, team: "Baltimore Ravens", abbr: "BAL", record: "12-5",
     trend: "-1", hot: false, icon: "🐦",
-    blurb: "Lamar Jackson remains electric, but the roster needs reinforcements for a deep run.",
+    blurb: "Lamar Jackson по-прежнему электричен, но составу нужно подкрепление для глубокой игры.",
     sport: "NFL", color: "#241773",
   },
   {
     rank: 6, prev: 8, team: "Florida Panthers", abbr: "FLA", record: "52-22-8",
     trend: "+4", hot: true, icon: "🐊",
-    blurb: "The defending Stanley Cup champions are rolling. Bobrovsky is standing on his head again.",
+    blurb: "Действующие чемпионы Кубка Стэнли идут полным ходом. Bobrovsky снова творит чудеса.",
     sport: "NHL", color: "#041e42",
   },
   {
     rank: 7, prev: 6, team: "Boston Celtics", abbr: "BOS", record: "55-14",
     trend: "-1", hot: false, icon: "🍀",
-    blurb: "The defending champs are cruising. Tatum and Brown are building something special.",
+    blurb: "Действующие чемпионы идут уверенно. Tatum и Brown строят нечто особенное.",
     sport: "NBA", color: "#007a33",
   },
   {
     rank: 8, prev: 7, team: "Cincinnati Bengals", abbr: "CIN", record: "11-6",
     trend: "+2", hot: false, icon: "🐯",
-    blurb: "Joe Burrow is healthy and the offense is explosive. A dark horse in the AFC playoff picture.",
+    blurb: "Joe Burrow здоров, и нападение разрушительно. Тёмная лошадка в плей-офф AFC.",
     sport: "NFL", color: "#fb4f14",
   },
   {
     rank: 9, prev: 10, team: "Edmonton Oilers", abbr: "EDM", record: "49-25-8",
     trend: "+3", hot: true, icon: "🛢️",
-    blurb: "McDavid and Draisaitl are doing McDavid and Draisaitl things. The Western Conference is on notice.",
+    blurb: "McDavid и Draisaitl делают то, что делают McDavid и Draisaitl. Западная конференция предупреждена.",
     sport: "NHL", color: "#003876",
   },
   {
     rank: 10, prev: 9, team: "New York Yankees", abbr: "NYY", record: "94-68",
     trend: "-1", hot: false, icon: "⚾",
-    blurb: "Judge is mashing again. The Yankees' deadline additions could make the difference in October.",
+    blurb: "Judge снова в ударе. Переходы Yankees перед дедлайном могут стать решающими в октябре.",
     sport: "MLB", color: "#003087",
   },
 ];
@@ -99,14 +99,14 @@ export function PowerRankings() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-            The Hierarchy
+            ИЕРАРХИЯ
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            POWER <span className="text-gradient-gold">RANKINGS</span>
+            СИЛОВОЙ <span className="text-gradient-gold">РЕЙТИНГ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            Across all four major leagues — one definitive ranking. This is where
-            the elite separate from the rest.
+            Четыре главные лиги — один безоговорочный рейтинг. Здесь
+            элита отделяется от остальных.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>

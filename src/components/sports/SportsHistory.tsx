@@ -9,8 +9,8 @@ const HISTORY_EVENTS = [
     year: 2024,
     month: 2,
     day: 11,
-    title: "Mahomes' 3rd Super Bowl",
-    description: "Patrick Mahomes leads Kansas City Chiefs to a 25-22 overtime victory over the 49ers in Super Bowl LVIII, cementing a dynasty.",
+    title: "3-й Супербоул Mahomes",
+    description: "Patrick Mahomes выводит Kansas City Chiefs к победе 25-22 в овертайме над 49ers в Супербоуле LVIII, закрепляя династию.",
     sport: "NFL",
     icon: Trophy,
     impact: "legendary",
@@ -19,8 +19,8 @@ const HISTORY_EVENTS = [
     year: 2023,
     month: 6,
     day: 12,
-    title: "Nuggets Win First NBA Title",
-    description: "Nikola Jokić delivers a historic triple-double performance to secure Denver's first-ever NBA championship in five games over Miami.",
+    title: "Nuggets выигрывают первый чемпионский титул NBA",
+    description: "Nikola Jokić выдаёт исторический трипл-дабл и приносит Denver первый чемпионский титул NBA за пять игр против Miami.",
     sport: "NBA",
     icon: Trophy,
     impact: "legendary",
@@ -29,8 +29,8 @@ const HISTORY_EVENTS = [
     year: 2022,
     month: 11,
     day: 15,
-    title: "Messi's World Cup Glory",
-    description: "Lionel Messi fulfills his destiny, leading Argentina to World Cup victory in one of the greatest finals ever played.",
+    title: "Триумф Messi на чемпионате мира",
+    description: "Lionel Messi исполняет свою судьбу, выводя Аргентину к победе на чемпионате мира в одном из величайших финалов в истории.",
     sport: "Soccer",
     icon: Star,
     impact: "legendary",
@@ -39,8 +39,8 @@ const HISTORY_EVENTS = [
     year: 2020,
     month: 1,
     day: 26,
-    title: "Kobe Bryant's Legacy",
-    description: "The world mourns the loss of Kobe Bryant, his daughter Gianna, and seven others in a tragic helicopter crash. Mamba Forever.",
+    title: "Наследие Kobe Bryant",
+    description: "Мир скорбит о потере Kobe Bryant, его дочери Джанны и ещё семи человек в трагической крушении вертолёта. Mamba Forever.",
     sport: "NBA",
     icon: Star,
     impact: "historic",
@@ -49,8 +49,8 @@ const HISTORY_EVENTS = [
     year: 2019,
     month: 10,
     day: 15,
-    title: "Washington Nationals Complete Miracle",
-    description: "From 19-31 to World Series Champions. The Nationals complete one of the most improbable playoff runs in MLB history.",
+    title: "Washington Nationals завершают чудо",
+    description: "От 19-31 до чемпионов Мировой серии. Nationals завершают один из самых невероятных плей-офф заузов в истории MLB.",
     sport: "MLB",
     icon: Zap,
     impact: "historic",
@@ -59,8 +59,8 @@ const HISTORY_EVENTS = [
     year: 2016,
     month: 6,
     day: 19,
-    title: "The Block, The Shot, The Break",
-    description: "LeBron James delivers the greatest defensive play in NBA Finals history as Cleveland erases a 3-1 deficit against the 73-win Warriors.",
+    title: "Блок, бросок, прорыв",
+    description: "LeBron James совершает величайший защитный розыгрыш в истории финалов NBA, когда Cleveland отыгрывает отставание 1-3 против Warriors с 73 победами.",
     sport: "NBA",
     icon: Zap,
     impact: "legendary",
@@ -69,8 +69,8 @@ const HISTORY_EVENTS = [
     year: 2012,
     month: 9,
     day: 5,
-    title: "Replacement Refs Debacle",
-    description: "The 'Fail Mary' game. Golden Tate's controversial game-winning touchdown for Seattle exposes the chaos of the NFL referee lockout.",
+    title: "Катастрофа с заменяющими судьями",
+    description: "Игра 'Fail Mary'. Спорный решающий тачдаун Golden Tate за Seattle обнажает хаос локаута судей NFL.",
     sport: "NFL",
     icon: History,
     impact: "historic",
@@ -79,8 +79,8 @@ const HISTORY_EVENTS = [
     year: 2004,
     month: 10,
     day: 27,
-    title: "Red Sox Break the Curse",
-    description: "Boston completes an impossible comeback from 0-3 down against the Yankees, then sweep the Cardinals for their first title in 86 years.",
+    title: "Red Sox прерывают проклятие",
+    description: "Boston совершает невозможный камбэк от 0-3 против Yankees, а затем разгромом обыгрывают Cardinals и выигрывают первый титул за 86 лет.",
     sport: "MLB",
     icon: Trophy,
     impact: "legendary",
@@ -89,8 +89,8 @@ const HISTORY_EVENTS = [
     year: 1998,
     month: 3,
     day: 26,
-    title: "The Shot — Jordan Over Russell",
-    description: "Michael Jordan hits 'The Last Shot' to win Game 6 of the NBA Finals, capping off the Bulls' second three-peat in legendary fashion.",
+    title: "Бросок — Jordan над Russell",
+    description: "Michael Jordan забивает 'Последний бросок', выигрывая 6-ю игру финала NBA и завершая второй трёхкратный чемпионский цикл Bulls в легендарном стиле.",
     sport: "NBA",
     icon: Star,
     impact: "legendary",
@@ -99,8 +99,8 @@ const HISTORY_EVENTS = [
     year: 1980,
     month: 2,
     day: 22,
-    title: "Miracle on Ice",
-    description: "A group of American college kids defeats the Soviet Union 4-3 in the greatest upset in hockey history at the Lake Placid Olympics.",
+    title: "Чудо на льду",
+    description: "Группа американских студентов побеждает СССР 4-3 в величайшей сенсации в истории хоккея на Олимпиаде в Лейк-Плэсиде.",
     sport: "NHL",
     icon: Zap,
     impact: "legendary",
@@ -109,8 +109,8 @@ const HISTORY_EVENTS = [
     year: 1969,
     month: 10,
     day: 16,
-    title: "The Impossible Dream",
-    description: "The 'Amazin' Mets' complete the most shocking season turnaround in sports history, going from worst to first to win the World Series.",
+    title: "Невозможная мечта",
+    description: "'Потрясающие Mets' совершают самый шокирующий разворот сезона в истории спорта, пройдя путь от худших к лучшим и выиграв Мировую серию.",
     sport: "MLB",
     icon: Trophy,
     impact: "legendary",
@@ -119,8 +119,8 @@ const HISTORY_EVENTS = [
     year: 1958,
     month: 12,
     day: 28,
-    title: "The Greatest Game Ever Played",
-    description: "Baltimore Colts defeat the New York Giants 23-17 in sudden death overtime, a game that put professional football on the national map.",
+    title: "Величайшая игра в истории",
+    description: "Baltimore Colts побеждают New York Giants 23-17 в овертайме до первой реализации, в матче, который поставил профессиональный футбол на карту страны.",
     sport: "NFL",
     icon: History,
     impact: "historic",
@@ -182,15 +182,15 @@ export function SportsHistory() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase flex items-center gap-2">
-            Vault
+            Архив
             <History className="w-3.5 h-3.5" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2">
-            THIS DAY IN <span className="text-gradient-gold">SPORTS</span>
+            ЭТОТ ДЕНЬ В <span className="text-gradient-gold">СПОРТЕ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            The moments that transcended the game. Relive the plays, the upsets,
-            and the legends that shaped sports history.
+            Моменты, перешагнувшие за рамки игры. Переживите снова решающие
+            розыгрыши, сенсации и легенды, сформировавшие историю спорта.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -223,7 +223,7 @@ export function SportsHistory() {
                     {event.sport}
                   </span>
                   <span className={`text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border ${IMPACT_COLORS[event.impact]?.bg || "bg-white/5 border-white/10"} ${IMPACT_COLORS[event.impact]?.text || "text-muted-foreground"}`}>
-                    {event.impact}
+                    {event.impact === "legendary" ? "Легендарный" : "Исторический"}
                   </span>
                 </div>
 
@@ -253,7 +253,7 @@ export function SportsHistory() {
                 className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
               >
                 <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-                <span className="hidden sm:inline">Previous</span>
+                <span className="hidden sm:inline">Назад</span>
               </button>
 
               {/* Dots */}
@@ -267,7 +267,7 @@ export function SportsHistory() {
                         ? "w-6 h-2 bg-gold"
                         : "w-2 h-2 bg-white/10 hover:bg-white/20"
                     }`}
-                    aria-label={`Go to event ${i + 1}`}
+                    aria-label={`Перейти к событию ${i + 1}`}
                   />
                 ))}
               </div>
@@ -276,7 +276,7 @@ export function SportsHistory() {
                 onClick={next}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
               >
-                <span className="hidden sm:inline">Next</span>
+                <span className="hidden sm:inline">Далее</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

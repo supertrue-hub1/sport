@@ -8,7 +8,7 @@ const TRADES = [
   {
     id: 1,
     status: "confirmed",
-    timestamp: "2 hours ago",
+    timestamp: "2 часа назад",
     fromTeam: "SF", fromTeamName: "49ers",
     toTeam: "DEN", toTeamName: "Broncos",
     player: "Deebo Samuel",
@@ -20,7 +20,7 @@ const TRADES = [
   {
     id: 2,
     status: "confirmed",
-    timestamp: "5 hours ago",
+    timestamp: "5 часов назад",
     fromTeam: "CHI", fromTeamName: "Bears",
     toTeam: "LAR", toTeamName: "Rams",
     player: "Keenan Allen",
@@ -32,7 +32,7 @@ const TRADES = [
   {
     id: 3,
     status: "rumor",
-    timestamp: "8 hours ago",
+    timestamp: "8 часов назад",
     fromTeam: "BKN", fromTeamName: "Nets",
     toTeam: "HOU", toTeamName: "Rockets",
     player: "Cameron Johnson",
@@ -44,7 +44,7 @@ const TRADES = [
   {
     id: 4,
     status: "rumor",
-    timestamp: "12 hours ago",
+    timestamp: "12 часов назад",
     fromTeam: "TOR", fromTeamName: "Blue Jays",
     toTeam: "NYY", toTeamName: "Yankees",
     player: "Vladimir Guerrero Jr.",
@@ -56,7 +56,7 @@ const TRADES = [
   {
     id: 5,
     status: "confirmed",
-    timestamp: "1 day ago",
+    timestamp: "1 день назад",
     fromTeam: "ANA", fromTeamName: "Ducks",
     toTeam: "CAR", toTeamName: "Hurricanes",
     player: "Trevor Zegras",
@@ -68,7 +68,7 @@ const TRADES = [
   {
     id: 6,
     status: "rumor",
-    timestamp: "1 day ago",
+    timestamp: "1 день назад",
     fromTeam: "DET", fromTeamName: "Lions",
     toTeam: "DAL", toTeamName: "Cowboys",
     player: "Amon-Ra St. Brown",
@@ -117,7 +117,7 @@ export function TradeTracker() {
         >
           <div className="flex items-center gap-3 mb-2">
             <span className="text-xs font-bold tracking-[0.3em] text-gold uppercase">
-              Wire Room
+              НОВОСТНАЯ ЛИНИЯ
             </span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75" />
@@ -125,11 +125,11 @@ export function TradeTracker() {
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            TRADE <span className="text-gradient-gold">TRACKER</span>
+            ТРЕКЕР <span className="text-gradient-gold">ОБМЕНОВ</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-lg">
-            Every blockbuster deal, every whispered rumor. Stay ahead of the curve
-            with real-time trade intelligence from all four major leagues.
+            Каждая громкая сделка, каждый тихий слух. Будьте на шаг впереди
+            с аналитикой обменов в реальном времени из всех четырёх главных лиг.
           </p>
           <div className="w-16 h-1 bg-gold mt-4" />
         </motion.div>
@@ -171,7 +171,7 @@ export function TradeTracker() {
                         : "border-amber-500/30 text-amber-400 text-[9px] font-bold tracking-wider"
                       }
                     >
-                      {trade.status === "confirmed" ? "CONFIRMED" : "RUMOR"}
+                      {trade.status === "confirmed" ? "ПОДТВЕРЖДЕНО" : "СЛУХ"}
                     </Badge>
                     {trade.hot && (
                       <Flame className="w-3 h-3 text-orange-400" />
@@ -220,7 +220,7 @@ export function TradeTracker() {
 
                   {/* Return value */}
                   <p className="text-[11px] text-muted-foreground mt-2">
-                    Return: <span className="text-foreground/80 font-medium">{trade.picks}</span>
+                    В обмен: <span className="text-foreground/80 font-medium">{trade.picks}</span>
                   </p>
                 </div>
               </div>

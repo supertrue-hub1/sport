@@ -24,7 +24,7 @@ export function LiveTicker() {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 pulse-glow-red" />
           </span>
           <span className="text-xs font-bold tracking-[0.2em] text-red-400 uppercase">
-            Live
+            LIVE
           </span>
         </div>
 
@@ -45,7 +45,7 @@ export function LiveTicker() {
                 <span className="text-sm font-bold text-muted-foreground">
                   {game.awayScore}
                 </span>
-                <span className="text-xs text-muted-foreground/50">at</span>
+                <span className="text-xs text-muted-foreground/50">в</span>
                 <span className="text-sm font-bold text-foreground">
                   {game.home}
                 </span>
