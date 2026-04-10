@@ -1,19 +1,59 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminHeader } from '@/components/admin/AdminHeader'
-import { Clock, Shield } from 'lucide-react'
+import { Clock, Shield, Loader2 } from 'lucide-react'
 import './globals-admin.css'
-import '@mdxeditor/editor/style.css'
+
+interface AdminUser {
+  id: string
+  name: string
+  email: string
+  role: string
+}
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const isLoginPage = pathname === '/admin/login'
+
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState('')
+  const [user, setUser] = useState<AdminUser | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  const checkAuth = useCallback(async () => {
+    try {
+      const res = await fetch('/api/admin/auth')
+      const data = await res.json()
+
+      if (data.authenticated && data.user) {
+        setUser(data.user)
+      } else {
+        setUser(null)
+        if (!isLoginPage) {
+          router.push('/admin/login')
+        }
+      }
+    } catch {
+      setUser(null)
+      if (!isLoginPage) {
+        router.push('/admin/login')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }, [isLoginPage, router])
+
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
 
   useEffect(() => {
     function updateTime() {
@@ -26,9 +66,37 @@ export default function AdminLayout({
       )
     }
     updateTime()
-    const interval = setInterval(updateTime, 60000) // update every minute
+    const interval = setInterval(updateTime, 60000)
     return () => clearInterval(interval)
   }, [])
+
+  const handleLogout = async () => {
+    await fetch('/api/admin/auth', { method: 'DELETE' })
+    setUser(null)
+    router.push('/admin/login')
+  }
+
+  // Login page — render without sidebar
+  if (isLoginPage) {
+    return <>{children}</>
+  }
+
+  // Auth loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="size-8 animate-spin text-blue-500" />
+          <p className="text-sm text-gray-500">Проверка авторизации...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Not authenticated — redirect (handled in checkAuth, but show nothing while redirecting)
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="admin-panel min-h-screen flex flex-col">
@@ -40,7 +108,11 @@ export default function AdminLayout({
         onClose={() => setSidebarOpen(false)}
       />
       <div className="lg:pl-64 flex flex-col min-h-screen flex-1">
-        <AdminHeader onMenuToggle={() => setSidebarOpen(true)} />
+        <AdminHeader
+          onMenuToggle={() => setSidebarOpen(true)}
+          user={user}
+          onLogout={handleLogout}
+        />
 
         {/* Top bar with CMS name + time */}
         <div className="admin-top-bar px-4 lg:px-6 py-2.5 flex items-center justify-between">

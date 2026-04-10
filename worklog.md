@@ -953,3 +953,183 @@ Verification Results:
 - Comments page: reply dialog with POST to API
 - Settings page: danger zone with clear/reset database
 - Global CSS: transitions, hover effects, loading bar, footer, markdown preview
+
+---
+Task ID: 15-b
+Agent: Full-Stack Developer
+Task: Add News Create/Edit Dialog to admin News page with real API integration
+
+Work Log:
+- Read existing files: news page (Sheet-based editor), API routes (news CRUD, categories, users, tags), Prisma schema, UI components
+- Analyzed API shape: POST/PUT support tagIds for tag sync, POST requires authorId, PUT syncs NewsTag records
+- Replaced Sheet-based editor with Dialog-based editor (max-w-3xl)
+- Organized dialog with 3 tabs using shadcn/ui Tabs: "Основное", "Категоризация", "SEO"
+- Created NewsEditorDialog component with full form:
+  - Tab 1 "Основное": title (required), slug (auto-generated from title, editable), excerpt (textarea 2 rows), content (textarea 10 rows with Markdown formatting hints), image URL (with preview thumbnail + MediaPicker integration), status select, featured switch
+  - Tab 2 "Категоризация": author dropdown (fetched from /api/admin/users, required), category dropdown (fetched from /api/admin/categories, required), tags multi-select checkboxes (fetched from /api/admin/tags)
+  - Tab 3 "SEO": SEO title (70 char limit with counter), SEO description (160 char limit), SEO keywords input, live SEO preview card
+- Added form validation: title, authorId, categoryId required — toasts shown for missing fields
+- Added success/error toast notifications using useToast hook for create, update, delete operations
+- Added loading state on submit buttons (Loader2 spinner)
+- "Создать новость" button at page header (prominent, primary blue)
+- "Редактировать" button in each table row's actions column
+- Removed MDXEditor dependency — replaced with simple textarea + Markdown formatting hints
+- Added users state and fetch from /api/admin/users alongside existing categories/tags fetches
+- Kept all existing functionality: table view, bulk actions, search, filters, pagination, mobile cards
+
+Files Modified:
+- `/src/app/admin/news/page.tsx` — Complete rewrite of the news page with Dialog-based editor
+
+Key Changes:
+- Replaced Sheet (full-screen right panel) with Dialog (max-w-3xl centered modal)
+- Replaced MDXEditor with Textarea (removes heavy dependency, simpler UX)
+- Added authorId field (previously hardcoded) with user dropdown from API
+- Added slug auto-generation from title using generateSlug function
+- Added 3-tab organization (Основное / Категоризация / SEO)
+- Added toast notifications for all CRUD operations (success + error)
+- Added proper form validation with user-friendly Russian error messages
+- Added image preview with onError/onLoad handlers
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: running normally
+- All text in Russian
+- All shadcn/ui components used: Dialog, Tabs, Input, Textarea, Select, Switch, Label, Button, Badge, Checkbox, ScrollArea, Separator
+
+---
+Task ID: 15-a
+Agent: Full-Stack Developer
+Task: Connect Categories and Users admin pages to real API data
+
+Work Log:
+- Read existing admin pages (categories/page.tsx, users/page.tsx) and their API routes
+- Analyzed current state: both pages already had basic API fetch but lacked proper error handling, toast notifications, loading skeletons, and complete form fields
+- Reviewed existing patterns from admin/news/page.tsx (useToast, proper error handling, Skeleton components)
+
+Files Rewritten (2 files):
+
+1. `/src/app/admin/categories/page.tsx` (REWRITTEN — Full API Integration):
+   - Fetches categories from /api/admin/categories on mount with error handling + toast
+   - Loading state: proper Skeleton components (no more custom pulse divs)
+   - Desktop table view: columns for Категория (with color dot), Slug (monospace), Порядок (sortable), Статьи (progress bar), Действия
+   - Mobile cards view: responsive layout with all data + progress bar for news count
+   - Sort by order: toggle ascending/descending via ArrowUpDown button
+   - Empty state: Tag icon + helpful message
+   - Create dialog: name (auto-generates slug), slug (editable, monospace), color picker, order number
+   - Edit dialog: all fields pre-filled, slug editable
+   - Delete: AlertDialog confirmation (replaces browser confirm/alert)
+   - Toast notifications for all operations (create/update/delete/validation errors)
+   - Proper API error handling with descriptive Russian error messages
+   - Protected delete: categories with news articles cannot be deleted (shows toast with count)
+
+2. `/src/app/admin/users/page.tsx` (REWRITTEN — Full API Integration):
+   - Fetches users from /api/admin/users on mount with error handling + toast
+   - Loading state: proper Skeleton components matching table layout
+   - Desktop table view: Пользователь (avatar + name), Email, Роль (badge with icon), Дата регистрации, Действия
+   - Mobile cards view: responsive layout with avatar, badges, formatted date
+   - Search: filters by name or email, shows filtered/total count
+   - Empty state: User icon + contextual message (search vs no users)
+   - Create dialog: name, email, password (optional), role select (admin/editor/user)
+   - Edit dialog: name + role editable, email disabled (read-only with explanation text), password removed
+   - Delete: AlertDialog confirmation with AlertTriangle icon (replaces browser confirm/alert)
+   - Toast notifications for all CRUD operations
+   - Role badges with icons: admin=red+Shield, editor=blue+Pencil, user=gray+User
+   - Proper API error handling with descriptive Russian error messages
+
+Key Improvements (both pages):
+- Replaced native confirm()/alert() with shadcn/ui AlertDialog component
+- Added useToast for all success/error notifications
+- Replaced custom animate-pulse loading divs with Skeleton component
+- Added DialogDescription for accessibility
+- Proper TypeScript interfaces for all data structures
+- useMemo for filtered/sorted data optimization
+- All text in Russian, professional enterprise feel
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK, all compilations clean
+- Both pages fully connected to real API data via fetch calls
+- Loading skeletons render correctly
+- CRUD operations call proper API endpoints
+- Toast notifications for all user actions
+- AlertDialog for delete confirmations
+
+---
+Task ID: 15
+Agent: Main Agent
+Task: Complete CMS — Categories/Users API integration, News Editor, Auth System
+
+Work Log:
+- Launched 3 parallel agents for CMS completion tasks
+- Agent 15-a: Rewrote admin/categories/page.tsx and admin/users/page.tsx with full API integration
+  - Both pages now fetch from real API endpoints, show loading skeletons, have create/edit/delete dialogs
+  - Categories: color picker, order, auto-slug, delete protection, AlertDialog confirmations
+  - Users: role badges (admin=red, editor=blue, user=gray), avatar initials, create/edit with validation
+- Agent 15-b: Added News Create/Edit Dialog to admin/news/page.tsx
+  - 3-tab form: Основное (title, slug, excerpt, content, image, status, featured), Категоризация (author, category, tags), SEO (meta title/desc/keywords)
+  - Auto-slug generation from title, image preview, form validation, toast notifications
+  - Prominent "Создать новость" button + "Редактировать" per table row
+- Agent 15-c: Built Auth system (auth agent failed, built manually):
+  1. /src/app/api/admin/auth/route.ts — POST login, DELETE logout, GET check session
+     - Simple token-based sessions (in-memory Map, 24h expiry)
+     - Cookie-based auth (httpOnly, sameSite lax)
+     - Role check (admin/editor/author only, no regular users)
+  2. /src/app/admin/login/page.tsx — Professional login page
+     - Centered card with gradient background, Shield branding
+     - Email + Password inputs, show/hide password toggle
+     - Error display, loading state, demo credentials shown
+     - Standalone layout (no sidebar/header)
+  3. /src/app/admin/layout.tsx — Updated with auth guard
+     - Checks session on mount, redirects to /admin/login if not authenticated
+     - Loading spinner during auth check
+     - Passes user data + onLogout to AdminHeader
+     - Login page bypasses auth check (renders children directly)
+  4. /src/components/admin/AdminHeader.tsx — Updated with user info + logout
+     - Shows real user name, role badge with icon (Shield/Pencil/User), initials avatar
+     - DropdownMenu with user details + "Выйти из системы" action
+     - Role-specific badge colors (admin=red, editor=blue, author=amber)
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK, all compilations clean
+- Categories page: connected to /api/admin/categories CRUD
+- Users page: connected to /api/admin/users CRUD
+- News page: create/edit dialog with 3 tabs, API integration
+- Auth: login page, session check, logout functionality
+- Seed credentials: admin@sportshub.com/admin123, editor@sportshub.com/editor123
+
+---
+Task ID: 16
+Agent: Main Agent
+Task: QA verification of all CMS features via agent-browser
+
+Work Log:
+- Verified main site: 133 sections/glass elements render correctly, 200 OK
+- Verified admin login page: renders with Shield branding, Email/Password fields, demo credentials shown
+- Tested login flow: admin@sportshub.com/admin123 → successful redirect to /admin
+- Verified admin dashboard: real data (15 news, categories, stats), sidebar with 10 nav items in 3 groups
+- Verified admin news page: real data from API, "Создать новость" button, edit/delete per row
+- Verified admin categories page: 8 real categories from DB, "Добавить категорию" button, edit/delete
+- Verified admin header: shows real user name "Администратор", role badge, initials avatar
+- No error alerts found on any page
+- ESLint: 0 errors throughout
+
+CMS Feature Summary (FINAL):
+- 10 Admin Pages: Dashboard, News, Pages, Media, Tags, Categories, Comments, Users, Menus, Settings
+- 13 API Routes: stats, news CRUD, news/[id], categories CRUD, users CRUD, comments CRUD, menus CRUD, pages CRUD, media upload, tags CRUD, settings, seed, auth
+- Auth System: Login page, session-based auth, role-based access, logout
+- News Editor: 3-tab dialog (Основное, Категоризация, SEO) with auto-slug, image preview, tag multi-select
+- Real Data: Dashboard, News, Categories, Users all connected to Prisma/SQLite
+- Public API: /api/news (public feed), /api/newsletter (subscriptions)
+- Main Site: LatestNews, FeaturedStories, StatsBanner connected to real API data
+- Full Russian localization across all pages
+- Responsive design: desktop tables + mobile cards
+- Light theme admin panel, dual theme main site (dark + light)
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK, all compilations clean
+- Login: works with demo credentials
+- Dashboard: real DB data
+- All CRUD pages: connected to API
+- Zero page errors

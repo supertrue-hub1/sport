@@ -22,6 +22,7 @@ export async function POST() {
       data: {
         email: 'admin@sportshub.com',
         name: 'Администратор',
+        password: 'admin123',
         role: 'admin',
         bio: 'Главный администратор портала',
       },
@@ -31,6 +32,7 @@ export async function POST() {
       data: {
         email: 'editor@sportshub.com',
         name: 'Главный редактор',
+        password: 'editor123',
         role: 'editor',
         bio: 'Руководитель редакции US Sports Hub',
       },
@@ -40,6 +42,7 @@ export async function POST() {
       data: {
         email: 'author@sportshub.com',
         name: 'Спортивный журналист',
+        password: 'author123',
         role: 'editor',
         bio: 'Эксперт по американскому спорту',
       },
