@@ -33,7 +33,7 @@ export function LiveTicker() {
                 key={i}
                 className="inline-flex items-center gap-3 px-5"
               >
-                <span className="text-[10px] font-inter font-semibold text-gray-400 uppercase tracking-wide">
+                <span className="text-xs font-inter font-semibold text-gray-400 uppercase tracking-wide">
                   {game.sport}
                 </span>
                 <span className="text-sm font-inter font-semibold text-gray-700">
@@ -49,10 +49,7 @@ export function LiveTicker() {
                 <span className="text-sm font-inter font-semibold text-gray-700">
                   {game.home}
                 </span>
-                <span className="text-gray.home}>
-                  {game.home}
-                </span>
-                <span className="text-[10px] font-inter font-medium text-gray-500 bg-gray-200 px-2 py-0.5 rounded">
+                <span className="text-xs font-inter font-medium text-gray-500 bg-gray-200 px-2 py-0.5 rounded">
                   {game.status}
                 </span>
               </div>
