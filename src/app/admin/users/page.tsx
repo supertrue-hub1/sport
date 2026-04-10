@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Pencil, Trash2, Loader2, Shield, User } from 'lucide-react'
+import { Plus, Pencil, Trash2, Loader2, Shield, User, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +12,7 @@ import {
 import { Label } from '@/components/ui/label'
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
-} from '@/components/ui/ui/select'
+} from '@/components/ui/select'
 
 interface UserItem {
   id: string

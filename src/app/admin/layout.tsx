@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminHeader } from '@/components/admin/AdminHeader'
 import './globals-admin.css'
+import '@mdxeditor/editor/style.css'
 
 export default function AdminLayout({
   children,

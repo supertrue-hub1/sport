@@ -587,3 +587,212 @@ Priority Recommendations for Next Phase:
 6. Implement NextAuth for admin panel
 7. Add rich text editor for news content
 8. Add lazy loading for below-fold sections (page is 24K+ px)
+
+---
+Task ID: 7
+Agent: Senior Full-Stack Developer
+Task: Enhance Dashboard, Settings, Sidebar, and Seed Data for Full CMS
+
+Work Log:
+- Read worklog.md for full project context (11 previous tasks documented)
+- Reviewed Prisma schema: all models present (User, Category, News, Tag, NewsTag, Comment, Page, Media, MenuItem, Setting, ActivityLog)
+- Reviewed existing admin files (AdminSidebar, AdminHeader, Dashboard, Settings, Stats API, Seed)
+
+Files Modified/Created:
+
+1. `/src/components/admin/AdminSidebar.tsx` (REWRITTEN):
+   - Expanded to grouped navigation with 3 sections: КОНТЕНТ (5 items), УПРАВЛЕНИЕ (4 items), СИСТЕМА (1 item)
+   - Added section headers (uppercase gray text), separators between groups
+   - All 10 nav items with lucide-react icons: LayoutDashboard, Newspaper, FileText, Image, Tags, FolderTree, MessageSquare, Users, Menu, Settings
+   - Logo subtitle changed from "Admin Panel" to "Панель управления"
+
+2. `/src/components/admin/AdminHeader.tsx` (UPDATED):
+   - Added 5 new page names to pageNames map: Страницы, Медиатека, Теги, Комментарии, Меню
+
+3. `/src/app/admin/page.tsx` (REWRITTEN — Enhanced Dashboard):
+   - 6 stat cards (Новости, Опубликовано, Черновики, Страницы, Комментарии, Медиафайлы) with icons, sparkline SVGs, percentage change indicators
+   - Stats fetched from /api/admin/stats (real DB data)
+   - Recent Activity section: table showing last 10 activity log entries with action icons, entity emojis, user names, relative timestamps
+   - Content Overview: horizontal bar chart (news by category from API) + donut chart (comments by status: approved/pending/rejected)
+   - Quick Actions: 5 cards (Add News, Add Page, Upload Media, Manage Comments, View Site) in responsive grid
+   - Loading skeleton states, error handling with retry
+   - Responsive: 1 col mobile, 2 col sm, 3 col xl for stats
+
+4. `/src/app/api/admin/stats/route.ts` (REWRITTEN — Comprehensive Stats):
+   - Added: totalPages, totalTags, totalComments, pendingComments, approvedComments, totalMedia, mediaStorageUsed (aggregate sum)
+   - newsByCategory now returns name + color (joined with Category table), sorted by count desc
+   - recentActivity: last 10 ActivityLog entries with user relation included
+   - recentNews: last 5 news with author + category
+
+5. `/src/app/api/admin/settings/route.ts` (NEW):
+   - GET: Returns all settings as { grouped (by group field), flat (key-value map), settings (raw array) }
+   - PUT: Accepts { settings: Record<string, string> }, upserts each setting by key
+
+6. `/src/app/admin/settings/page.tsx` (REWRITTEN — DB-backed Settings):
+   - Fetches settings from /api/admin/settings on mount
+   - 4 sections as cards:
+     - Основные настройки: site_name, site_description, site_url, logo_url
+     - SEO: seo_title, seo_desc, seo_keywords, robots_meta (select: index/noindex)
+     - Внешний вид: default_theme (dark/light), news_per_page (number), show_breaking_news (switch), show_live_ticker (switch)
+     - Уведомления: notify_comments (switch), notify_users (switch), notify_weekly (switch)
+   - Each section has independent save button with loading spinner + checkmark feedback
+   - Loading skeleton states, settings fetched from DB
+
+7. `/src/app/api/admin/seed/route.ts` (REWRITTEN — Comprehensive Seed Data):
+   - Full cleanup of all 11 tables in dependency order
+   - 3 Users: admin/Администратор, editor/Главный редактор, author/Спортивный журналист
+   - 8 Categories: NFL, NBA, MLB, NHL, Трансферы, Аналитика, Интервью, Фэнтези
+   - 10 Tags: NFL Playoffs, NBA Draft, Травмы, Трансферы, MVP, Супербоул, Финал НБА, Мировая серия, Стэнли Кубок, Фэнтези
+   - 15 News: 10 published + 5 draft, 4 featured, rich Markdown content with headers/bold/lists, SEO fields, 8 articles tagged with various tags
+   - 4 Pages: О нас, Контакты, Реклама, Политика конфиденциальности (all published)
+   - 8 Comments: 5 approved, 2 pending, 1 rejected
+   - 5 Media items: hero images (NFL/NBA/MLB/NHL) + studio-bg
+   - 9 Menu Items: 5 main menu + 4 footer menu
+   - 15 Settings: grouped by general/seo/appearance/notifications
+   - 10 Activity Logs: news_created, news_published, user_created, comment_created, page_created, settings_updated, media_uploaded, comment_approved
+
+Verification Results:
+- ESLint: 0 errors, 2 warnings (pre-existing in MediaPicker.tsx, not modified)
+- Dev server: 200 OK, all compilations clean
+- Prisma schema already in sync with database
+- All 7 files created/modified successfully
+- Admin sidebar: 10 nav items in 3 grouped sections
+- Dashboard: 6 stat cards, activity table, content charts, 5 quick actions
+- Settings: DB-backed with 4 sections, independent save per section
+
+---
+Task ID: 5
+Agent: Senior Full-Stack Developer
+Task: Build API routes and admin pages for Comments Moderation and Menu Builder CMS modules
+
+Work Log:
+- Read worklog.md for full project context (12 previous tasks documented)
+- Reviewed Prisma schema: Comment model (id, content, authorId, newsId, parentId, status, author/news/parent/replies relations), MenuItem model (id, label, url, pageId, target, order, parentId, menuType, enabled, page/parent/children relations)
+- Reviewed existing admin page patterns (news, users) and API route patterns
+- Fixed pre-existing bug: admin/users/page.tsx had wrong import `@/components/ui/ui/select` → `@/components/ui/select`
+
+Files Created (4 new files):
+
+1. `/src/app/api/admin/comments/route.ts` — Comments CRUD API:
+   - GET: List all comments with author + news + parent + replies relations, optional status filter, search by author name/content/email, pagination (page, limit, totalPages)
+   - PUT: Update comment status (approve/reject) by id from body, validates status enum (pending/approved/rejected)
+   - DELETE: Delete comment by id from body (cascade deletes replies via Prisma schema)
+
+2. `/src/app/api/admin/menus/route.ts` — Menu Items CRUD API:
+   - GET: List top-level menu items with nested children, filter by menuType query param (main/footer), includes page relation
+   - POST: Create menu item with label (required), url/pageId, target (_self/_blank), parentId, menuType, enabled; auto-assigns order to end; validates parent and page exist
+   - PUT: Update menu item with reorder support (order field), validates target, parent (prevents circular refs), page
+   - DELETE: Delete menu item (cascade deletes children)
+
+3. `/src/app/admin/comments/page.tsx` — Comments Moderation Page:
+   - Tab filters: Все / Ожидают / Одобренные / Отклонённые (status-based filtering)
+   - Search by author name or comment content
+   - Desktop table with columns: Автор (name + email), Комментарий (truncated with expandable preview via ChevronDown/Up), Новость (title), Статус (colored badges), Дата, Действия
+   - Status badges: pending=yellow, approved=green, rejected=red
+   - Action buttons: Approve (green CheckCircle), Reject (red XCircle), Delete (Trash2 with confirmation dialog)
+   - Bulk approve: "Одобрить все (N)" button when pending comments exist
+   - Reply indicator: shows "N ответ(ов)" with MessageSquare icon for parent comments
+   - Pagination with page numbers and ellipsis for large datasets
+   - Mobile responsive: cards with all info + actions, expandable content
+   - Delete confirmation dialog with content preview and warning about child replies
+   - Loading skeleton states, empty state with icon
+   - Dates formatted in Russian locale
+
+4. `/src/app/admin/menus/page.tsx` — Menu Builder Page:
+   - Two tab sections: "Главное меню" (main) and "Подвал" (footer) via Tabs component
+   - Nested hierarchical display: top-level items with indented children (blue left border)
+   - Desktop list view with header row (Название, Порядок, Статус, Действия), grip handles, indent indicators
+   - Mobile card view: items with badges, nested children with border-left indentation, action bar
+   - Type badges: External link (orange "Внешняя"), Internal page (blue "Страница"), Empty (gray "Пусто"), New window (purple "Новое окно")
+   - Add menu item dialog: label (required), link type toggle (URL / Page), URL input or Page select from DB, target select (_self/_blank), parent select (hierarchical with prefix), enabled toggle switch
+   - Inline reorder controls: ArrowUp/ArrowDown buttons for both parent and child items
+   - Toggle enabled/disabled per item: Eye/EyeOff icons with green/gray styling
+   - Edit/Delete actions per item with delete confirmation dialog (warns about child count)
+   - "Добавить подпункт" link under each parent item
+   - Loading skeleton states, empty state with icon
+   - All text in Russian
+
+Design:
+- Both pages use LIGHT THEME (white bg, gray borders, blue-600 accents, rounded-xl, shadow-sm)
+- Consistent with existing admin pages: same header pattern, search input, tab filters, pagination
+- All shadcn/ui imports use correct `@/components/ui/...` paths
+- Responsive: desktop table/list + mobile cards
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK for both /admin/comments and /admin/menus
+- All 4 new files compile cleanly
+- Prisma schema already in sync (Comment, MenuItem tables exist)
+- Fixed pre-existing import bug in admin/users/page.tsx
+
+Note: API routes require dev server restart to pick up newly generated Prisma client (Comment/MenuItem models added to schema in previous task but dev server has cached old client). Code is correct and verified against fresh Prisma client via standalone node script.
+---
+Task ID: 12
+Agent: Main Agent
+Task: Full CMS Transformation — Media, Pages, Tags, Admin Fixes
+
+Work Log:
+- Fixed lint error: added missing Search import in admin/users/page.tsx
+- Enhanced Prisma schema with 6 new models: Tag, NewsTag, Comment, Page, Media, MenuItem, Setting, ActivityLog
+- Pushed schema to database, regenerated Prisma client
+- Launched 4 parallel agents to build CMS modules:
+  - Agent A: Media Library API + Pages API + Tags API (partially completed)
+  - Agent B: Comments API + Pages + Menus API + Pages (completed)
+  - Agent C: News MDXEditor enhancement (interrupted)
+  - Agent D: Dashboard + Settings + Sidebar + Seed (completed)
+
+Manually Created/Fixed:
+1. `/src/app/admin/media/page.tsx` — Media Library page with:
+   - Grid view of uploaded images with thumbnails
+   - Upload button + drag-and-drop zone
+   - Preview dialog with file info (name, size, dimensions, URL, copy button)
+   - Delete confirmation dialog
+   - Search/filter by filename
+   - Stats cards: total files, images, documents, storage used
+   - Responsive grid layout (2-5 columns)
+
+2. `/src/app/admin/pages/page.tsx` — Pages Management page with:
+   - Desktop table + mobile cards with title, slug, status, order, date
+   - Create/Edit dialog with title, content (textarea), status, order
+   - SEO section in collapsible Accordion (meta title, description, keywords)
+   - Status badges (published/draft/archived)
+   - Search by title or slug
+   - Responsive layout
+
+3. `/src/app/admin/tags/page.tsx` — Tags Management page with:
+   - Card grid layout with colored tag badges
+   - Create/Edit dialog with name + color picker (input type=color)
+   - Color preview badge
+   - News count per tag
+   - Delete protection (can't delete if used by news articles)
+   - Error toast notifications
+   - Responsive grid (1-4 columns)
+
+4. `/src/app/api/admin/media/route.ts` (REWRITTEN) — Enhanced Media API:
+   - GET: List all media
+   - POST: Upload file with multipart/form-data, save to /public/uploads/, extract dimensions with sharp
+   - DELETE: Delete file from disk + DB record
+
+5. Fixed TypeScript errors in agent-created files:
+   - AdminSidebar: no changes needed (already correct)
+   - Admin Dashboard: fixed Skeleton component (added className prop)
+   - Admin Settings: fixed Skeleton component (added className prop)
+   - Admin Menus: added labelPrefix to MenuItemData interface
+   - Seed route: typed createdNews as { id: string }[]
+
+6. Disabled Prisma query logging for cleaner output
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Stats API: { totalNews: 15, publishedNews: 10, draftNews: 5, totalCategories: 8, totalUsers: 3, totalPages: 4, totalTags: 10, totalComments: 8, pendingComments: 2, approvedComments: 5, totalMedia: 5 }
+- Seed: { users: 3, categories: 8, tags: 10, news: 15, pages: 4, comments: 8, media: 5, menuItems: 9, settings: 15, activityLogs: 10 }
+- Admin page: HTML renders correctly (200 OK)
+- Main site: HTML renders correctly (200 OK)
+
+CMS Architecture Summary:
+- 10 Prisma models: User, Category, News, Tag, NewsTag, Comment, Page, Media, MenuItem, Setting, ActivityLog
+- 10 Admin pages: Dashboard, News, Pages, Media, Tags, Categories, Comments, Users, Menus, Settings
+- 10 API routes: stats, news CRUD, news/[id], categories CRUD, users CRUD, comments CRUD, menus CRUD, pages CRUD, media upload/delete, tags CRUD, settings, seed
+- Grouped sidebar navigation (Content/Management/System)
+- Full Russian localization
+- Light theme throughout admin panel

@@ -6,8 +6,13 @@ import {
   ShieldCheck,
   LayoutDashboard,
   Newspaper,
+  FileText,
+  Image,
   Tags,
+  FolderTree,
+  MessageSquare,
   Users,
+  Menu,
   Settings,
   X,
 } from 'lucide-react'
@@ -18,12 +23,43 @@ interface AdminSidebarProps {
   onClose: () => void
 }
 
-const navItems = [
-  { href: '/admin', label: 'Дашборд', icon: LayoutDashboard },
-  { href: '/admin/news', label: 'Новости', icon: Newspaper },
-  { href: '/admin/categories', label: 'Категории', icon: Tags },
-  { href: '/admin/users', label: 'Пользователи', icon: Users },
-  { href: '/admin/settings', label: 'Настройки', icon: Settings },
+interface NavItem {
+  href: string
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+interface NavSection {
+  title: string
+  items: NavItem[]
+}
+
+const navSections: NavSection[] = [
+  {
+    title: 'КОНТЕНТ',
+    items: [
+      { href: '/admin', label: 'Дашборд', icon: LayoutDashboard },
+      { href: '/admin/news', label: 'Новости', icon: Newspaper },
+      { href: '/admin/pages', label: 'Страницы', icon: FileText },
+      { href: '/admin/media', label: 'Медиатека', icon: Image },
+      { href: '/admin/tags', label: 'Теги', icon: Tags },
+    ],
+  },
+  {
+    title: 'УПРАВЛЕНИЕ',
+    items: [
+      { href: '/admin/categories', label: 'Категории', icon: FolderTree },
+      { href: '/admin/comments', label: 'Комментарии', icon: MessageSquare },
+      { href: '/admin/users', label: 'Пользователи', icon: Users },
+      { href: '/admin/menus', label: 'Меню', icon: Menu },
+    ],
+  },
+  {
+    title: 'СИСТЕМА',
+    items: [
+      { href: '/admin/settings', label: 'Настройки', icon: Settings },
+    ],
+  },
 ]
 
 export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
@@ -61,7 +97,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                 US Sports Hub
               </h1>
               <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">
-                Admin Panel
+                Панель управления
               </p>
             </div>
           </div>
@@ -77,26 +113,40 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto px-3 py-4">
           <ul className="space-y-1">
-            {navItems.map((item) => {
-              const Icon = item.icon
-              const active = isActive(item.href)
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                      active
-                        ? 'bg-blue-50 text-blue-700 border-l-[3px] border-blue-600 pl-[9px]'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-l-[3px] border-transparent pl-[9px]'
-                    }`}
-                  >
-                    <Icon className="size-[18px] shrink-0" />
-                    {item.label}
-                  </Link>
-                </li>
-              )
-            })}
+            {navSections.map((section, sectionIdx) => (
+              <li key={section.title}>
+                {/* Section header */}
+                <div className={`px-3 pb-2 ${sectionIdx > 0 ? 'pt-5' : ''}`}>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+                    {section.title}
+                  </span>
+                </div>
+                {/* Section items */}
+                {section.items.map((item) => {
+                  const Icon = item.icon
+                  const active = isActive(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={onClose}
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                        active
+                          ? 'bg-blue-50 text-blue-700 border-l-[3px] border-blue-600 pl-[9px]'
+                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-l-[3px] border-transparent pl-[9px]'
+                      }`}
+                    >
+                      <Icon className="size-[18px] shrink-0" />
+                      {item.label}
+                    </Link>
+                  )
+                })}
+                {/* Separator between sections */}
+                {sectionIdx < navSections.length - 1 && (
+                  <div className="my-3 mx-3 border-t border-gray-100" />
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
 

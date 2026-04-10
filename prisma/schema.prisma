@@ -1,5 +1,5 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more at: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -16,10 +16,13 @@ model User {
   name      String?
   role      String   @default("editor")
   avatar    String?
+  bio       String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  news      News[]
+  news         News[]
+  comments     Comment[]
+  activityLogs ActivityLog[]
 }
 
 model Category {
@@ -27,6 +30,7 @@ model Category {
   name      String   @unique
   slug      String   @unique
   color     String   @default("#6b7280")
+  icon      String?
   order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -46,9 +50,123 @@ model News {
   authorId    String
   categoryId  String?
   publishedAt DateTime?
+  views       Int      @default(0)
+  seoTitle    String?
+  seoDesc     String?
+  seoKeywords String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   author      User     @relation(fields: [authorId], references: [id])
   category    Category? @relation(fields: [categoryId], references: [id])
+  tags        NewsTag[]
+  comments    Comment[]
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  color     String   @default("#6b7280")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  news      NewsTag[]
+}
+
+model NewsTag {
+  newsId    String
+  tagId     String
+  createdAt DateTime @default(now())
+
+  news      News     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([newsId, tagId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  authorId  String
+  newsId    String
+  parentId  String?
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  news      News     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String?
+  image     String?
+  status    String   @default("draft")
+  order     Int      @default(0)
+  seoTitle  String?
+  seoDesc   String?
+  seoKeywords String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  menuItems MenuItem[]
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  alt       String?
+  mimeType  String
+  size      Int
+  width     Int?
+  height    Int?
+  url       String
+  folder    String   @default("/")
+  createdAt DateTime @default(now())
+}
+
+model MenuItem {
+  id        String   @id @default(cuid())
+  label     String
+  url       String?
+  pageId    String?
+  target    String   @default("_self")
+  order     Int      @default(0)
+  parentId  String?
+  menuType  String   @default("main")
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  page      Page?    @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  parent    MenuItem? @relation("MenuItemTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children  MenuItem[] @relation("MenuItemTree")
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String?
+  group String @default("general")
+  type  String @default("text")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  details   String?
+  userId    String?
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }

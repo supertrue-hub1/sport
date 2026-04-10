@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 
-// GET /api/admin/news/[id] - Fetch single news by ID
+// GET /api/admin/news/[id] - Fetch single news by ID with full relations
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -16,11 +16,12 @@ export async function GET(
     const news = await db.news.findUnique({
       where: { id },
       include: {
-        author: {
-          select: { id: true, email: true, name: true, role: true, avatar: true },
-        },
-        category: {
-          select: { id: true, name: true, slug: true, color: true },
+        author: true,
+        category: true,
+        tags: {
+          include: {
+            tag: true,
+          },
         },
       },
     })
@@ -53,6 +54,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'News not found' }, { status: 404 })
     }
 
+    // Delete associated NewsTag entries first
+    await db.newsTag.deleteMany({ where: { newsId: id } })
     await db.news.delete({ where: { id } })
 
     return NextResponse.json({ success: true })

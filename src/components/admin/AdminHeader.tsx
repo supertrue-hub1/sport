@@ -25,8 +25,13 @@ interface AdminHeaderProps {
 const pageNames: Record<string, string> = {
   '/admin': 'Дашборд',
   '/admin/news': 'Новости',
+  '/admin/pages': 'Страницы',
+  '/admin/media': 'Медиатека',
+  '/admin/tags': 'Теги',
   '/admin/categories': 'Категории',
+  '/admin/comments': 'Комментарии',
   '/admin/users': 'Пользователи',
+  '/admin/menus': 'Меню',
   '/admin/settings': 'Настройки',
 }
 
