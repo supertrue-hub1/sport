@@ -185,7 +185,7 @@ export function InjuryReport() {
                 <div className="p-4 sm:p-5">
                   <div className="flex items-center gap-3 sm:gap-4">
                     {/* Team badge */}
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-muted border border-border dark:bg-white/5 dark:border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
                       {injury.team}
                     </div>
 
@@ -198,7 +198,7 @@ export function InjuryReport() {
                         <span className="text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">
                           {injury.position}
                         </span>
-                        <Badge variant="outline" className="border-white/10 text-[9px] tracking-wider px-1.5 py-0 hidden sm:inline-flex">
+                        <Badge variant="outline" className="border-border dark:border-white/10 text-[9px] tracking-wider px-1.5 py-0 hidden sm:inline-flex">
                           {injury.sport}
                         </Badge>
                       </div>
@@ -236,7 +236,7 @@ export function InjuryReport() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       transition={{ duration: 0.2 }}
-                      className="mt-3 pt-3 border-t border-white/5"
+                      className="mt-3 pt-3 border-t border-border dark:border-white/5"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs">
                         <div className="flex items-center gap-1.5">

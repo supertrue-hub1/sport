@@ -88,7 +88,7 @@ export function StandingsTable() {
           className="glass-card rounded-xl overflow-hidden"
         >
           {/* Column headers */}
-          <div className="grid grid-cols-[2rem_minmax(0,1fr)_2.5rem_2.5rem_3.5rem_3rem_3.5rem_2rem] sm:grid-cols-[2.5rem_minmax(0,2fr)_3rem_3rem_4rem_3.5rem_4rem_2.5rem] gap-0 px-3 sm:px-5 py-2.5 border-b border-white/5 bg-white/[0.02]">
+          <div className="grid grid-cols-[2rem_minmax(0,1fr)_2.5rem_2.5rem_3.5rem_3rem_3.5rem_2rem] sm:grid-cols-[2.5rem_minmax(0,2fr)_3rem_3rem_4rem_3.5rem_4rem_2.5rem] gap-0 px-3 sm:px-5 py-2.5 border-b border-border dark:border-white/5 bg-muted dark:bg-white/[0.02]">
             {["#", "КОМАНДА", "В", "П", "% ПОБЕД", "СЕРИЯ", "ЗП/ПП", ""].map((h) => (
               <span key={h} className="text-[9px] sm:text-[10px] font-bold tracking-wider text-muted-foreground/60 uppercase text-center">
                 {h}
@@ -102,7 +102,7 @@ export function StandingsTable() {
               key={row.team}
               variants={rVar}
               className={cn(
-                "grid grid-cols-[2rem_minmax(0,1fr)_2.5rem_2.5rem_3.5rem_3rem_3.5rem_2rem] sm:grid-cols-[2.5rem_minmax(0,2fr)_3rem_3rem_4rem_3.5rem_4rem_2.5rem] gap-0 px-3 sm:px-5 py-2.5 border-b border-white/[0.03] hover:bg-white/[0.03] transition-colors group cursor-default",
+                "grid grid-cols-[2rem_minmax(0,1fr)_2.5rem_2.5rem_3.5rem_3rem_3.5rem_2rem] sm:grid-cols-[2.5rem_minmax(0,2fr)_3rem_3rem_4rem_3.5rem_4rem_2.5rem] gap-0 px-3 sm:px-5 py-2.5 border-b border-border dark:border-white/[0.03] hover:bg-muted dark:hover:bg-white/[0.03] transition-colors group cursor-default",
                 rowStyle(row.rank)
               )}
             >
@@ -112,7 +112,7 @@ export function StandingsTable() {
                 </span>
               </div>
               <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-                <div className={cn("w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[9px] sm:text-[10px] font-black border flex-shrink-0", row.rank <= 3 ? "bg-gold/10 border-gold/30 text-gold" : "bg-white/5 border-white/10 text-muted-foreground")}>
+                <div className={cn("w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[9px] sm:text-[10px] font-black border flex-shrink-0", row.rank <= 3 ? "bg-gold/10 border-gold/30 text-gold" : "bg-muted border-border dark:bg-white/5 dark:border-white/10 text-muted-foreground")}>
                   {row.team}
                 </div>
                 <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-gold transition-colors truncate">

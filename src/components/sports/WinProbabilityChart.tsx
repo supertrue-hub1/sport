@@ -36,7 +36,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload?.length > 0) {
     const data = payload[0].payload;
     return (
-      <div className="bg-black/95 border border-gold/20 rounded-lg px-3 py-2.5 text-xs shadow-xl">
+      <div className="bg-background/95 border border-gray-200 dark:border-gold/20 rounded-lg px-3 py-2.5 text-xs shadow-xl">
         <p className="text-gold font-bold mb-1">{data.play}</p>
         <div className="flex items-center gap-3">
           <span className="text-foreground">KC: <strong>{data.chiefs}%</strong></span>
@@ -98,9 +98,9 @@ export function WinProbabilityChart() {
             <span className="text-sm font-bold text-foreground">Chiefs</span>
             <span className="text-lg font-black text-gradient-gold">17</span>
           </div>
-          <div className="flex-1 h-px bg-white/5" />
+          <div className="flex-1 h-px bg-border dark:bg-white/5" />
           <span className="text-xs font-bold tracking-wider text-muted-foreground">ФИНАЛ</span>
-          <div className="flex-1 h-px bg-white/5" />
+          <div className="flex-1 h-px bg-border dark:bg-white/5" />
           <div className="flex items-center gap-2">
             <span className="text-lg font-black text-red-400">14</span>
             <span className="text-sm font-bold text-foreground">Ravens</span>
@@ -137,19 +137,19 @@ export function WinProbabilityChart() {
                 </defs>
                 <XAxis
                   dataKey="time"
-                  tick={{ fill: "#666", fontSize: 10 }}
+                  tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   domain={[0, 100]}
-                  tick={{ fill: "#666", fontSize: 10 }}
+                  tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(v) => `${v}%`}
                 />
                 <Tooltip content={<CustomTooltip />} />
-                <ReferenceLine y={50} stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4" />
+                <ReferenceLine y={50} stroke="var(--border)" strokeDasharray="4 4" />
                 <Area
                   type="monotone"
                   dataKey="ravens"
@@ -172,7 +172,7 @@ export function WinProbabilityChart() {
           </div>
 
           {/* Key moments bar */}
-          <div className="mt-4 pt-4 border-t border-white/5">
+          <div className="mt-4 pt-4 border-t border-border dark:border-white/5">
             <div className="flex flex-wrap gap-2">
               {[
                 { play: "Kelce TD", detail: "KC 72%", type: "up" },
@@ -182,7 +182,7 @@ export function WinProbabilityChart() {
               ].map((moment) => (
                 <div
                   key={moment.play}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/5"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-muted/50 border border-border dark:bg-white/[0.03] dark:border-white/5"
                 >
                   {moment.type === "up" ? (
                     <ArrowUpRight className="w-3 h-3 text-gold" />

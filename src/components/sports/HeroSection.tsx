@@ -93,7 +93,7 @@ export function HeroSection() {
           transition={{ delay: 0.3 }}
           className="mb-6"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.3em] text-gold border border-gold/30 rounded-full uppercase bg-black/30 backdrop-blur-sm">
+          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.3em] text-gold border border-gold/30 rounded-full uppercase bg-black/10 dark:bg-black/30 backdrop-blur-sm">
             {slide.sport}
           </span>
         </motion.div>
@@ -148,7 +148,7 @@ export function HeroSection() {
               className={`transition-all duration-300 rounded-full ${
                 i === current
                   ? "w-8 h-2 bg-gold"
-                  : "w-2 h-2 bg-white/30 hover:bg-white/50"
+                  : "w-2 h-2 bg-white/60 hover:bg-white/80 dark:bg-white/30 dark:hover:bg-white/50"
               }`}
             />
           ))}

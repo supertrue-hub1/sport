@@ -99,7 +99,7 @@ export function FantasyQuickStart() {
           <div className="lg:col-span-3">
             <div className="glass-card rounded-2xl overflow-hidden">
               {/* Step progress bar */}
-              <div className="h-1 bg-white/5">
+              <div className="h-1 bg-foreground/5 dark:bg-white/5">
                 <motion.div
                   className="h-full bg-gradient-to-r from-gold to-gold/60"
                   animate={{ width: `${((activeStep + 1) / STEPS.length) * 100}%` }}
@@ -146,7 +146,7 @@ export function FantasyQuickStart() {
                 </AnimatePresence>
 
                 {/* Navigation buttons */}
-                <div className="flex items-center justify-between mt-8 pt-5 border-t border-white/5">
+                <div className="flex items-center justify-between mt-8 pt-5 border-t border-border dark:border-white/5">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -161,7 +161,7 @@ export function FantasyQuickStart() {
                       <div
                         key={i}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          i === activeStep ? "bg-gold scale-125" : i < activeStep ? "bg-gold/30" : "bg-white/10"
+                          i === activeStep ? "bg-gold scale-125" : i < activeStep ? "bg-gold/30" : "bg-foreground/10 dark:bg-white/10"
                         }`}
                       />
                     ))}
@@ -203,7 +203,7 @@ export function FantasyQuickStart() {
                   { label: "Сезонов сыграно", value: "60+", color: "text-orange-400" },
                   { label: "Средний размер лиги", value: "12", color: "text-cyan-400" },
                 ].map((stat) => (
-                  <div key={stat.label} className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
+                  <div key={stat.label} className="p-3 rounded-lg bg-muted border border-border dark:bg-white/[0.02] dark:border-white/5">
                     <p className={`text-lg sm:text-xl font-black ${stat.color} stat-glow`}>
                       {stat.value}
                     </p>

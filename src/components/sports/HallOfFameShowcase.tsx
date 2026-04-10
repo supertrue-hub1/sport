@@ -185,7 +185,7 @@ export function HallOfFameShowcase() {
               className={`px-4 py-2 text-[11px] font-bold tracking-wider uppercase rounded-lg transition-all duration-200 focus-gold ${
                 activeSport === sport
                   ? "bg-gold/15 text-gold border border-gold/30"
-                  : "bg-white/[0.03] text-muted-foreground border border-white/[0.06] hover:bg-white/[0.06]"
+                  : "bg-muted text-muted-foreground border border-border dark:bg-white/[0.03] dark:border-white/[0.06] hover:bg-muted/80 dark:hover:bg-white/[0.06]"
               }`}
             >
               {sport !== "ALL" && <span className="mr-1.5">{SPORT_CONFIG[sport].icon}</span>}
@@ -230,7 +230,7 @@ export function HallOfFameShowcase() {
                 </p>
 
                 {/* Quote */}
-                <div className="relative p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                <div className="relative p-4 rounded-xl bg-muted border border-border dark:bg-white/[0.02] dark:border-white/[0.04]">
                   <Quote className="absolute top-3 left-3 w-4 h-4 text-gold/20" />
                   <p className="text-sm italic text-foreground/70 pl-5 leading-relaxed">
                     &ldquo;{current.quote}&rdquo;
@@ -248,7 +248,7 @@ export function HallOfFameShowcase() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="text-center p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]"
+                      className="text-center p-4 rounded-xl bg-muted border border-border dark:bg-white/[0.03] dark:border-white/[0.06]"
                     >
                       <div className="text-2xl sm:text-3xl font-black text-gradient-gold stat-glow">
                         {stat.value}
@@ -265,7 +265,7 @@ export function HallOfFameShowcase() {
                   {current.accolades.map((accolade, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1 text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-foreground/60"
+                      className="inline-flex items-center gap-1 text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-full bg-muted border border-border dark:bg-white/[0.03] dark:border-white/[0.06] text-foreground/60"
                     >
                       {i < 1 ? <Trophy className="w-3 h-3 text-gold/50" /> : <Sparkles className="w-3 h-3 text-gold/30" />}
                       {accolade}
@@ -284,7 +284,7 @@ export function HallOfFameShowcase() {
               setIsAutoPlaying(false);
               setActiveIndex(prev => (prev - 1 + filteredLegends.length) % filteredLegends.length);
             }}
-            className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.03] flex items-center justify-center hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
+            className="w-10 h-10 rounded-full border border-border dark:border-white/[0.08] bg-muted dark:bg-white/[0.03] flex items-center justify-center hover:bg-muted/80 dark:hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
             aria-label="Предыдущая легенда"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -301,7 +301,7 @@ export function HallOfFameShowcase() {
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i === activeIndex
                     ? "w-8 bg-gold"
-                    : "w-1.5 bg-white/10 hover:bg-white/20"
+                    : "w-1.5 bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20"
                 }`}
                 aria-label={`Перейти к легенде ${i + 1}`}
               />
@@ -313,7 +313,7 @@ export function HallOfFameShowcase() {
               setIsAutoPlaying(false);
               setActiveIndex(prev => (prev + 1) % filteredLegends.length);
             }}
-            className="w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.03] flex items-center justify-center hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
+            className="w-10 h-10 rounded-full border border-border dark:border-white/[0.08] bg-muted dark:bg-white/[0.03] flex items-center justify-center hover:bg-muted/80 dark:hover:bg-white/[0.06] hover:border-gold/20 transition-all focus-gold"
             aria-label="Следующая легенда"
           >
             <ChevronRight className="w-4 h-4" />
@@ -324,7 +324,7 @@ export function HallOfFameShowcase() {
             className={`ml-2 text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full border transition-all ${
               isAutoPlaying
                 ? "text-gold/70 border-gold/20 bg-gold/5"
-                : "text-muted-foreground border-white/[0.06] hover:text-foreground/60"
+                : "text-muted-foreground border-border dark:border-white/[0.06] hover:text-foreground/60"
             }`}
           >
             {isAutoPlaying ? "АВТО" : "ПАУЗА"}

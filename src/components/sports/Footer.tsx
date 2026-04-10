@@ -57,7 +57,7 @@ export function Footer() {
       {/* Gold accent line */}
       <div className="h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
-      <div className="glass border-t border-white/5">
+      <div className="glass border-t border-border dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             {/* Brand */}
@@ -79,7 +79,7 @@ export function Footer() {
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/30 transition-colors"
+                    className="w-9 h-9 rounded-full border border-border dark:border-white/10 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/30 transition-colors"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -140,7 +140,7 @@ export function Footer() {
                     placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/5 border-white/10 text-foreground text-sm h-10 focus:border-gold/40 placeholder:text-muted-foreground/50"
+                    className="bg-muted border-border dark:bg-white/5 dark:border-white/10 text-foreground text-sm h-10 focus:border-gold/40 placeholder:text-muted-foreground/50"
                     onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
                   />
                   <Button
@@ -162,7 +162,7 @@ export function Footer() {
         </div>
 
         {/* Copyright Bar */}
-        <div className="border-t border-white/5">
+        <div className="border-t border-border dark:border-white/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} US Sports Hub. Все права защищены.

@@ -187,17 +187,17 @@ export function TopHighlights() {
             </motion.div>
 
             {/* Duration badge */}
-            <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-[11px] text-foreground font-medium">
+            <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/30 dark:bg-black/60 backdrop-blur-sm text-[11px] text-foreground font-medium">
               <Clock className="w-3 h-3" />
               {HIGHLIGHTS[currentIndex].duration}
             </div>
 
             {/* Trend badge */}
             <div className="absolute top-4 left-4 flex items-center gap-2">
-              <Badge variant="outline" className="border-white/10 text-[9px] font-bold tracking-wider uppercase bg-black/40 backdrop-blur-sm">
+              <Badge variant="outline" className="border-border dark:border-white/10 text-[9px] font-bold tracking-wider uppercase bg-black/20 dark:bg-black/40 backdrop-blur-sm">
                 {HIGHLIGHTS[currentIndex].category}
               </Badge>
-              <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase bg-black/40 backdrop-blur-sm ${TREND_COLORS[HIGHLIGHTS[currentIndex].trend]}`}>
+              <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase bg-black/20 dark:bg-black/40 backdrop-blur-sm ${TREND_COLORS[HIGHLIGHTS[currentIndex].trend]}`}>
                 <TrendIcon className="w-3 h-3" />
                 {HIGHLIGHTS[currentIndex].trend}
               </div>
@@ -217,7 +217,7 @@ export function TopHighlights() {
                 <Eye className="w-3 h-3" />
                 {HIGHLIGHTS[currentIndex].views} просмотров
               </span>
-              <span className="w-1 h-1 rounded-full bg-white/10" />
+              <span className="w-1 h-1 rounded-full bg-foreground/10 dark:bg-white/10" />
               <span>{HIGHLIGHTS[currentIndex].duration}</span>
             </div>
           </div>
@@ -232,7 +232,7 @@ export function TopHighlights() {
               className={`transition-all duration-300 rounded-full ${
                 i === currentIndex
                   ? "w-8 h-2 bg-gold"
-                  : "w-2 h-2 bg-white/10 hover:bg-white/20"
+                  : "w-2 h-2 bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20"
               }`}
               aria-label={`View highlight ${i + 1}`}
             />
@@ -256,16 +256,16 @@ export function TopHighlights() {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => { setCurrentIndex(i); setIsAutoPlaying(false); }}
                 className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
-                  isActive ? "ring-2 ring-gold/40 shadow-lg shadow-gold/5" : "ring-1 ring-white/5 hover:ring-white/15"
+                  isActive ? "ring-2 ring-gold/40 shadow-lg shadow-gold/5" : "ring-1 ring-border dark:ring-white/5 hover:ring-border dark:hover:ring-white/15"
                 }`}
               >
                 <div
                   className="aspect-video flex items-center justify-center"
                   style={{ background: highlight.thumbnail }}
                 >
-                  <Play className={`w-5 h-5 ${isActive ? "text-gold" : "text-white/30"} transition-colors`} fill="currentColor" />
+                  <Play className={`w-5 h-5 ${isActive ? "text-gold" : "text-muted-foreground dark:text-white/30"} transition-colors`} fill="currentColor" />
                 </div>
-                <div className="absolute bottom-0 inset-x-0 px-2 py-1.5 bg-gradient-to-t from-black/80 to-transparent">
+                <div className="absolute bottom-0 inset-x-0 px-2 py-1.5 bg-gradient-to-t from-black/40 dark:from-black/80 to-transparent">
                   <p className="text-[9px] font-semibold text-foreground truncate">{highlight.title}</p>
                 </div>
               </motion.button>

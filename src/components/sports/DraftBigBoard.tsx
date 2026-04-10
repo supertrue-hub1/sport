@@ -168,7 +168,7 @@ export function DraftBigBoard() {
               className={`px-3 py-1.5 text-[11px] font-bold tracking-wider uppercase rounded-md transition-all duration-200 focus-gold ${
                 activeFilter === pos
                   ? "bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,175,55,0.1)]"
-                  : "bg-white/[0.03] text-muted-foreground border border-white/[0.06] hover:bg-white/[0.06] hover:text-foreground/80"
+                  : "bg-muted text-muted-foreground border border-border dark:bg-white/[0.03] dark:border-white/[0.06] hover:bg-muted/80 dark:hover:bg-white/[0.06] hover:text-foreground/80"
               }`}
             >
               {pos}
@@ -199,8 +199,8 @@ export function DraftBigBoard() {
                         prospect.rank <= 3
                           ? "bg-gradient-to-br from-gold/20 to-gold/5 text-gold border border-gold/20"
                           : prospect.rank <= 5
-                          ? "bg-white/[0.05] text-foreground border border-white/[0.08]"
-                          : "bg-white/[0.03] text-muted-foreground border border-white/[0.05]"
+                          ? "bg-muted text-foreground border border-border dark:bg-white/[0.05] dark:border-white/[0.08]"
+                          : "bg-muted text-muted-foreground border border-border dark:bg-white/[0.03] dark:border-white/[0.05]"
                       }`}>
                         {prospect.rank <= 3 ? (
                           <span className="flex items-center gap-1">
@@ -240,9 +240,9 @@ export function DraftBigBoard() {
                       </div>
                       <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
                         <span className="font-bold text-gold/70">{prospect.position}</span>
-                        <span className="w-px h-3 bg-white/10" />
+                        <span className="w-px h-3 bg-foreground/10 dark:bg-white/10" />
                         <span>{prospect.school}</span>
-                        <span className="hidden sm:inline text-white/10">|</span>
+                        <span className="hidden sm:inline text-border dark:text-white/10">|</span>
                         <span className="hidden sm:inline">{prospect.height} · {prospect.weight} lbs</span>
                       </div>
                     </div>
@@ -273,11 +273,11 @@ export function DraftBigBoard() {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="mt-4 pt-4 border-t border-white/[0.06]">
+                        <div className="mt-4 pt-4 border-t border-border dark:border-white/[0.06]">
                           <p className="text-sm text-foreground/80 leading-relaxed mb-3">
                             {prospect.highlight}
                           </p>
-                          <div className="flex items-start gap-2 p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
+                          <div className="flex items-start gap-2 p-3 rounded-lg bg-muted border border-border dark:bg-white/[0.02] dark:border-white/[0.04]">
                             <Zap className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                             <div>
                               <span className="text-[10px] font-bold tracking-wider uppercase text-gold/60">ПРО-СРАВНЕНИЕ</span>

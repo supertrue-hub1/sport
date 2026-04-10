@@ -103,7 +103,7 @@ export function FeaturedStories() {
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url(${story.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 dark:from-black/80 via-black/20 to-transparent" />
 
                 {/* Tag */}
                 <div className="absolute top-4 left-4 flex gap-2">

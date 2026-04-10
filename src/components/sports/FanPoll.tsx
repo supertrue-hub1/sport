@@ -126,7 +126,7 @@ export function FanPoll() {
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition-all border ${
                 p.id === activePollId
                   ? "bg-gold/10 border-gold/30 text-gold"
-                  : "bg-white/[0.02] border-white/5 text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+                  : "bg-muted border-border dark:bg-white/[0.02] dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-muted/80 dark:hover:bg-white/[0.04]"
               }`}
             >
               {p.category}
@@ -175,8 +175,8 @@ export function FanPoll() {
                     showResults
                       ? isSelected
                         ? "border-gold/30 bg-gold/[0.04]"
-                        : "border-white/5 bg-white/[0.01]"
-                      : "border-white/8 hover:border-gold/20 hover:bg-white/[0.02] cursor-pointer"
+                        : "border-border bg-muted dark:border-white/5 dark:bg-white/[0.01]"
+                      : "border-border hover:border-gold/20 hover:bg-muted dark:border-white/8 dark:hover:bg-white/[0.02] cursor-pointer"
                   }`}
                   disabled={hasVoted}
                 >
@@ -192,8 +192,8 @@ export function FanPoll() {
 
                   <div className="relative flex items-center gap-3 sm:gap-4 p-4 sm:p-5">
                     {/* Team badge */}
-                    <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border border-white/10 flex items-center justify-center text-[10px] font-black text-muted-foreground flex-shrink-0 ${
-                      isSelected ? "border-gold/30 bg-gold/10" : "bg-white/[0.03]"
+                    <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border border-border dark:border-white/10 flex items-center justify-center text-[10px] font-black text-muted-foreground flex-shrink-0 ${
+                      isSelected ? "border-gold/30 bg-gold/10" : "bg-muted dark:bg-white/[0.03]"
                     }`}>
                       {option.team}
                     </div>
@@ -226,7 +226,7 @@ export function FanPoll() {
 
                     {/* Radio indicator when not voted */}
                     {!showResults && (
-                      <div className="w-4 h-4 rounded-full border border-white/15 flex-shrink-0" />
+                      <div className="w-4 h-4 rounded-full border border-border dark:border-white/15 flex-shrink-0" />
                     )}
                   </div>
                 </motion.button>
@@ -241,7 +241,7 @@ export function FanPoll() {
               animate={{ opacity: 1, height: "auto" }}
               className="px-6 sm:px-8 pb-6"
             >
-              <div className="flex items-center justify-between pt-4 border-t border-white/5">
+              <div className="flex items-center justify-between pt-4 border-t border-border dark:border-white/5">
                 <p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
                   <Zap className="w-3 h-3 text-gold/50" />
                   {poll.totalVotes.toLocaleString()} всего голосов

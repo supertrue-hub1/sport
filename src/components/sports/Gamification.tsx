@@ -143,12 +143,12 @@ export function Gamification() {
                     className={`w-full text-left rounded-lg p-3 transition-all duration-300 ${
                       isVoted
                         ? "border border-gold/40 bg-gold/5"
-                        : "border border-white/5 bg-white/[0.02] hover:border-gold/20 hover:bg-white/[0.04]"
+                        : "border border-border dark:border-white/5 bg-muted dark:bg-white/[0.02] hover:border-gold/20 hover:bg-muted/80 dark:hover:bg-white/[0.04]"
                     } ${voted && !isVoted ? "opacity-50" : ""}`}
                   >
                     <div className="flex items-center gap-3">
-                      <Avatar className="w-9 h-9 border border-white/10">
-                        <AvatarFallback className="bg-white/5 text-xs font-bold text-muted-foreground">
+                      <Avatar className="w-9 h-9 border border-border dark:border-white/10">
+                        <AvatarFallback className="bg-foreground/5 dark:bg-white/5 text-xs font-bold text-muted-foreground">
                           {candidate.initials}
                         </AvatarFallback>
                       </Avatar>
@@ -165,13 +165,13 @@ export function Gamification() {
                           {candidate.team} · {candidate.stat}
                         </p>
                         {/* Vote bar */}
-                        <div className="mt-1.5 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                        <div className="mt-1.5 h-1.5 rounded-full bg-foreground/5 dark:bg-white/5 overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${pct}%` }}
                             transition={{ duration: 1, ease: "easeOut" }}
                             className={`h-full rounded-full ${
-                              isVoted ? "bg-gold" : "bg-white/20"
+                              isVoted ? "bg-gold" : "bg-foreground/20 dark:bg-white/20"
                             }`}
                           />
                         </div>
@@ -230,7 +230,7 @@ export function Gamification() {
                       value={awayScore}
                       onChange={(e) => setAwayScore(e.target.value)}
                       placeholder="0"
-                      className="w-16 text-center bg-white/5 border-white/10 h-10 text-foreground text-lg font-bold focus:border-gold/40"
+                      className="w-16 text-center bg-muted border-border dark:bg-white/5 dark:border-white/10 h-10 text-foreground text-lg font-bold focus:border-gold/40"
                     />
                   )}
                 </div>
@@ -265,7 +265,7 @@ export function Gamification() {
                       value={homeScore}
                       onChange={(e) => setHomeScore(e.target.value)}
                       placeholder="0"
-                      className="w-16 text-center bg-white/5 border-white/10 h-10 text-foreground text-lg font-bold focus:border-gold/40"
+                      className="w-16 text-center bg-muted border-border dark:bg-white/5 dark:border-white/10 h-10 text-foreground text-lg font-bold focus:border-gold/40"
                     />
                   )}
                 </div>
@@ -276,13 +276,13 @@ export function Gamification() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Badge
                 variant="outline"
-                className="border-white/10 text-muted-foreground text-[10px]"
+                className="border-border dark:border-white/10 text-muted-foreground text-[10px]"
               >
                 Вс, 26 янв · 18:40 ET
               </Badge>
               <Badge
                 variant="outline"
-                className="border-white/10 text-muted-foreground text-[10px]"
+                className="border-border dark:border-white/10 text-muted-foreground text-[10px]"
               >
                 Arrowhead Stadium
               </Badge>

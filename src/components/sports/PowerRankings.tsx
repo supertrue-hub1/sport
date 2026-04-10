@@ -165,7 +165,7 @@ export function PowerRankings() {
                       {/* Sport badge */}
                       <Badge
                         variant="outline"
-                        className="border-white/10 text-[9px] font-bold tracking-wider px-1.5 py-0"
+                        className="border-border dark:border-white/10 text-[9px] font-bold tracking-wider px-1.5 py-0"
                       >
                         {team.sport}
                       </Badge>
@@ -173,7 +173,7 @@ export function PowerRankings() {
                       {/* Team */}
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-sm font-black border border-white/10 flex-shrink-0"
+                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-sm font-black border border-border dark:border-white/10 flex-shrink-0"
                           style={{ backgroundColor: `${team.color}15`, color: team.color }}
                         >
                           {team.abbr}

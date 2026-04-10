@@ -253,7 +253,7 @@ export function SocialFeed() {
                     style={{ background: post.mediaGradient }}
                   >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08),transparent_70%)]" />
-                    <div className="relative flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/50 backdrop-blur-sm text-[10px] text-foreground/80">
+                    <div className="relative flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/20 dark:bg-black/50 backdrop-blur-sm text-[10px] text-foreground/80">
                       <ExternalLink className="w-3 h-3" />
                       Визуализация данных
                     </div>
@@ -261,7 +261,7 @@ export function SocialFeed() {
                 )}
 
                 {/* Actions */}
-                <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-border dark:border-white/5">
                   <button
                     onClick={() => toggleLike(post.id)}
                     className={`flex items-center gap-1.5 text-[11px] transition-colors group ${

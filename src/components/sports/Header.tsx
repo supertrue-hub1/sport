@@ -56,7 +56,7 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "glass border-b border-white/5 shadow-lg shadow-black/20"
+          ? "glass border-b border-border shadow-lg shadow-black/5 dark:border-white/5 dark:shadow-black/20"
           : "bg-transparent"
       )}
     >
@@ -89,7 +89,7 @@ export function Header() {
           <div className="flex items-center gap-1 sm:gap-2">
             <a
               href="/admin"
-              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-gold hover:bg-white/5 transition-colors"
+              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-gold hover:bg-muted dark:hover:bg-white/5 transition-colors"
               aria-label="Панель администратора"
               title="Админ-панель"
             >
@@ -141,7 +141,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-white/5"
+            className="lg:hidden glass border-t border-border dark:border-white/5"
           >
             <nav className="flex flex-col p-4 gap-1">
               {NAV_ITEMS.map((item) => (
@@ -149,7 +149,7 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
+                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted dark:hover:bg-white/5 rounded-lg transition-colors"
                 >
                   {item.label}
                 </a>

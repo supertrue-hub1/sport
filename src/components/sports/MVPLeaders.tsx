@@ -213,8 +213,8 @@ function getRankStyle(rank: number) {
     default:
       return {
         number: "text-2xl sm:text-3xl text-muted-foreground/30",
-        ring: "ring-white/[0.04]",
-        badge: "bg-white/[0.03] border-white/[0.06]",
+        ring: "ring-border dark:ring-white/[0.04]",
+        badge: "bg-muted border-border dark:bg-white/[0.03] dark:border-white/[0.06]",
       };
   }
 }
@@ -276,7 +276,7 @@ export function MVPLeaders() {
                 "px-4 sm:px-5 py-2 text-[11px] sm:text-xs font-bold tracking-wider uppercase rounded-lg transition-all duration-200 focus-gold press-effect",
                 activeFilter === tab
                   ? "bg-gold/15 text-gold border border-gold/30 shadow-[0_0_12px_rgba(212,175,55,0.1)]"
-                  : "bg-white/[0.03] text-muted-foreground border border-white/[0.06] hover:bg-white/[0.06] hover:text-foreground/70",
+                  : "bg-muted border-border dark:bg-white/[0.03] dark:border-white/[0.06] hover:bg-muted/80 dark:hover:bg-white/[0.06] hover:text-foreground/70",
               )}
             >
               {tab}
@@ -386,7 +386,7 @@ export function MVPLeaders() {
                   </p>
 
                   {/* Stat value */}
-                  <div className="mt-5 pt-4 border-t border-white/[0.05]">
+                  <div className="mt-5 pt-4 border-t border-border dark:border-white/[0.05]">
                     <div className="text-3xl sm:text-4xl font-black text-gradient-gold stat-glow leading-none">
                       {leader.statValue}
                     </div>

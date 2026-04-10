@@ -185,7 +185,7 @@ export function UpcomingGames() {
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition-all border ${
                 s === filter
                   ? "bg-gold/10 border-gold/30 text-gold"
-                  : "bg-white/[0.02] border-white/5 text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+                  : "bg-muted border-border dark:bg-white/[0.02] dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-muted/80 dark:hover:bg-white/[0.04]"
               }`}
             >
               {s}
@@ -233,7 +233,7 @@ export function UpcomingGames() {
                 <div className="flex items-center justify-between gap-4">
                   {/* Away team */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-muted border border-border dark:bg-white/5 dark:border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
                       {game.away.abbr}
                     </div>
                     <div className="min-w-0">
@@ -261,14 +261,14 @@ export function UpcomingGames() {
                       </p>
                       <p className="text-[10px] text-muted-foreground">{game.home.record}</p>
                     </div>
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-muted border border-border dark:bg-white/5 dark:border-white/10 flex items-center justify-center text-[11px] sm:text-xs font-black text-muted-foreground flex-shrink-0">
                       {game.home.abbr}
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom row: venue + network */}
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-border dark:border-white/5">
                   <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" />

@@ -106,7 +106,7 @@ const TYPE_COLORS: Record<string, string> = {
   touchdown: "border-gold/50 bg-gold/5",
   defense: "border-emerald-500/50 bg-emerald-500/5",
   field_goal: "border-amber-500/50 bg-amber-500/5",
-  kickoff: "border-white/10 bg-white/5",
+  kickoff: "border-border bg-foreground/5 dark:border-white/10 dark:bg-white/5",
   end: "border-gold/50 bg-gold/10",
 };
 
@@ -141,7 +141,7 @@ function EventCard({
           />
         </motion.div>
         {index < GAME_EVENTS.length - 1 && (
-          <div className="w-px flex-1 min-h-12 bg-gradient-to-b from-white/10 to-transparent" />
+          <div className="w-px flex-1 min-h-12 bg-gradient-to-b from-foreground/5 dark:from-white/10 to-transparent" />
         )}
       </div>
 

@@ -72,7 +72,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/30 dark:bg-black/70 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -84,9 +84,9 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             transition={{ duration: 0.25 }}
             className="fixed inset-x-4 top-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-xl z-[70]"
           >
-            <div className="glass rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/50">
+            <div className="glass rounded-xl border border-border dark:border-white/10 overflow-hidden shadow-2xl shadow-black/50">
               {/* Search input */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5">
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-border dark:border-white/5">
                 <Search className="w-5 h-5 text-gold flex-shrink-0" />
                 <input
                   type="text"
@@ -98,7 +98,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 />
                 <button
                   onClick={onClose}
-                  className="text-[10px] font-bold tracking-wider text-muted-foreground border border-white/10 rounded px-1.5 py-0.5"
+                  className="text-[10px] font-bold tracking-wider text-muted-foreground border border-border dark:border-white/10 rounded px-1.5 py-0.5"
                 >
                   ESC
                 </button>
@@ -112,7 +112,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                       <button
                         key={`${item.type}-${item.label}`}
                         onClick={() => handleSelect(item.href)}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors text-left group"
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted dark:hover:bg-white/5 transition-colors text-left group"
                       >
                         <span className={`text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded flex-shrink-0 ${TYPE_COLORS[item.type] || "text-muted-foreground bg-white/5"}`}>
                           {item.type}
@@ -137,7 +137,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
               </div>
 
               {/* Footer hint */}
-              <div className="px-4 py-2.5 border-t border-white/5 text-[10px] text-muted-foreground/50 flex items-center justify-between">
+              <div className="px-4 py-2.5 border-t border-border dark:border-white/5 text-[10px] text-muted-foreground/50 flex items-center justify-between">
                 <span>{filtered.length} результат{filtered.length !== 1 && filtered.length % 10 !== 1 ? (filtered.length % 10 >= 2 && filtered.length % 10 <= 4 && filtered.length % 100 < 11 ? "а" : "ов") : ""}</span>
                 <span>↑↓ Навигация · ↵ Выбор · Esc Закрыть</span>
               </div>

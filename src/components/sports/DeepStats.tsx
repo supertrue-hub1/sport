@@ -68,7 +68,7 @@ const itemVariants = {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
-      <div className="bg-black/90 border border-gold/20 rounded-lg px-3 py-2 text-xs">
+      <div className="bg-background/95 border border-gray-200 dark:border-gold/20 rounded-lg px-3 py-2 text-xs shadow-xl">
         <p className="text-foreground font-semibold">{label}</p>
         <p className="text-gold">{payload[0].value} {payload[0].value > 100 ? "ярдов" : "PPG"}</p>
       </div>
@@ -121,7 +121,7 @@ export function DeepStats() {
                   <YAxis
                     dataKey="name"
                     type="category"
-                    tick={{ fill: "#888", fontSize: 12 }}
+                    tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
                     axisLine={false}
                     tickLine={false}
                     width={60}
@@ -165,7 +165,7 @@ export function DeepStats() {
                     content={({ active, payload }) => {
                       if (active && payload?.length) {
                         return (
-                          <div className="bg-black/90 border border-gold/20 rounded-lg px-3 py-2 text-xs">
+                          <div className="bg-background/95 border border-gray-200 dark:border-gold/20 rounded-lg px-3 py-2 text-xs">
                             <p className="text-foreground font-semibold">
                               {payload[0].name}
                             </p>
@@ -192,10 +192,10 @@ export function DeepStats() {
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={RADAR_DATA} cx="50%" cy="50%" outerRadius="70%">
-                  <PolarGrid stroke="rgba(255,255,255,0.06)" />
+                  <PolarGrid stroke="var(--border)" />
                   <PolarAngleAxis
                     dataKey="stat"
-                    tick={{ fill: "#888", fontSize: 11 }}
+                    tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
                   />
                   <PolarRadiusAxis tick={false} axisLine={false} />
                   <Radar
@@ -216,7 +216,7 @@ export function DeepStats() {
                     strokeDasharray="4 4"
                   />
                   <Legend
-                    wrapperStyle={{ fontSize: 11, color: "#888" }}
+                    wrapperStyle={{ fontSize: 11, color: "var(--muted-foreground)" }}
                     iconType="circle"
                     iconSize={6}
                   />

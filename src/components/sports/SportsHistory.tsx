@@ -137,7 +137,7 @@ const SPORT_COLORS: Record<string, string> = {
 
 const IMPACT_COLORS: Record<string, { text: string; bg: string }> = {
   legendary: { text: "text-gold", bg: "bg-gold/10 border-gold/20" },
-  historic: { text: "text-foreground/70", bg: "bg-white/5 border-white/10" },
+  historic: { text: "text-foreground/70", bg: "bg-muted border-border dark:bg-white/5 dark:border-white/10" },
 };
 
 const today = new Date();
@@ -219,10 +219,10 @@ export function SportsHistory() {
                       {event.month}/{event.day}/{event.year}
                     </span>
                   </div>
-                  <span className={`text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border ${SPORT_COLORS[event.sport] || "text-muted-foreground bg-white/5 border-white/10"}`}>
+                  <span className={`text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border ${SPORT_COLORS[event.sport] || "text-muted-foreground bg-muted border-border dark:bg-white/5 dark:border-white/10"}`}>
                     {event.sport}
                   </span>
-                  <span className={`text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border ${IMPACT_COLORS[event.impact]?.bg || "bg-white/5 border-white/10"} ${IMPACT_COLORS[event.impact]?.text || "text-muted-foreground"}`}>
+                  <span className={`text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border ${IMPACT_COLORS[event.impact]?.bg || "bg-muted border-border dark:bg-white/5 dark:border-white/10"} ${IMPACT_COLORS[event.impact]?.text || "text-muted-foreground"}`}>
                     {event.impact === "legendary" ? "Легендарный" : "Исторический"}
                   </span>
                 </div>

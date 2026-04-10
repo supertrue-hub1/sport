@@ -15,10 +15,10 @@ export function LiveTicker() {
   const doubled = [...LIVE_GAMES, ...LIVE_GAMES];
 
   return (
-    <section className="relative border-y border-white/5 bg-black/40 backdrop-blur-sm overflow-hidden">
+    <section className="relative border-y border-border bg-black/10 dark:border-white/5 dark:bg-black/40 backdrop-blur-sm overflow-hidden">
       <div className="flex items-center">
         {/* LIVE Badge */}
-        <div className="flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-3 border-r border-white/5">
+        <div className="flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-3 border-r border-border dark:border-white/5">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 pulse-glow-red" />
@@ -34,7 +34,7 @@ export function LiveTicker() {
             {doubled.map((game, i) => (
               <div
                 key={i}
-                className="inline-flex items-center gap-3 px-6 py-3 border-r border-white/5"
+                className="inline-flex items-center gap-3 px-6 py-3 border-r border-border dark:border-white/5"
               >
                 <span className="text-[10px] font-bold tracking-wider text-gold/80 uppercase">
                   {game.sport}
@@ -52,7 +52,7 @@ export function LiveTicker() {
                 <span className="text-sm font-bold text-gold">
                   {game.homeScore}
                 </span>
-                <span className="text-[10px] font-medium text-muted-foreground bg-white/5 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-medium text-muted-foreground bg-foreground/5 dark:bg-white/5 px-2 py-0.5 rounded">
                   {game.quarter}
                 </span>
               </div>

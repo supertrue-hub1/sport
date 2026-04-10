@@ -110,7 +110,7 @@ export function BreakingNewsTicker() {
         animate={{ height: "auto", opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="relative border-b border-white/[0.06]"
+        className="relative border-b border-border dark:border-white/[0.06]"
       >
         <div
           className="relative overflow-hidden"
@@ -158,11 +158,11 @@ export function BreakingNewsTicker() {
                 </AnimatePresence>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className="text-[10px] text-muted-foreground">{current.source}</span>
-                  <span className="w-px h-2.5 bg-white/10" />
+                  <span className="w-px h-2.5 bg-foreground/10 dark:bg-white/10" />
                   <span className="text-[10px] text-muted-foreground">{current.time}</span>
                   {current.isLive && (
                     <>
-                      <span className="w-px h-2.5 bg-white/10" />
+                      <span className="w-px h-2.5 bg-foreground/10 dark:bg-white/10" />
                       <span className="flex items-center gap-1 text-[10px] text-red-400">
                         <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                         LIVE

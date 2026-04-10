@@ -119,7 +119,7 @@ export function PlayerComparison() {
           </div>
 
           {/* Divider */}
-          <div className="w-full h-px bg-white/5 mb-8" />
+          <div className="w-full h-px bg-border dark:bg-white/5 mb-8" />
 
           {/* Stats Comparison */}
           <motion.div
@@ -165,26 +165,26 @@ export function PlayerComparison() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {/* Mahomes bar (fills from left) */}
-                    <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
+                    <div className="relative h-2 rounded-full bg-foreground/5 dark:bg-white/5 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${mahoPct}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: "easeOut" }}
                         className={`absolute left-0 top-0 h-full rounded-full ${
-                          mahoWins ? "bg-gold" : "bg-white/20"
+                          mahoWins ? "bg-gold" : "bg-foreground/20 dark:bg-white/20"
                         }`}
                       />
                     </div>
                     {/* Allen bar (fills from right) */}
-                    <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
+                    <div className="relative h-2 rounded-full bg-foreground/5 dark:bg-white/5 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${allenPct}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: "easeOut" }}
                         className={`absolute right-0 top-0 h-full rounded-full ${
-                          !mahoWins ? "bg-red-500" : "bg-white/20"
+                          !mahoWins ? "bg-red-500" : "bg-foreground/20 dark:bg-white/20"
                         }`}
                       />
                     </div>
@@ -195,7 +195,7 @@ export function PlayerComparison() {
           </motion.div>
 
           {/* Summary */}
-          <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between">
+          <div className="mt-8 pt-6 border-t border-border dark:border-white/5 flex items-center justify-between">
             <div className="text-center">
               <span className="text-2xl font-black text-gold">
                 {COMPARISON_STATS.filter((s) => s.mahomes >= s.allen).length}
