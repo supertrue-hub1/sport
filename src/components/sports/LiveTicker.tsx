@@ -46,6 +46,9 @@ export function LiveTicker() {
                 <span className="text-sm font-inter font-bold text-gray-900">
                   {game.homeScore}
                 </span>
+                <span className="text-sm font-inter font-semibold text-gray-700">
+                  {game.home}
+                </span>
                 <span className="text-gray.home}>
                   {game.home}
                 </span>
