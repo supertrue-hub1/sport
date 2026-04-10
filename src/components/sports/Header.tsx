@@ -1,32 +1,23 @@
 "use client";
 
-import { useState, useEffect, useSyncExternalStore } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Trophy, Sun, Moon, Search, Shield } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
+import { Menu, X, Search, Trophy, Clock } from "lucide-react";
 import { SearchModal } from "./SearchModal";
+import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { label: "Главная", href: "#" },
-  { label: "NFL", href: "#featured" },
-  { label: "NBA", href: "#stats" },
-  { label: "MLB", href: "#comparison" },
-  { label: "NHL", href: "#timeline" },
-  { label: "Статистика", href: "#latest" },
+const LEAGUES = [
+  { label: "NBA", href: "#" },
+  { label: "NHL", href: "#" },
+  { label: "AHL", href: "#" },
+  { label: "KHL", href: "#" },
+  { label: "NFL", href: "#" },
+  { label: "MLB", href: "#" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const mounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  );
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -49,118 +40,97 @@ export function Header() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "glass border-b border-border shadow-lg shadow-black/5 dark:border-white/5 dark:shadow-black/20"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
+          : "bg-white"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8">
+        {/* Top Bar */}
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <Trophy className="w-6 h-6 sm:w-7 sm:h-7 text-gold transition-transform group-hover:scale-110" />
-            <span className="text-lg sm:text-xl font-bold tracking-tight">
-              <span className="text-foreground">US SPORTS</span>{" "}
-              <span className="text-gradient-gold">HUB</span>
+            <Trophy className="w-6 h-6 text-red-600 transition-transform group-hover:scale-110" />
+            <span className="text-xl lg:text-2xl font-playfair font-bold tracking-tight text-gray-900">
+              USASport
             </span>
           </a>
 
-          {/* Desktop Nav */}
+          {/* League Navigation - Desktop */}
           <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
+            {LEAGUES.map((league) => (
               <a
-                key={item.label}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+                key={league.label}
+                href={league.href}
+                className="px-4 py-2 text-sm font-inter font-semibold text-gray-600 hover:text-red-600 hover:bg-gray-50 rounded-md transition-colors"
               >
-                {item.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full" />
+                {league.label}
               </a>
             ))}
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            <a
-              href="/admin"
-              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-gold hover:bg-muted dark:hover:bg-white/5 transition-colors"
-              aria-label="Панель администратора"
-              title="Админ-панель"
-            >
-              <Shield className="w-4 h-4" />
-            </a>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-muted-foreground hover:text-gold hidden sm:flex"
+          <div className="flex items-center gap-3">
+            {/* Search */}
+            <button
               onClick={() => setSearchOpen(true)}
-              aria-label="Открыть поиск (⌘K)"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+              aria-label="Поиск (⌘K)"
             >
               <Search className="w-4 h-4" />
-            </Button>
-            {mounted && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="text-muted-foreground hover:text-gold"
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-5 h-5" />
-                ) : (
-                  <Moon className="w-5 h-5" />
-                )}
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden text-muted-foreground hover:text-foreground"
+              <span className="hidden sm:inline font-inter">Поиск</span>
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-xs font-mono bg-gray-200 rounded">
+                ⌘K
+              </kbd>
+            </button>
+
+            {/* Live Scores Button */}
+            <a
+              href="#"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-inter font-semibold text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
+            >
+              <Clock className="w-4 h-4" />
+              <span>Live Scores</span>
+            </a>
+
+            {/* Mobile Menu Toggle */}
+            <button
               onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md"
             >
               {mobileOpen ? (
                 <X className="w-5 h-5" />
               ) : (
                 <Menu className="w-5 h-5" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-border dark:border-white/5"
-          >
-            <nav className="flex flex-col p-4 gap-1">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted dark:hover:bg-white/5 rounded-lg transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {mobileOpen && (
+        <div className="lg:hidden border-t border-gray-200 bg-white">
+          <nav className="flex flex-col p-4 gap-1">
+            {LEAGUES.map((league) => (
+              <a
+                key={league.label}
+                href={league.href}
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-3 text-base font-inter font-semibold text-gray-700 hover:text-red-600 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                {league.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
 
       {/* Search Modal */}
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
-    </motion.header>
+    </header>
   );
 }

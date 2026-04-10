@@ -15,17 +15,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "US Sports Hub — Элитный спортивный опыт",
+  title: "USASport — Спортивные новости США",
   description:
-    "Премиальная спортивная медиаплатформа США — освещение NFL, NBA, MLB, NHL с глубокой аналитикой, интерактивной статистикой и кинематографическим повествованием.",
+    "Актуальные новости, статистика и аналитика из мира американского спорта: NBA, NHL, NFL, MLB и другие лиги.",
   keywords: [
-    "US Sports Hub",
+    "USASport",
+    "спорт",
     "NFL",
     "NBA",
     "MLB",
     "NHL",
-    "sports analytics",
-    "premium sports media",
+    "новости спорта",
   ],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
@@ -40,11 +40,12 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-white`}
+        style={{ paddingTop: "64px" }}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >

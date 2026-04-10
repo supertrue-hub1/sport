@@ -3,72 +3,36 @@
 import { Header } from "@/components/sports/Header";
 import { HeroSection } from "@/components/sports/HeroSection";
 import { LiveTicker } from "@/components/sports/LiveTicker";
-import { FeaturedStories } from "@/components/sports/FeaturedStories";
-import { CinematicQuote } from "@/components/sports/CinematicQuote";
-import { TopHighlights } from "@/components/sports/TopHighlights";
-import { DeepStats } from "@/components/sports/DeepStats";
-import { PlayerComparison } from "@/components/sports/PlayerComparison";
-import { StandingsTable } from "@/components/sports/StandingsTable";
-import { MatchTimeline } from "@/components/sports/MatchTimeline";
-import { WinProbabilityChart } from "@/components/sports/WinProbabilityChart";
-import { UpcomingGames } from "@/components/sports/UpcomingGames";
-import { PowerRankings } from "@/components/sports/PowerRankings";
-import { TradeTracker } from "@/components/sports/TradeTracker";
-import { InjuryReport } from "@/components/sports/InjuryReport";
-import { FanPoll } from "@/components/sports/FanPoll";
-import { SocialFeed } from "@/components/sports/SocialFeed";
-import { SportsHistory } from "@/components/sports/SportsHistory";
-import { FantasyQuickStart } from "@/components/sports/FantasyQuickStart";
-import { StatsBanner } from "@/components/sports/StatsBanner";
-import { Gamification } from "@/components/sports/Gamification";
 import { LatestNews } from "@/components/sports/LatestNews";
+import { StandingsTable } from "@/components/sports/StandingsTable";
+import { TrendingWidget } from "@/components/sports/TrendingWidget";
 import { Footer } from "@/components/sports/Footer";
-import { BackToTop } from "@/components/sports/BackToTop";
-import { BreakingNewsTicker } from "@/components/sports/BreakingNewsTicker";
-import { DraftBigBoard } from "@/components/sports/DraftBigBoard";
-import { HallOfFameShowcase } from "@/components/sports/HallOfFameShowcase";
-import { WeatherStadium } from "@/components/sports/WeatherStadium";
-import { MVPLeaders } from "@/components/sports/MVPLeaders";
-import { QuickBetOdds } from "@/components/sports/QuickBetOdds";
-import { TopPerformers } from "@/components/sports/TopPerformers";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <BreakingNewsTicker />
-        <HeroSection />
         <LiveTicker />
-        <StatsBanner />
-        <TopPerformers />
-        <FeaturedStories />
-        <CinematicQuote variant={0} />
-        <TopHighlights />
-        <DeepStats />
-        <PlayerComparison />
-        <WeatherStadium />
-        <UpcomingGames />
-        <StandingsTable />
-        <MatchTimeline />
-        <WinProbabilityChart />
-        <CinematicQuote variant={1} />
-        <DraftBigBoard />
-        <PowerRankings />
-        <TradeTracker />
-        <InjuryReport />
-        <QuickBetOdds />
-        <FanPoll />
-        <MVPLeaders />
-        <SocialFeed />
-        <SportsHistory />
-        <FantasyQuickStart />
-        <HallOfFameShowcase />
-        <Gamification />
-        <LatestNews />
+        
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8">
+          <HeroSection />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12">
+            {/* Main Content - News Grid */}
+            <div className="lg:col-span-8">
+              <LatestNews />
+            </div>
+            
+            {/* Sidebar */}
+            <div className="lg:col-span-4 space-y-8">
+              <StandingsTable />
+              <TrendingWidget />
+            </div>
+          </div>
+        </div>
       </main>
       <Footer />
-      <BackToTop />
     </div>
   );
 }
