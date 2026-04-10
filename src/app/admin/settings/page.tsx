@@ -13,7 +13,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Save, CheckCircle2, Loader2 } from 'lucide-react'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import { Save, CheckCircle2, Loader2, AlertTriangle, RotateCcw } from 'lucide-react'
 
 interface SettingsFlat {
   [key: string]: string
@@ -74,6 +84,11 @@ export default function AdminSettings() {
   }
 
   const v = (key: string, fallback: string) => settings[key] ?? fallback
+
+  // Danger Zone state
+  const [dangerDialogOpen, setDangerDialogOpen] = useState(false)
+  const [resetDialogOpen, setResetDialogOpen] = useState(false)
+  const [dangerLoading, setDangerLoading] = useState(false)
 
   if (loading) {
     return (
@@ -360,6 +375,118 @@ export default function AdminSettings() {
           </div>
         </div>
       </div>
+
+      {/* 5. Опасная зона (Danger Zone) */}
+      <div className="rounded-xl border-2 border-red-200 bg-white shadow-sm admin-danger-zone">
+        <div className="admin-danger-header px-6 py-4 border-b border-red-100">
+          <h2 className="text-base font-semibold text-red-700 flex items-center gap-2">
+            <AlertTriangle className="size-5" />
+            Опасная зона
+          </h2>
+          <p className="text-sm text-red-400 mt-0.5">Действия, которые нельзя отменить</p>
+        </div>
+        <div className="p-6 space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Очистить все данные</p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Удалить все данные и заполнить базу тестовыми данными заново
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-300 shrink-0"
+              onClick={() => setDangerDialogOpen(true)}
+            >
+              <AlertTriangle className="size-4 mr-1.5" />
+              Очистить все данные
+            </Button>
+          </div>
+          <div className="border-t border-red-50" />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Сбросить базу данных</p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Полностью очистить базу данных без заполнения тестовыми данными
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-300 shrink-0"
+              onClick={() => setResetDialogOpen(true)}
+            >
+              <RotateCcw className="size-4 mr-1.5" />
+              Сбросить базу данных
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Clear All Data Confirmation */}
+      <AlertDialog open={dangerDialogOpen} onOpenChange={setDangerDialogOpen}>
+        <AlertDialogContent className="sm:max-w-[450px]">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2 text-red-700">
+              <AlertTriangle className="size-5" />
+              Очистить все данные?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Все данные будут удалены, а база данных будет заполнена тестовыми данными заново. Это действие нельзя отменить.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="gap-2">
+            <AlertDialogCancel className="border-gray-200 text-gray-600">Отмена</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-red-600 hover:bg-red-700 text-white"
+              onClick={async () => {
+                setDangerLoading(true)
+                try {
+                  await fetch('/api/admin/seed', { method: 'POST' })
+                } catch { /* ignore */ }
+                setDangerLoading(false)
+                setDangerDialogOpen(false)
+              }}
+              disabled={dangerLoading}
+            >
+              {dangerLoading && <Loader2 className="size-4 animate-spin mr-2" />}
+              Да, очистить
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Reset Database Confirmation */}
+      <AlertDialog open={resetDialogOpen} onOpenChange={setResetDialogOpen}>
+        <AlertDialogContent className="sm:max-w-[450px]">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2 text-red-700">
+              <AlertTriangle className="size-5" />
+              Сбросить базу данных?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Все данные будут безвозвратно удалены. База данных будет полностью пустой. Убедитесь, что вы сделали резервную копию.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="gap-2">
+            <AlertDialogCancel className="border-gray-200 text-gray-600">Отмена</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-red-600 hover:bg-red-700 text-white"
+              onClick={async () => {
+                setDangerLoading(true)
+                try {
+                  await fetch('/api/admin/seed', { method: 'POST' })
+                } catch { /* ignore */ }
+                setDangerLoading(false)
+                setResetDialogOpen(false)
+              }}
+              disabled={dangerLoading}
+            >
+              {dangerLoading && <Loader2 className="size-4 animate-spin mr-2" />}
+              Да, сбросить
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

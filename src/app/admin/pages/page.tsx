@@ -13,6 +13,9 @@ import {
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select'
+import {
+  Sheet, SheetContent, SheetHeader, SheetTitle,
+} from '@/components/ui/sheet'
 import { Label } from '@/components/ui/label'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
@@ -56,6 +59,44 @@ function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
+// Simple markdown to HTML renderer
+function renderMarkdownToHtml(md: string): string {
+  if (!md) return ''
+  let html = md
+    // Headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold & Italic
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Code blocks
+    .replace(/```[\s\S]*?```/g, (match) => {
+      const code = match.replace(/```\w*\n?/g, '').replace(/```$/g, '')
+      return `<pre><code>${code}</code></pre>`
+    })
+    // Inline code
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    // Blockquotes
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+    // Horizontal rules
+    .replace(/^---$/gm, '<hr />')
+    // Unordered lists
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    // Links
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+    // Paragraphs: wrap non-tag lines
+    .replace(/^(?!<[hupblo]|<li|<hr|<pre|<block)(.+)$/gm, '<p>$1</p>')
+
+  // Wrap consecutive <li> items in <ul>
+  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>')
+
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, '')
+
+  return html
+}
+
 export default function AdminPages() {
   const [pages, setPages] = useState<PageItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -64,6 +105,10 @@ export default function AdminPages() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState<PageForm>(emptyForm)
   const [saving, setSaving] = useState(false)
+
+  // Preview state
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const [previewPage, setPreviewPage] = useState<PageItem | null>(null)
 
   const loadData = useCallback(async () => {
     try {
@@ -99,6 +144,11 @@ export default function AdminPages() {
       seoKeywords: item.seoKeywords || '',
     })
     setDialogOpen(true)
+  }
+
+  const openPreview = (item: PageItem) => {
+    setPreviewPage(item)
+    setPreviewOpen(true)
   }
 
   const handleSave = async () => {
@@ -197,7 +247,7 @@ export default function AdminPages() {
             {filtered.map((item) => {
               const st = statusMap[item.status] || statusMap.draft
               return (
-                <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={item.id} className="hover:bg-blue-50/30 transition-colors">
                   <td className="px-6 py-3.5">
                     <div className="flex items-center gap-2">
                       <FileText className="size-4 text-gray-400 shrink-0" />
@@ -214,6 +264,9 @@ export default function AdminPages() {
                   <td className="px-4 py-3.5 text-gray-500">{formatDate(item.createdAt)}</td>
                   <td className="px-6 py-3.5 text-right">
                     <div className="flex items-center justify-end gap-1">
+                      <button onClick={() => openPreview(item)} className="rounded-md p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600" aria-label="Предпросмотр" title="Предпросмотр">
+                        <Eye className="size-4" />
+                      </button>
                       <button onClick={() => openEdit(item)} className="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600" aria-label="Редактировать">
                         <Pencil className="size-4" />
                       </button>
@@ -248,6 +301,9 @@ export default function AdminPages() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
+                  <button onClick={() => openPreview(item)} className="rounded-md p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600">
+                    <Eye className="size-4" />
+                  </button>
                   <button onClick={() => openEdit(item)} className="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
                     <Pencil className="size-4" />
                   </button>
@@ -338,6 +394,77 @@ export default function AdminPages() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Preview Sheet */}
+      <Sheet open={previewOpen} onOpenChange={setPreviewOpen}>
+        <SheetContent side="right" className="w-full sm:w-[600px] lg:w-[700px] p-0 flex flex-col bg-white overflow-hidden">
+          <SheetHeader className="px-6 py-4 border-b border-gray-200 shrink-0">
+            <SheetTitle className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Eye className="size-5 text-blue-600" />
+              Предпросмотр: {previewPage?.title}
+            </SheetTitle>
+          </SheetHeader>
+          <div className="flex-1 overflow-y-auto">
+            {previewPage && (
+              <div className="p-6">
+                {/* Meta info */}
+                <div className="flex items-center gap-2 mb-4">
+                  <Badge variant="secondary" className={`${(statusMap[previewPage.status] || statusMap.draft).color} text-[11px] px-2 py-0`}>
+                    {(statusMap[previewPage.status] || statusMap.draft).label}
+                  </Badge>
+                  <code className="text-xs bg-gray-100 rounded px-1.5 py-0.5 text-gray-500">/{previewPage.slug}</code>
+                  <span className="text-xs text-gray-400">{formatDate(previewPage.updatedAt)}</span>
+                </div>
+
+                {/* Page title */}
+                <h1 className="text-2xl font-bold text-gray-900 mb-6">{previewPage.title}</h1>
+
+                {/* Rendered content */}
+                {previewPage.content ? (
+                  <div
+                    className="admin-markdown-preview"
+                    dangerouslySetInnerHTML={{
+                      __html: renderMarkdownToHtml(previewPage.content),
+                    }}
+                  />
+                ) : (
+                  <p className="text-gray-400 text-sm italic">Содержание пустое</p>
+                )}
+
+                {/* SEO info */}
+                {(previewPage.seoTitle || previewPage.seoDesc || previewPage.seoKeywords) && (
+                  <div className="mt-8 pt-6 border-t border-gray-100">
+                    <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-1.5">
+                      <Globe className="size-4 text-gray-400" />
+                      SEO Мета-данные
+                    </h3>
+                    <div className="space-y-2 bg-gray-50 rounded-lg p-4">
+                      {previewPage.seoTitle && (
+                        <div>
+                          <span className="text-xs text-gray-400">Title:</span>
+                          <p className="text-sm text-gray-700">{previewPage.seoTitle}</p>
+                        </div>
+                      )}
+                      {previewPage.seoDesc && (
+                        <div>
+                          <span className="text-xs text-gray-400">Description:</span>
+                          <p className="text-sm text-gray-700">{previewPage.seoDesc}</p>
+                        </div>
+                      )}
+                      {previewPage.seoKeywords && (
+                        <div>
+                          <span className="text-xs text-gray-400">Keywords:</span>
+                          <p className="text-sm text-gray-700">{previewPage.seoKeywords}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   )
 }

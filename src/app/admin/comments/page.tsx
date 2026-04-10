@@ -11,9 +11,11 @@ import {
   CheckCheck,
   ChevronDown,
   ChevronUp,
+  Reply,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import {
   Dialog,
@@ -32,6 +34,8 @@ interface Comment {
   createdAt: string
   updatedAt: string
   parentId: string | null
+  authorId: string | null
+  newsId: string | null
   author: { id: string; name: string | null; email: string; avatar: string | null } | null
   news: { id: string; title: string; slug: string } | null
   parent: { id: string; content: string } | null
@@ -83,6 +87,12 @@ export default function AdminComments() {
   const [deleteTarget, setDeleteTarget] = useState<Comment | null>(null)
   const [deleting, setDeleting] = useState(false)
   const [expandedId, setExpandedId] = useState<string | null>(null)
+
+  // Reply state
+  const [replyDialogOpen, setReplyDialogOpen] = useState(false)
+  const [replyTarget, setReplyTarget] = useState<Comment | null>(null)
+  const [replyContent, setReplyContent] = useState('')
+  const [replySending, setReplySending] = useState(false)
 
   const loadComments = useCallback(async () => {
     setLoading(true)
@@ -163,6 +173,37 @@ export default function AdminComments() {
       setDeleting(false)
       setDeleteDialogOpen(false)
       setDeleteTarget(null)
+    }
+  }
+
+  const openReply = (comment: Comment) => {
+    setReplyTarget(comment)
+    setReplyContent('')
+    setReplyDialogOpen(true)
+  }
+
+  const handleReply = async () => {
+    if (!replyTarget || !replyContent.trim()) return
+    setReplySending(true)
+    try {
+      const res = await fetch('/api/admin/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: replyContent.trim(),
+          parentId: replyTarget.id,
+          newsId: replyTarget.newsId,
+          authorId: replyTarget.authorId,
+        }),
+      })
+      if (res.ok) {
+        await loadComments()
+        setReplyDialogOpen(false)
+        setReplyTarget(null)
+        setReplyContent('')
+      }
+    } finally {
+      setReplySending(false)
     }
   }
 
@@ -274,7 +315,7 @@ export default function AdminComments() {
               const st = statusMap[comment.status] || statusMap.pending
               const isExpanded = expandedId === comment.id
               return (
-                <tr key={comment.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={comment.id} className="hover:bg-blue-50/30 transition-colors">
                   <td className="px-6 py-3.5">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">
@@ -367,6 +408,14 @@ export default function AdminComments() {
                           <XCircle className="size-4" />
                         </button>
                       )}
+                      <button
+                        onClick={() => openReply(comment)}
+                        className="rounded-md p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                        aria-label="Ответить"
+                        title="Ответить"
+                      >
+                        <Reply className="size-4" />
+                      </button>
                       <button
                         onClick={() => {
                           setDeleteTarget(comment)
@@ -496,6 +545,12 @@ export default function AdminComments() {
                     </button>
                   )}
                   <button
+                    onClick={() => openReply(comment)}
+                    className="rounded-md p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    <Reply className="size-4" />
+                  </button>
+                  <button
                     onClick={() => {
                       setDeleteTarget(comment)
                       setDeleteDialogOpen(true)
@@ -616,6 +671,64 @@ export default function AdminComments() {
             >
               {deleting && <Loader2 className="size-4 animate-spin mr-2" />}
               Удалить
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Reply Dialog */}
+      <Dialog open={replyDialogOpen} onOpenChange={setReplyDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Reply className="size-5 text-blue-600" />
+              Ответить на комментарий
+            </DialogTitle>
+            <DialogDescription>
+              {replyTarget && (
+                <>
+                  Ответ для: <span className="font-medium text-gray-700">{replyTarget.author?.name || replyTarget.author?.email || 'Аноним'}</span>
+                  {replyTarget.news && (
+                    <span className="block mt-1 text-xs text-gray-400">
+                      К новости: {replyTarget.news.title}
+                    </span>
+                  )}
+                </>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          {replyTarget && (
+            <div className="rounded-lg bg-gray-50 p-3 text-sm text-gray-600 max-h-20 overflow-y-auto border-l-2 border-blue-300">
+              {replyTarget.content}
+            </div>
+          )}
+          <div className="space-y-2">
+            <label htmlFor="reply-content" className="text-sm font-medium text-gray-700">
+              Ваш ответ
+            </label>
+            <Textarea
+              id="reply-content"
+              placeholder="Введите текст ответа..."
+              value={replyContent}
+              onChange={(e) => setReplyContent(e.target.value)}
+              rows={4}
+              className="border-gray-200 focus-visible:border-blue-500"
+            />
+          </div>
+          <DialogFooter className="gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setReplyDialogOpen(false)}
+            >
+              Отмена
+            </Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={handleReply}
+              disabled={!replyContent.trim() || replySending}
+            >
+              {replySending && <Loader2 className="size-4 animate-spin mr-2" />}
+              Отправить ответ
             </Button>
           </DialogFooter>
         </DialogContent>

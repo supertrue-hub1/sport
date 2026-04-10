@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import {
   Plus, Pencil, Trash2, Search, Loader2, Star, Eye,
   Image as ImageIcon, X, ChevronDown, Send, Save, Globe,
-  Calendar, Tag, SearchIcon, Sparkles,
+  Calendar, Tag, SearchIcon, Sparkles, CheckCircle,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -178,6 +178,10 @@ export default function AdminNews() {
   // Media picker
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false)
 
+  // Bulk selection
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [bulkLoading, setBulkLoading] = useState(false)
+
   // ──────────── Data Loading ────────────
 
   const loadData = useCallback(async () => {
@@ -271,7 +275,66 @@ export default function AdminNews() {
         body: JSON.stringify({ id }),
       })
       setNews((prev) => prev.filter((n) => n.id !== id))
+      setSelectedIds((prev) => { const next = new Set(prev); next.delete(id); return next })
     } catch { /* ignore */ }
+  }
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedIds.size === paginated.length) {
+      setSelectedIds(new Set())
+    } else {
+      setSelectedIds(new Set(paginated.map((n) => n.id)))
+    }
+  }
+
+  const handleBulkPublish = async () => {
+    if (selectedIds.size === 0) return
+    setBulkLoading(true)
+    try {
+      await Promise.all(
+        Array.from(selectedIds).map((id) =>
+          fetch('/api/admin/news', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, status: 'published' }),
+          })
+        )
+      )
+      await loadData()
+      setSelectedIds(new Set())
+    } finally {
+      setBulkLoading(false)
+    }
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedIds.size === 0) return
+    if (!confirm(`Удалить ${selectedIds.size} выбранных новостей? Это действие необратимо.`)) return
+    setBulkLoading(true)
+    try {
+      await Promise.all(
+        Array.from(selectedIds).map((id) =>
+          fetch('/api/admin/news', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id }),
+          })
+        )
+      )
+      await loadData()
+      setSelectedIds(new Set())
+    } finally {
+      setBulkLoading(false)
+    }
   }
 
   const toggleTag = (tagId: string) => {
@@ -328,6 +391,44 @@ export default function AdminNews() {
         </Button>
       </div>
 
+      {/* Bulk Action Bar */}
+      {selectedIds.size > 0 && (
+        <div className="admin-bulk-bar flex items-center gap-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3">
+          <span className="text-sm font-medium text-blue-700">
+            Выбрано: {selectedIds.size}
+          </span>
+          <div className="flex items-center gap-2 ml-auto">
+            <Button
+              size="sm"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={handleBulkPublish}
+              disabled={bulkLoading}
+            >
+              {bulkLoading ? <Loader2 className="size-4 animate-spin mr-1.5" /> : <CheckCircle className="size-4 mr-1.5" />}
+              Опубликовать выбранные
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700"
+              onClick={handleBulkDelete}
+              disabled={bulkLoading}
+            >
+              {bulkLoading ? <Loader2 className="size-4 animate-spin mr-1.5" /> : <Trash2 className="size-4 mr-1.5" />}
+              Удалить выбранные
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setSelectedIds(new Set())}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              Отмена
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Search & Filters */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <div className="relative flex-1 max-w-sm">
@@ -354,6 +455,12 @@ export default function AdminNews() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50/50">
+              <th className="w-10 px-3 py-3">
+                <Checkbox
+                  checked={paginated.length > 0 && selectedIds.size === paginated.length}
+                  onCheckedChange={toggleSelectAll}
+                />
+              </th>
               <th className="text-left px-6 py-3 font-medium text-gray-500">Заголовок</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Категория</th>
               <th className="text-left px-4 py-3 font-medium text-gray-500">Теги</th>
@@ -367,7 +474,13 @@ export default function AdminNews() {
             {paginated.map((item) => {
               const st = statusMap[item.status] || statusMap.draft
               return (
-                <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={item.id} className={`${selectedIds.has(item.id) ? 'bg-blue-50/50' : ''} hover:bg-blue-50/30 transition-colors`}>
+                  <td className="px-3 py-3.5">
+                    <Checkbox
+                      checked={selectedIds.has(item.id)}
+                      onCheckedChange={() => toggleSelect(item.id)}
+                    />
+                  </td>
                   <td className="px-6 py-3.5">
                     <div className="flex items-center gap-2">
                       {item.featured && <Star className="size-3.5 text-amber-400 fill-amber-400 shrink-0" />}
@@ -423,7 +536,7 @@ export default function AdminNews() {
             })}
             {paginated.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-6 py-12 text-center text-gray-400">
+                <td colSpan={8} className="px-6 py-12 text-center text-gray-400">
                   Нет результатов
                 </td>
               </tr>

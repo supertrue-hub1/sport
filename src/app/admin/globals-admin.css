@@ -16,7 +16,7 @@
   color: var(--admin-text);
 }
 
-/* Admin scrollbar - light and minimal */
+/* ──── Admin scrollbar - light and minimal ──── */
 .admin-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -35,7 +35,7 @@
   background: #9ca3af;
 }
 
-/* Sidebar transition */
+/* ──── Sidebar transition ──── */
 .admin-sidebar {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -45,7 +45,7 @@
   transform: translateX(-100%);
 }
 
-/* Card hover effects */
+/* ──── Card hover effects ──── */
 .admin-card {
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
@@ -54,7 +54,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Stat card hover */
+/* ──── Stat card hover ──── */
 .admin-stat-card {
   transition: all 0.2s ease;
 }
@@ -64,23 +64,23 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Table row hover */
+/* ──── Table row hover ──── */
 .admin-table-row {
   transition: background-color 0.15s ease;
 }
 
-/* Mobile overlay */
+/* ──── Mobile overlay ──── */
 .admin-overlay {
   background-color: rgba(0, 0, 0, 0.3);
   transition: opacity 0.3s ease;
 }
 
-/* Bar chart animation */
+/* ──── Bar chart animation ──── */
 .admin-bar {
   transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Sparkline animation */
+/* ──── Sparkline animation ──── */
 .admin-sparkline {
   animation: sparkline-draw 1s ease-out forwards;
 }
@@ -94,7 +94,7 @@
   }
 }
 
-/* Mobile card layout */
+/* ──── Mobile card layout ──── */
 @media (max-width: 768px) {
   .admin-mobile-cards {
     display: flex;
@@ -105,4 +105,237 @@
   .admin-mobile-cards .admin-card {
     padding: 1rem;
   }
+}
+
+/* ===== Task 14: Enhanced Admin Styling ===== */
+
+/* ──── 1. Admin Top Bar Gradient ──── */
+.admin-top-bar {
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 60%, #f0fdf4 100%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ──── 2. Smooth Page Transition (fade-in) ──── */
+.admin-panel main {
+  animation: admin-page-enter 0.3s ease-out;
+}
+
+@keyframes admin-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ──── 3. Subtle Hover Animations for Interactive Elements ──── */
+.admin-panel button,
+.admin-panel a {
+  transition: all 0.15s ease;
+}
+
+.admin-panel table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.admin-panel table tbody tr:hover {
+  background-color: #eff6ff !important; /* blue-tinted row hover */
+}
+
+.admin-panel .rounded-xl {
+  transition: box-shadow 0.2s ease;
+}
+
+/* ──── 4. Active Navigation Border-Left Accent ──── */
+.admin-panel .nav-item-active {
+  border-left: 3px solid #2563eb;
+  background: linear-gradient(90deg, #eff6ff 0%, rgba(239, 246, 255, 0) 100%);
+  padding-left: 9px;
+}
+
+/* ──── 5. Loading Bar Animation (thin progress bar at top) ──── */
+.admin-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.admin-loading-bar::before {
+  content: '';
+  display: block;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #2563eb, #3b82f6, transparent);
+  animation: admin-loading-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes admin-loading-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* ──── 6. Admin Footer ──── */
+.admin-footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+  padding: 12px 16px;
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: auto;
+}
+
+/* ──── 7. Bulk Action Bar ──── */
+.admin-bulk-bar {
+  animation: admin-slide-up 0.2s ease-out;
+}
+
+@keyframes admin-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ──── 8. Markdown Preview Styles ──── */
+.admin-markdown-preview h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.admin-markdown-preview h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+  margin-top: 1.25rem;
+}
+
+.admin-markdown-preview h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  margin-top: 1rem;
+}
+
+.admin-markdown-preview p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.admin-markdown-preview ul,
+.admin-markdown-preview ol {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  color: #4b5563;
+}
+
+.admin-markdown-preview li {
+  margin-bottom: 0.25rem;
+  line-height: 1.6;
+}
+
+.admin-markdown-preview strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.admin-markdown-preview em {
+  font-style: italic;
+}
+
+.admin-markdown-preview code {
+  background: #f3f4f6;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.admin-markdown-preview pre {
+  background: #1f2937;
+  color: #e5e7eb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+
+.admin-markdown-preview pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.admin-markdown-preview blockquote {
+  border-left: 3px solid #2563eb;
+  padding-left: 1rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.admin-markdown-preview hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.25rem 0;
+}
+
+.admin-markdown-preview a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* ──── 9. Checkbox styling polish ──── */
+.admin-panel [data-slot="checkbox"] {
+  transition: all 0.15s ease;
+}
+
+/* ──── 10. Danger Zone ──── */
+.admin-danger-zone {
+  border-color: #fecaca !important;
+}
+
+.admin-danger-zone .admin-danger-header {
+  background: linear-gradient(90deg, #fef2f2 0%, rgba(254, 242, 242, 0) 100%);
+}
+
+/* ──── 11. Homepage Preview Card ──── */
+.admin-homepage-preview-card {
+  transition: all 0.2s ease;
+}
+
+.admin-homepage-preview-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.admin-homepage-preview-card img {
+  transition: transform 0.3s ease;
+}
+
+.admin-homepage-preview-card:hover img {
+  transform: scale(1.05);
 }

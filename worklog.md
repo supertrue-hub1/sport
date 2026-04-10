@@ -796,3 +796,160 @@ CMS Architecture Summary:
 - Grouped sidebar navigation (Content/Management/System)
 - Full Russian localization
 - Light theme throughout admin panel
+
+---
+Task ID: 13
+Agent: Senior Full-Stack Developer
+Task: Build Newsletter API, Public News API, and connect main site components to real CMS data
+
+Work Log:
+- Read worklog.md for full project context (14+ previous tasks documented)
+- Reviewed Prisma schema: News, Category, Tag, NewsTag, Comment, Setting models with relations
+- Reviewed existing admin stats API, db lib, and sports components (LatestNews, FeaturedStories, StatsBanner)
+
+Files Created (2 new):
+
+1. `/src/app/api/newsletter/route.ts` — Newsletter Subscription API:
+   - POST: Accepts { email: string }, validates email format via regex
+   - Stores subscribers as JSON array in Setting model (key="newsletter_subscribers")
+   - Duplicate detection (case-insensitive), returns 409 for existing subscribers
+   - Returns 400 for invalid/missing email, 500 for server errors
+   - Uses db.setting.upsert for create-or-update pattern
+
+2. `/src/app/api/news/route.ts` — Public News API:
+   - GET: Returns published news articles with category, tags, and comment counts
+   - Includes: title, slug, excerpt, content (first 200 chars), image, publishedAt, views, featured, category (name/slug/color), tags (name/slug/color), commentsCount
+   - Supports ?category=slug filter (by category slug)
+   - Supports ?featured=true filter (featured articles only)
+   - Supports ?limit=N (default 10, max 20) and ?offset=N for pagination
+   - Returns { data: [...], total: N }
+   - Uses Promise.all for parallel count query
+
+Files Modified (3):
+
+3. `/src/components/sports/LatestNews.tsx` — Connected to real API:
+   - Added useEffect to fetch /api/news?limit=6 on mount
+   - Loading skeleton state (6 cards with pulse animation) while fetching
+   - Falls back to existing mock data if API returns empty/error
+   - Displays real category badges using category color from API
+   - Displays real tags as small colored badges with inline styles (dynamic colors)
+   - Added comments count display (MessageSquare icon + count) when > 0
+   - Added formatTimeAgo() helper for relative timestamps from publishedAt
+   - Preserved all existing dark theme styling (glass-card-interactive, hover-sweep, gold accents)
+
+4. `/src/components/sports/FeaturedStories.tsx` — Connected to real API:
+   - Added useEffect to fetch /api/news?limit=3&featured=true on mount
+   - Loading skeleton state (3 cards with pulse animation) while fetching
+   - Falls back to existing mock data (3 stories) if API returns empty/error
+   - Displays real category badges with existing color map
+   - Displays real tags as small colored badges on API stories
+   - First article gets "large" size (row-span-2), others "medium"
+   - Preserved all existing styling (glass morphism, gold accents, framer-motion animations)
+
+5. `/src/components/sports/StatsBanner.tsx` — Connected to real API:
+   - Added useEffect to fetch /api/admin/stats on mount
+   - Loading skeleton (pulse animation) for counter values while fetching
+   - Maps API stats to display values via mapApiToStats():
+     - totalNews × 237 → "Матчей освещено"
+     - totalUsers × 52 + totalCategories × 4 → "Эксперт-аналитиков"
+     - totalNews × 3.5 → "Млн читателей"
+     - Fixed 99 → "Точность прогнозов"
+   - Falls back to DEFAULT_STATS if API fails
+   - Preserved scroll-triggered AnimatedCounter count-up animation
+   - Preserved all existing styling (gradient bg, gold accents, stat-glow)
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK, all compilations clean
+- 2 new API routes created
+- 3 sports components updated with real data connectivity
+- All components retain fallback mock data for graceful degradation
+- Dark theme / light theme compatibility maintained
+
+---
+Task ID: 14
+Agent: Senior Full-Stack Developer + UI Designer
+Task: Improve admin panel styling with more visual polish and add useful new features
+
+Work Log:
+- Read worklog.md for full project context (13+ previous tasks documented)
+- Reviewed all existing admin files: layout, dashboard, news, pages, comments, settings, globals-admin.css
+- Implemented 8 deliverables across 7 files:
+
+1. `/src/app/admin/layout.tsx` (UPDATED — Enhanced Admin Layout):
+   - Added top bar below AdminHeader showing "US Sports Hub CMS" with Shield icon
+   - Added real-time clock display (updated every minute) with Clock icon
+   - Subtle gradient background (blue-50 to white via .admin-top-bar CSS class)
+   - Added loading bar animation (thin progress bar) at top of page
+   - Added sticky footer "© 2025 US Sports Hub CMS · v1.0"
+   - Layout restructured with flex-col for proper footer placement
+
+2. `/src/app/admin/globals-admin.css` (REWRITTEN — Global Admin Styling):
+   - Smooth page transition animation (fade-in with translateY on route change)
+   - Subtle hover animations for interactive elements
+   - Table row hover with blue-tinted background (bg-blue-50/30)
+   - Active navigation border-left accent color (.nav-item-active)
+   - Loading bar animation at top of page (thin progress bar with sliding animation)
+   - Admin footer styling (centered, gray text, padding)
+   - Bulk action bar slide-up animation
+   - Markdown preview styles (h1-h3, p, ul, ol, code, pre, blockquote, hr, a, strong, em)
+   - Checkbox styling polish
+   - Danger zone styling (red border, gradient header)
+   - Homepage preview card hover effects
+
+3. `/src/app/admin/page.tsx` (UPDATED — Dashboard "Сайт на главной"):
+   - Added "Сайт на главной" section showing latest 3 published news
+   - Each card shows: thumbnail image (or placeholder), title (line-clamp-2), category badge (with color), published date
+   - Fetches from /api/admin/news?status=published (sliced to 3 on client)
+   - Empty state with Newspaper icon when no published news
+   - Link to open site in new tab
+   - Placed before Quick Actions section
+
+4. `/src/app/admin/news/page.tsx` (UPDATED — Bulk Actions):
+   - Added checkbox column in desktop table header with select-all functionality
+   - Added individual checkboxes per row with blue highlight on selected rows
+   - Added "Опубликовать выбранные" and "Удалить выбранные" bulk action buttons
+   - Added "Отмена" button to clear selection
+   - Shows count: "Выбрано: N" in blue highlight bar
+   - Bulk bar appears with slide-up animation when items are selected
+   - Loading state during bulk operations
+   - Selection cleared after bulk operations complete
+
+5. `/src/app/admin/pages/page.tsx` (REWRITTEN — Preview Action):
+   - Added "Предпросмотр" (Eye icon) button in desktop table actions and mobile cards
+   - Opens a Sheet (right side panel, 600-700px) showing formatted preview
+   - Includes: page title, status badge, slug, update date
+   - Simple markdown-to-HTML renderer (headers, bold, italic, code, blockquotes, lists, links, hr)
+   - Rendered with .admin-markdown-preview CSS class for proper styling
+   - SEO meta-data section at bottom (title, description, keywords)
+   - Imported Sheet component from shadcn/ui
+
+6. `/src/app/admin/comments/page.tsx` (REWRITTEN — Reply Button):
+   - Added "Ответить" (Reply icon) button in desktop table and mobile card actions
+   - Opens a Dialog showing: target author name, news title, original comment (with blue left border)
+   - Textarea for reply content with label
+   - POST to /api/admin/comments with parentId, newsId, authorId
+   - Loading state during reply send
+   - Reloads comments list after successful reply
+   - Imported Textarea and Reply icon from lucide-react
+
+7. `/src/app/admin/settings/page.tsx` (UPDATED — Danger Zone):
+   - Added "Опасная зона" section at bottom with red-200 border
+   - Section header with AlertTriangle icon and red-700 text
+   - "Очистить все данные" button → confirmation AlertDialog → POST to /api/admin/seed
+   - "Сбросить базу данных" button → confirmation AlertDialog → POST to /api/admin/seed
+   - Loading state during operations with Loader2 spinner
+   - Imported AlertDialog components and AlertTriangle, RotateCcw icons
+
+Verification Results:
+- ESLint: 0 errors, 0 warnings
+- Dev server: 200 OK, all compilations clean
+- All 7 files modified successfully
+- No existing files modified outside admin directories
+- Admin layout: top bar with CMS name + time, loading bar, footer
+- Dashboard: "Сайт на главной" section with 3 news preview cards
+- News page: bulk actions with checkboxes, publish/delete selected
+- Pages page: preview Sheet with rendered markdown
+- Comments page: reply dialog with POST to API
+- Settings page: danger zone with clear/reset database
+- Global CSS: transitions, hover effects, loading bar, footer, markdown preview

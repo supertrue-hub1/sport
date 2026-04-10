@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import {
   Newspaper, CheckCircle, FileEdit, FileText, MessageSquare, Image as ImageIcon,
   Plus, Upload, MessageCircle, ExternalLink, ArrowUpRight, ArrowDownRight, Minus,
-  Clock, User, Loader2,
+  Clock, User, Loader2, Home, ImageOff,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
@@ -104,6 +104,16 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Homepage preview news
+  const [homepageNews, setHomepageNews] = useState<{
+    id: string
+    title: string
+    image: string | null
+    excerpt: string | null
+    publishedAt: string | null
+    category: { name?: string; color?: string } | null
+  }[]>([])
+
   useEffect(() => {
     async function loadStats() {
       try {
@@ -118,6 +128,19 @@ export default function AdminDashboard() {
       }
     }
     loadStats()
+  }, [])
+
+  useEffect(() => {
+    async function loadHomepageNews() {
+      try {
+        const res = await fetch('/api/admin/news?status=published')
+        if (res.ok) {
+          const data = await res.json()
+          setHomepageNews(data.slice(0, 3))
+        }
+      } catch { /* ignore */ }
+    }
+    loadHomepageNews()
   }, [])
 
   const statCards = [
@@ -442,6 +465,72 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Сайт на главной — Homepage Preview */}
+      <div className="rounded-xl border border-gray-100 bg-white shadow-sm">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <div className="flex items-center gap-2">
+            <Home className="size-4 text-blue-600" />
+            <h2 className="text-base font-semibold text-gray-900">Сайт на главной</h2>
+          </div>
+          <a href="/" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+            Открыть сайт <ExternalLink className="size-3" />
+          </a>
+        </div>
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {homepageNews.length > 0 ? (
+            homepageNews.map((item) => (
+              <div key={item.id} className="admin-homepage-preview-card rounded-lg border border-gray-100 overflow-hidden bg-gray-50/50">
+                {/* Thumbnail */}
+                <div className="relative h-36 bg-gray-100 overflow-hidden">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <ImageOff className="size-8 text-gray-300" />
+                    </div>
+                  )}
+                  {/* Category badge */}
+                  {item.category && (
+                    <div className="absolute top-2 left-2">
+                      <Badge
+                        className="text-[10px] px-2 py-0.5 font-medium shadow-sm"
+                        style={{
+                          backgroundColor: item.category.color || '#2563eb',
+                          color: '#ffffff',
+                        }}
+                      >
+                        {item.category.name}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+                {/* Content */}
+                <div className="p-3">
+                  <h3 className="text-sm font-semibold text-gray-900 leading-snug line-clamp-2">
+                    {item.title}
+                  </h3>
+                  {item.publishedAt && (
+                    <p className="text-xs text-gray-400 mt-1.5">
+                      {new Date(item.publishedAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full py-8 text-center">
+              <Newspaper className="size-8 mx-auto text-gray-300 mb-2" />
+              <p className="text-sm text-gray-400">Нет опубликованных новостей</p>
+              <p className="text-xs text-gray-300 mt-1">Опубликованные статьи будут отображаться здесь</p>
+            </div>
+          )}
         </div>
       </div>
 
