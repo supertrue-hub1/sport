@@ -1051,3 +1051,141 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
+
+/* ===== ROUND 8 STYLING ADDITIONS ===== */
+
+/* Animated gradient text for hero */
+.text-gradient-hero {
+  background: linear-gradient(135deg, #d4af37 0%, #fff 40%, #d4af37 60%, #f5d678 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: hero-gradient-shift 6s ease-in-out infinite;
+}
+@keyframes hero-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Premium hover card with border glow */
+.card-hover-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.card-hover-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.3), transparent 40%, transparent 60%, rgba(212,175,55,0.15));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card-hover-glow:hover::after {
+  opacity: 1;
+}
+
+/* Number counter animation */
+@keyframes number-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-number-pop {
+  animation: number-pop 0.5s ease-out forwards;
+}
+
+/* Subtle breathing glow for accent elements */
+@keyframes accent-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+}
+.accent-breathe {
+  animation: accent-breathe 3s ease-in-out infinite;
+}
+
+/* Smooth text reveal from bottom */
+@keyframes text-reveal {
+  from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-text-reveal {
+  animation: text-reveal 0.6s ease-out forwards;
+}
+
+/* Glass hover effect with subtle shine */
+.glass-shine {
+  position: relative;
+  overflow: hidden;
+}
+.glass-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.glass-shine:hover::before {
+  left: 150%;
+}
+:root:not(.dark) .glass-shine::before {
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.06), transparent);
+}
+
+/* Interactive rating stars glow */
+.star-glow {
+  filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.star-glow:hover {
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
+  transform: scale(1.15);
+}
+
+/* Section enter animation with stagger */
+.section-enter {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.section-enter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium separator line */
+.premium-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 20%, rgba(212, 175, 55, 0.5) 50%, rgba(212, 175, 55, 0.3) 80%, transparent 100%);
+}
+
+/* Badge pulse animation */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.animate-badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth card press */
+.card-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-press:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}

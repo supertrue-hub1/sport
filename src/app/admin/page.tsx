@@ -1,58 +1,29 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import {
-  Newspaper,
-  CheckCircle,
-  Tags,
-  Users,
-  Plus,
-  FileText,
-  UserCog,
-  ArrowUpRight,
+  Newspaper, CheckCircle, Tags, Users, Plus, FileText, UserCog, ArrowUpRight, Loader2,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
-/* ── stat cards data ── */
-const stats = [
-  {
-    label: 'Всего новостей',
-    value: '128',
-    change: '+12% от прошлого месяца',
-    icon: Newspaper,
-    bg: 'bg-blue-50',
-    iconColor: 'text-blue-600',
-    text: 'text-blue-700',
-  },
-  {
-    label: 'Опубликовано',
-    value: '96',
-    change: '+8% от прошлого месяца',
-    icon: CheckCircle,
-    bg: 'bg-green-50',
-    iconColor: 'text-green-600',
-    text: 'text-green-700',
-  },
-  {
-    label: 'Категории',
-    value: '8',
-    change: '+2 новые',
-    icon: Tags,
-    bg: 'bg-purple-50',
-    iconColor: 'text-purple-600',
-    text: 'text-purple-700',
-  },
-  {
-    label: 'Пользователи',
-    value: '24',
-    change: '+12% от прошлого месяца',
-    icon: Users,
-    bg: 'bg-orange-50',
-    iconColor: 'text-orange-600',
-    text: 'text-orange-700',
-  },
-]
+interface StatsData {
+  totalNews: number
+  publishedNews: number
+  draftNews: number
+  featuredNews: number
+  totalCategories: number
+  totalUsers: number
+  recentNews: {
+    id: string
+    title: string
+    status: string
+    createdAt: string
+    author?: { name?: string } | null
+    category?: { name?: string; color?: string } | null
+  }[]
+}
 
-/* ── decorative sparkline SVG ── */
 function Sparkline({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 80 32" className="h-8 w-20" fill="none">
@@ -69,51 +40,6 @@ function Sparkline({ color }: { color: string }) {
   )
 }
 
-/* ── recent news data ── */
-const recentNews = [
-  {
-    title: 'Патрик Махо́мс обновил рекорд передач в сезоне',
-    category: 'NFL',
-    categoryColor: 'bg-red-100 text-red-700',
-    date: '15 янв 2025',
-    status: 'Опубликовано',
-    statusColor: 'bg-green-100 text-green-700',
-  },
-  {
-    title: 'Леброн Джеймс побил рекорд Карима Абдул-Джаббара',
-    category: 'NBA',
-    categoryColor: 'bg-orange-100 text-orange-700',
-    date: '14 янв 2025',
-    status: 'Опубликовано',
-    statusColor: 'bg-green-100 text-green-700',
-  },
-  {
-    title: 'Шо́хей Отани стал MVP обеих лиг MLB',
-    category: 'MLB',
-    categoryColor: 'bg-sky-100 text-sky-700',
-    date: '13 янв 2025',
-    status: 'Черновик',
-    statusColor: 'bg-yellow-100 text-yellow-700',
-  },
-  {
-    title: 'Коннор Макдэвид признан лучшим игроком NHL',
-    category: 'NHL',
-    categoryColor: 'bg-cyan-100 text-cyan-700',
-    date: '12 янв 2025',
-    status: 'Опубликовано',
-    statusColor: 'bg-green-100 text-green-700',
-  },
-  {
-    title: 'Драфт 2025: топ-прогнозы и главные перспективы',
-    category: 'NFL',
-    categoryColor: 'bg-red-100 text-red-700',
-    date: '11 янв 2025',
-    status: 'Опубликовано',
-    statusColor: 'bg-green-100 text-green-700',
-  },
-]
-
-/* ── weekly activity data ── */
 const weeklyData = [
   { day: 'Пн', value: 65 },
   { day: 'Вт', value: 45 },
@@ -124,47 +50,101 @@ const weeklyData = [
   { day: 'Вс', value: 70 },
 ]
 
+function Skeleton() {
+  return <div className="animate-pulse bg-gray-200 rounded-lg h-4 w-full" />
+}
+
 export default function AdminDashboard() {
+  const [stats, setStats] = useState<StatsData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/admin/stats')
+        if (!res.ok) throw new Error('Failed to load stats')
+        const data = await res.json()
+        setStats(data)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Ошибка загрузки')
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadStats()
+  }, [])
+
+  const statCards = [
+    { label: 'Всего новостей', value: stats?.totalNews ?? 0, change: 'Всего статей', icon: Newspaper, bg: 'bg-blue-50', iconColor: 'text-blue-600', text: 'text-blue-700', sparkColor: '#2563eb' },
+    { label: 'Опубликовано', value: stats?.publishedNews ?? 0, change: 'Активных публикаций', icon: CheckCircle, bg: 'bg-green-50', iconColor: 'text-green-600', text: 'text-green-700', sparkColor: '#16a34a' },
+    { label: 'Категории', value: stats?.totalCategories ?? 0, change: 'Всего категорий', icon: Tags, bg: 'bg-purple-50', iconColor: 'text-purple-600', text: 'text-purple-700', sparkColor: '#9333ea' },
+    { label: 'Пользователи', value: stats?.totalUsers ?? 0, change: 'Зарегистрировано', icon: Users, bg: 'bg-orange-50', iconColor: 'text-orange-600', text: 'text-orange-700', sparkColor: '#ea580c' },
+  ]
+
+  const statusMap: Record<string, { label: string; color: string }> = {
+    published: { label: 'Опубликовано', color: 'bg-green-100 text-green-700' },
+    draft: { label: 'Черновик', color: 'bg-yellow-100 text-yellow-700' },
+  }
+
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
+
   const maxValue = Math.max(...weeklyData.map((d) => d.value))
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <Skeleton />
+          <Skeleton className="mt-2 h-4 w-48" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm space-y-3">
+              <Skeleton className="h-10 w-10 rounded-lg" />
+              <Skeleton />
+              <Skeleton className="h-7 w-24" />
+              <Skeleton className="h-3 w-32" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <p className="text-red-500 font-medium">{error}</p>
+        <button onClick={() => window.location.reload()} className="mt-4 text-sm text-blue-600 hover:underline">
+          Попробовать снова
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
-      {/* Page title */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Дашборд</h1>
         <p className="text-sm text-gray-500 mt-1">Обзор всей системы</p>
       </div>
 
-      {/* Stat cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        {stats.map((stat) => {
+        {statCards.map((stat) => {
           const Icon = stat.icon
           return (
-            <div
-              key={stat.label}
-              className="admin-stat-card rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
-            >
+            <div key={stat.label} className="admin-stat-card rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
               <div className="flex items-start justify-between">
                 <div className={`rounded-lg ${stat.bg} p-2.5`}>
                   <Icon className={`size-5 ${stat.iconColor}`} />
                 </div>
-                <Sparkline
-                  color={
-                    stat.iconColor === 'text-blue-600'
-                      ? '#2563eb'
-                      : stat.iconColor === 'text-green-600'
-                        ? '#16a34a'
-                        : stat.iconColor === 'text-purple-600'
-                          ? '#9333ea'
-                          : '#ea580c'
-                  }
-                />
+                <Sparkline color={stat.sparkColor} />
               </div>
               <div className="mt-4">
                 <p className="text-sm font-medium text-gray-500">{stat.label}</p>
-                <p className={`text-2xl font-bold mt-1 ${stat.text}`}>
-                  {stat.value}
-                </p>
+                <p className={`text-2xl font-bold mt-1 ${stat.text}`}>{stat.value}</p>
                 <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
                   <ArrowUpRight className="size-3 text-green-500" />
                   {stat.change}
@@ -175,46 +155,55 @@ export default function AdminDashboard() {
         })}
       </div>
 
-      {/* Two-column: Recent News + Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent News */}
         <div className="lg:col-span-2 rounded-xl border border-gray-100 bg-white shadow-sm">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
             <h2 className="text-base font-semibold text-gray-900">Последние новости</h2>
-            <a href="/admin/news" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            <Link href="/admin/news" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               Все новости
-            </a>
+            </Link>
           </div>
           <div className="divide-y divide-gray-50">
-            {recentNews.map((item, i) => (
-              <div key={i} className="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 transition-colors">
-                <div className="min-w-0 flex-1 mr-4">
-                  <p className="text-sm font-medium text-gray-900 truncate">{item.title}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <Badge variant="secondary" className={`${item.categoryColor} text-[11px] px-2 py-0`}>
-                      {item.category}
+            {stats?.recentNews && stats.recentNews.length > 0 ? (
+              stats.recentNews.map((item) => {
+                const st = statusMap[item.status] || { label: item.status, color: 'bg-gray-100 text-gray-600' }
+                const catColor = item.category?.color
+                return (
+                  <div key={item.id} className="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 transition-colors">
+                    <div className="min-w-0 flex-1 mr-4">
+                      <p className="text-sm font-medium text-gray-900 truncate">{item.title}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge
+                          variant="secondary"
+                          className="text-[11px] px-2 py-0"
+                          style={{
+                            backgroundColor: catColor ? `${catColor}18` : undefined,
+                            color: catColor ? '#fff' : undefined,
+                          }}
+                        >
+                          {item.category?.name || 'Без категории'}
+                        </Badge>
+                        <span className="text-xs text-gray-400">{formatDate(item.createdAt)}</span>
+                      </div>
+                    </div>
+                    <Badge variant="secondary" className={`${st.color} text-[11px] px-2 py-0 shrink-0`}>
+                      {st.label}
                     </Badge>
-                    <span className="text-xs text-gray-400">{item.date}</span>
                   </div>
-                </div>
-                <Badge variant="secondary" className={`${item.statusColor} text-[11px] px-2 py-0 shrink-0`}>
-                  {item.status}
-                </Badge>
-              </div>
-            ))}
+                )
+              })
+            ) : (
+              <div className="px-6 py-12 text-center text-gray-400 text-sm">Новостей пока нет</div>
+            )}
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div className="rounded-xl border border-gray-100 bg-white shadow-sm">
           <div className="px-6 py-4 border-b border-gray-100">
             <h2 className="text-base font-semibold text-gray-900">Быстрые действия</h2>
           </div>
           <div className="p-4 space-y-3">
-            <a
-              href="/admin/news"
-              className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-blue-50 hover:border-blue-200 transition-colors group"
-            >
+            <Link href="/admin/news" className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-blue-50 hover:border-blue-200 transition-colors group">
               <div className="rounded-lg bg-blue-100 p-2 group-hover:bg-blue-200 transition-colors">
                 <Plus className="size-4 text-blue-600" />
               </div>
@@ -222,11 +211,8 @@ export default function AdminDashboard() {
                 <p className="text-sm font-medium text-gray-900">Добавить новость</p>
                 <p className="text-xs text-gray-400">Создать новую статью</p>
               </div>
-            </a>
-            <a
-              href="/admin/categories"
-              className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-green-50 hover:border-green-200 transition-colors group"
-            >
+            </Link>
+            <Link href="/admin/categories" className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-green-50 hover:border-green-200 transition-colors group">
               <div className="rounded-lg bg-green-100 p-2 group-hover:bg-green-200 transition-colors">
                 <Tags className="size-4 text-green-600" />
               </div>
@@ -234,11 +220,8 @@ export default function AdminDashboard() {
                 <p className="text-sm font-medium text-gray-900">Создать категорию</p>
                 <p className="text-xs text-gray-400">Добавить новую категорию</p>
               </div>
-            </a>
-            <a
-              href="/admin/users"
-              className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-purple-50 hover:border-purple-200 transition-colors group"
-            >
+            </Link>
+            <Link href="/admin/users" className="flex items-center gap-3 rounded-lg border border-gray-100 p-4 hover:bg-purple-50 hover:border-purple-200 transition-colors group">
               <div className="rounded-lg bg-purple-100 p-2 group-hover:bg-purple-200 transition-colors">
                 <UserCog className="size-4 text-purple-600" />
               </div>
@@ -246,12 +229,11 @@ export default function AdminDashboard() {
                 <p className="text-sm font-medium text-gray-900">Управление пользователями</p>
                 <p className="text-xs text-gray-400">Просмотр и редактирование</p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Weekly Activity Chart */}
       <div className="rounded-xl border border-gray-100 bg-white shadow-sm">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h2 className="text-base font-semibold text-gray-900">Активность за неделю</h2>

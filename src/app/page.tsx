@@ -30,6 +30,7 @@ import { HallOfFameShowcase } from "@/components/sports/HallOfFameShowcase";
 import { WeatherStadium } from "@/components/sports/WeatherStadium";
 import { MVPLeaders } from "@/components/sports/MVPLeaders";
 import { QuickBetOdds } from "@/components/sports/QuickBetOdds";
+import { TopPerformers } from "@/components/sports/TopPerformers";
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
         <HeroSection />
         <LiveTicker />
         <StatsBanner />
+        <TopPerformers />
         <FeaturedStories />
         <CinematicQuote variant={0} />
         <TopHighlights />
