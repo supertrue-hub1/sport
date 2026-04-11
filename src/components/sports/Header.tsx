@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Search, Trophy, Clock } from "lucide-react";
+import { Menu, X, Search, Trophy, Clock, Settings } from "lucide-react";
 import { SearchModal } from "./SearchModal";
 import { cn } from "@/lib/utils";
 
@@ -90,6 +90,14 @@ export function Header() {
               <span>Live Scores</span>
             </a>
 
+            <a
+              href="/admin"
+              className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm font-inter font-semibold text-gray-300 bg-white/5 hover:bg-white/10 rounded-md transition-colors"
+            >
+              <Settings className="w-4 h-4" />
+              <span>Admin</span>
+            </a>
+
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md"
@@ -117,6 +125,16 @@ export function Header() {
                 {league.label}
               </a>
             ))}
+            <div className="my-2 border-t border-white/10 pt-2">
+              <a
+                href="/admin"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2 px-4 py-3 text-base font-inter font-semibold text-gray-300 hover:text-gold hover:bg-white/5 rounded-lg transition-colors"
+              >
+                <Settings className="w-4 h-4" />
+                Админ-панель
+              </a>
+            </div>
           </nav>
         </div>
       )}
