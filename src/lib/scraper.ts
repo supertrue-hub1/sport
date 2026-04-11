@@ -30,18 +30,20 @@ export async function scrapeNHLNews(): Promise<ScrapedNews[]> {
     const $ = cheerio.load(html)
     const articles: ScrapedNews[] = []
 
-    // Парсим основные новости
-    $('[data-kylin-component="ArticleCard"]').each((_, el) => {
-      const title = $(el).find('h3 a').first().text().trim()
-      const link = $(el).find('h3 a').first().attr('href')
-      const image = $(el).find('img').first().attr('src') || ''
-      const category = $(el).find('[class*="CategoryChip"]').text().trim() || 'NHL'
+    console.log('Parsing HTML...')
+
+    // Селектор 1: Стандартные карточки новостей
+    $('[class*="ArticleCard"], [class*="article-card"], .article, article').each((_, el) => {
+      const title = $(el).find('h3 a, h4 a, .title a, a.title').first().text().trim()
+      const link = $(el).find('h3 a, h4 a, .title a, a.title').first().attr('href')
+      const image = $(el).find('img').first().attr('src') || $(el).find('img').first().attr('data-src') || ''
       
-      if (title && link) {
+      if (title && link && title.length > 10) {
+        const category = $(el).find('[class*="CategoryChip"], .category, [class*="category"]').first().text().trim() || 'NHL'
         articles.push({
           title,
           url: link.startsWith('http') ? link : `https://www.cbssports.com${link}`,
-          image,
+          image: image || '',
           category,
           excerpt: '',
           publishedAt: null,
@@ -49,18 +51,18 @@ export async function scrapeNHLNews(): Promise<ScrapedNews[]> {
       }
     })
 
-    // Альтернативный селектор для других блоков новостей
+    // Селектор 2: Если ничего не нашли, ищем все ссылки в контенте
     if (articles.length === 0) {
-      $('.nhl-news-item, .article-card, [class*="ArticleCard"]').each((_, el) => {
-        const title = $(el).find('h3, h4, .title').first().text().trim()
-        const link = $(el).find('a').first().attr('href')
-        const image = $(el).find('img').first().attr('src') || ''
+      $('main a, [class*="content"] a, .nhl-news a').each((_, el) => {
+        const link = $(el).attr('href')
+        const text = $(el).text().trim()
         
-        if (title && link) {
+        if (link && text.length > 10 && text.length < 200 && 
+            (link.includes('/nhl/') || link.includes('/news/'))) {
           articles.push({
-            title,
+            title: text,
             url: link.startsWith('http') ? link : `https://www.cbssports.com${link}`,
-            image,
+            image: '',
             category: 'NHL',
             excerpt: '',
             publishedAt: null,
@@ -69,8 +71,39 @@ export async function scrapeNHLNews(): Promise<ScrapedNews[]> {
       })
     }
 
-    // Ограничиваем 10 статьями
-    return articles.slice(0, 10)
+    // Селектор 3: Ищем заголовки с классами новостей
+    if (articles.length === 0) {
+      $('h2, h3, h4').each((_, el) => {
+        const title = $(el).text().trim()
+        const link = $(el).find('a').first().attr('href') || $(el).parent('a').attr('href')
+        
+        if (title && link && title.length > 10 && title.length < 200) {
+          const image = $(el).closest('div').find('img').first().attr('src') || ''
+          articles.push({
+            title,
+            url: link.startsWith('http') ? link : `https://www.cbssports.com${link}`,
+            image: image || '',
+            category: 'NHL',
+            excerpt: '',
+            publishedAt: null,
+          })
+        }
+      })
+    }
+
+    // Убираем дубликаты по URL
+    const unique = new Map<string, ScrapedNews>()
+    articles.forEach(article => {
+      const key = article.url.replace(/[^a-zA-Z0-9]/g, '')
+      if (!unique.has(key)) {
+        unique.set(key, article)
+      }
+    })
+
+    const result = Array.from(unique.values()).slice(0, 15)
+    console.log(`Found ${result.length} articles`)
+    
+    return result
   } catch (error) {
     console.error('Error scraping NHL news:', error)
     throw error
