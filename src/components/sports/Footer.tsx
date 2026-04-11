@@ -26,18 +26,18 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 mt-16">
+    <footer className="bg-black border-t border-white/10 mt-16">
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
             <a href="#" className="flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-red-600" />
-              <span className="text-xl font-playfair font-bold text-gray-900">
+              <Trophy className="w-6 h-6 text-gold" />
+              <span className="text-xl font-playfair font-bold text-white">
                 USASport
               </span>
             </a>
-            <p className="mt-4 text-sm text-gray-500 leading-relaxed max-w-sm">
+            <p className="mt-4 text-sm text-gray-400 leading-relaxed max-w-sm">
               Современный спортивный новостной портал. Актуальные новости, 
               статистика и аналитика из мира американского спорта.
             </p>
@@ -47,7 +47,7 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-red-600 hover:border-red-600 transition-colors"
+                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold/30 transition-colors"
                 >
                   <social.icon className="w-4 h-4" />
                 </a>
@@ -57,7 +57,7 @@ export function Footer() {
 
           {/* Leagues */}
           <div>
-            <h4 className="font-inter font-semibold text-xs text-gray-400 uppercase tracking-wide mb-4">
+            <h4 className="font-inter font-semibold text-xs text-gray-500 uppercase tracking-wide mb-4">
               Лиги
             </h4>
             <ul className="space-y-2">
@@ -65,7 +65,7 @@ export function Footer() {
                 <li key={league.label}>
                   <a
                     href={league.href}
-                    className="text-sm text-gray-600 hover:text-red-600 transition-colors"
+                    className="text-sm text-gray-400 hover:text-gold transition-colors"
                   >
                     {league.label}
                   </a>
@@ -76,7 +76,7 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-inter font-semibold text-xs text-gray-400 uppercase tracking-wide mb-4">
+            <h4 className="font-inter font-semibold text-xs text-gray-500 uppercase tracking-wide mb-4">
               Компания
             </h4>
             <ul className="space-y-2">
@@ -84,7 +84,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-600 hover:text-red-600 transition-colors"
+                    className="text-sm text-gray-400 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </a>
@@ -95,8 +95,8 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <p className="text-xs text-gray-400 text-center">
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <p className="text-xs text-gray-500 text-center">
             © {new Date().getFullYear()} USASport. Все права защищены.
           </p>
         </div>

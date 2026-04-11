@@ -44,50 +44,44 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
-          : "bg-white"
+          ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
       )}
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8">
-        {/* Top Bar */}
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <Trophy className="w-6 h-6 text-red-600 transition-transform group-hover:scale-110" />
-            <span className="text-xl lg:text-2xl font-playfair font-bold tracking-tight text-gray-900">
+            <Trophy className="w-6 h-6 text-gold transition-transform group-hover:scale-110" />
+            <span className="text-xl lg:text-2xl font-playfair font-bold tracking-tight text-white">
               USASport
             </span>
           </a>
 
-          {/* League Navigation - Desktop */}
           <nav className="hidden lg:flex items-center gap-1">
             {LEAGUES.map((league) => (
               <a
                 key={league.label}
                 href={league.href}
-                className="px-4 py-2 text-sm font-inter font-semibold text-gray-600 hover:text-red-600 hover:bg-gray-50 rounded-md transition-colors"
+                className="px-4 py-2 text-sm font-inter font-semibold text-gray-300 hover:text-gold hover:bg-white/5 rounded-md transition-colors"
               >
                 {league.label}
               </a>
             ))}
           </nav>
 
-          {/* Actions */}
           <div className="flex items-center gap-3">
-            {/* Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 bg-white/10 hover:bg-white/20 rounded-md transition-colors"
               aria-label="Поиск (⌘K)"
             >
               <Search className="w-4 h-4" />
               <span className="hidden sm:inline font-inter">Поиск</span>
-              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-xs font-mono bg-gray-200 rounded">
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-xs font-mono bg-white/10 rounded">
                 ⌘K
               </kbd>
             </button>
 
-            {/* Live Scores Button */}
             <a
               href="#"
               className="flex items-center gap-2 px-4 py-2 text-sm font-inter font-semibold text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
@@ -96,10 +90,9 @@ export function Header() {
               <span>Live Scores</span>
             </a>
 
-            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md"
+              className="lg:hidden p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md"
             >
               {mobileOpen ? (
                 <X className="w-5 h-5" />
@@ -111,16 +104,15 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-white">
+        <div className="lg:hidden border-t border-white/10 bg-black/95 backdrop-blur-md">
           <nav className="flex flex-col p-4 gap-1">
             {LEAGUES.map((league) => (
               <a
                 key={league.label}
                 href={league.href}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 text-base font-inter font-semibold text-gray-700 hover:text-red-600 hover:bg-gray-50 rounded-lg transition-colors"
+                className="px-4 py-3 text-base font-inter font-semibold text-gray-300 hover:text-gold hover:bg-white/5 rounded-lg transition-colors"
               >
                 {league.label}
               </a>
@@ -129,7 +121,6 @@ export function Header() {
         </div>
       )}
 
-      {/* Search Modal */}
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );

@@ -40,12 +40,11 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-white`}
-        style={{ paddingTop: "64px" }}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >

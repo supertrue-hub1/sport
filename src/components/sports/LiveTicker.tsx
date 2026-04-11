@@ -12,15 +12,15 @@ export function LiveTicker() {
   const doubled = [...LIVE_GAMES, ...LIVE_GAMES];
 
   return (
-    <section className="bg-gray-50 border-b border-gray-200 overflow-hidden">
+    <section className="bg-black/50 backdrop-blur-sm border-b border-white/10 overflow-hidden">
       <div className="flex items-center max-w-[1400px] mx-auto">
         {/* LIVE Badge */}
-        <div className="flex-shrink-0 flex items-center gap-2 px-4 md:px-6 py-2.5 border-r border-gray-200 bg-gray-100">
+        <div className="flex-shrink-0 flex items-center gap-2 px-4 md:px-6 py-2.5 border-r border-white/10 bg-white/5">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600" />
           </span>
-          <span className="text-xs font-inter font-bold tracking-wider text-red-600 uppercase">
+          <span className="text-xs font-inter font-bold tracking-wider text-gold uppercase">
             Live
           </span>
         </div>
@@ -33,23 +33,23 @@ export function LiveTicker() {
                 key={i}
                 className="inline-flex items-center gap-3 px-5"
               >
-                <span className="text-xs font-inter font-semibold text-gray-400 uppercase tracking-wide">
+                <span className="text-xs font-inter font-semibold text-gray-500 uppercase tracking-wide">
                   {game.sport}
                 </span>
-                <span className="text-sm font-inter font-semibold text-gray-700">
+                <span className="text-sm font-inter font-semibold text-gray-300">
                   {game.away}
                 </span>
-                <span className="text-sm font-inter font-bold text-gray-900">
+                <span className="text-sm font-inter font-bold text-gold">
                   {game.awayScore}
                 </span>
-                <span className="text-gray-400">-</span>
-                <span className="text-sm font-inter font-bold text-gray-900">
+                <span className="text-gray-600">-</span>
+                <span className="text-sm font-inter font-bold text-gold">
                   {game.homeScore}
                 </span>
-                <span className="text-sm font-inter font-semibold text-gray-700">
+                <span className="text-sm font-inter font-semibold text-gray-300">
                   {game.home}
                 </span>
-                <span className="text-xs font-inter font-medium text-gray-500 bg-gray-200 px-2 py-0.5 rounded">
+                <span className="text-xs font-inter font-medium text-gray-400 bg-white/10 px-2 py-0.5 rounded">
                   {game.status}
                 </span>
               </div>
